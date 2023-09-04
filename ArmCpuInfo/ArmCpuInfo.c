@@ -35,6 +35,18 @@ enum {
   b1111
 };
 
+UINTN
+EFIAPI
+ArmReadIdAA64Smfr0 (
+  VOID
+  );
+
+UINTN
+EFIAPI
+ArmReadIdAA64Zfr0 (
+  VOID
+  );
+
 /**
   Print formatted table line.
 

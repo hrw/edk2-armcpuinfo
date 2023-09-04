@@ -19,6 +19,7 @@
 
 [Sources]
   ArmCpuInfo.c
+  AArch64Support.S
 
 [Packages]
   ArmPkg/ArmPkg.dec
@@ -29,3 +30,6 @@
   ArmLib
   UefiApplicationEntryPoint
   UefiLib
+
+[BuildOptions]
+  GCC:*_*_AARCH64_ASM_FLAGS = -march=armv8-a+sme
