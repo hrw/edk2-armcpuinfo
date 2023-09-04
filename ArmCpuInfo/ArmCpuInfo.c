@@ -2747,7 +2747,7 @@ UefiMain (
   AsciiPrint ("ID_AA64ZFR0_EL1  = 0x%016lx\n", Aa64Zfr0);
   AsciiPrint ("\n");
 
-  PrintText ("Register", "Bits", "Value", "Feature");
+  PrintText ("Reg", "Bits", "Value", "Feature");
   PrintSpacer ();
 
   HandleAa64Mmfr0 (Aa64Mmfr0);
