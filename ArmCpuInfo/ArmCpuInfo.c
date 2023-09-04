@@ -1222,6 +1222,9 @@ HandleAa64Mmfr0 (
   Bits  = "43:40";
   Value = (Aa64Mmfr0 >> 40) & 0xf;
   switch (Value) {
+    case b0000:
+      Description = " 4KB granule support at stage2 as above.";
+      break;
     case b0001:
       Description = " 4KB granule not supported at stage 2.";
       break;
@@ -1260,6 +1263,9 @@ HandleAa64Mmfr0 (
   Bits  = "35:32";
   Value = (Aa64Mmfr0 >> 32) & 0xf;
   switch (Value) {
+    case b0000:
+      Description = "16KB granule support at stage2 as above.";
+      break;
     case b0001:
       Description = "16KB granule not supported at stage 2.";
       break;
@@ -1295,6 +1301,9 @@ HandleAa64Mmfr0 (
   Bits  = "39:36";
   Value = (Aa64Mmfr0 >> 36) & 0xf;
   switch (Value) {
+    case b0000:
+      Description = "64KB granule support at stage2 as above.";
+      break;
     case b0001:
       Description = "64KB granule not supported at stage 2.";
       break;
