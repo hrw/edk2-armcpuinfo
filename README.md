@@ -29,10 +29,10 @@ MMFR0 | 63:60 |  0000 | FEAT_ECV not implemented.
 4. edit edk2/ArmPkg/ArmPkg.dsc file and add one line into "[Components.AARCH64]"
    section:
    ```
-  ArmPkg/Application/ArmCpuInfo/ArmCpuInfo.inf
+   ArmPkg/Application/ArmCpuInfo/ArmCpuInfo.inf
    ```
 5. build using this command:
-	```
-	build -t GCC -a AARCH64 -b RELEASE -m edk2/ArmPkg/Application/ArmCpuInfo/ArmCpuInfo.inf -p edk2/ArmPkg/ArmPkg.dsc
-	```
+   ```
+   build -t GCC -a AARCH64 -b RELEASE -m edk2/ArmPkg/Application/ArmCpuInfo/ArmCpuInfo.inf -p edk2/ArmPkg/ArmPkg.dsc
+   ```
 6. resulting binary will be in "Build/Arm/RELEASE_GCC/AARCH64/" directory
