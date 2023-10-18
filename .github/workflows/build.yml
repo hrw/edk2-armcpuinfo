@@ -1,0 +1,30 @@
+name: Build ArmCpuInfo
+
+on:
+  push:
+    branches: [ "devel" ]
+  pull_request:
+    branches: [ "devel" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-22.04
+
+    steps:
+    - name: install deps
+      run: sudo apt-get install git gcc-aarch64-linux-gnu make
+      
+    - name: checkout EDK2
+      run: git clone --depth 1 https://github.com/tianocore/edk2.git
+      
+    - name: checkout ArmCpuInfo
+      uses: actions/checkout@v4
+      with:
+        path: edk2/ArmPkg/Application/ArmCpuInfo
+  
+    - name: enable ArmCpuInfo
+      run: echo "ArmPkg/Application/ArmCpuInfo/ArmCpuInfo.inf" >> edk2/ArmPkg/ArmPkg.dsc 
+      
+    - name: build
+      run: build -t GCC -a AARCH64 -b RELEASE -m edk2/ArmPkg/Application/ArmCpuInfo/ArmCpuInfo.inf -p edk2/ArmPkg/ArmPkg.dsc
