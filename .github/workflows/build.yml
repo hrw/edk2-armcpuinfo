@@ -1,0 +1,53 @@
+name: Build ArmCpuInfo
+
+on:
+  push:
+    branches: [ "devel" ]
+  pull_request:
+    branches: [ "devel" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-22.04
+
+    steps:
+    - name: install deps
+      run: sudo apt-get install git gcc-aarch64-linux-gnu build-essential uuid-dev iasl git nasm python-is-python3 coreutils mdm
+
+    - name: checkout EDK2
+      uses: actions/checkout@v4
+      with:
+        repository: tianocore/edk2
+        submodules: true
+        path: edk2
+
+    - name: checkout ArmCpuInfo
+      uses: actions/checkout@v4
+      with:
+        path: edk2/ArmPkg/Application
+
+    - name: enable ArmCpuInfo
+      run: echo "ArmPkg/Application/ArmCpuInfo/ArmCpuInfo.inf" >> edk2/ArmPkg/ArmPkg.dsc 
+
+    - name: build BaseTools
+      run: make -C edk2/BaseTools -j$(ncpus)
+      env:
+        WORKSPACE: $PWD
+        GCC_AARCH64_PREFIX: aarch64-linux-gnu-
+        PACKAGES_PATH: $WORKSPACE/edk2
+
+    - name: build ArmCpuInfo
+      run: |
+        export PATH=$PWD/edk2/BaseTools/Bin/Linux-x86_64:$PWD/edk2/BaseTools/BinWrappers/PosixLike:$PATH;
+        export WORKSPACE=$PWD;
+        export GCC_AARCH64_PREFIX=aarch64-linux-gnu-;
+        export PACKAGES_PATH=$WORKSPACE/edk2;
+        source edk2/edksetup.sh; 
+        build -t GCC -a AARCH64 -b RELEASE -m edk2/ArmPkg/Application/ArmCpuInfo/ArmCpuInfo.inf -p edk2/ArmPkg/ArmPkg.dsc
+
+    - name: upload ArmCpuInfo binary
+      uses: actions/upload-artifact@v3
+      with:
+        name: ArmCpuInfo
+        path: Build/Arm/RELEASE_GCC/AARCH64/ArmCpuInfo.efi
