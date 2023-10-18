@@ -25,6 +25,13 @@ jobs:
   
     - name: enable ArmCpuInfo
       run: echo "ArmPkg/Application/ArmCpuInfo/ArmCpuInfo.inf" >> edk2/ArmPkg/ArmPkg.dsc 
+
+    - name: build BaseTools
+      run: make -C edk2/BaseTools
+      env:
+        WORKSPACE: $PWD
+        GCC_AARCH64_PREFIX: aarch64-linux-gnu-
+        PACKAGES_PATH: $WORKSPACE/edk2
       
     - name: build
       run: build -t GCC -a AARCH64 -b RELEASE -m edk2/ArmPkg/Application/ArmCpuInfo/ArmCpuInfo.inf -p edk2/ArmPkg/ArmPkg.dsc
