@@ -38,4 +38,4 @@ jobs:
         PACKAGES_PATH: $WORKSPACE/edk2
       
     - name: build
-      run: build -t GCC -a AARCH64 -b RELEASE -m edk2/ArmPkg/Application/ArmCpuInfo/ArmCpuInfo.inf -p edk2/ArmPkg/ArmPkg.dsc
+      run: source edk2/edkbuild.sh; build -t GCC -a AARCH64 -b RELEASE -m edk2/ArmPkg/Application/ArmCpuInfo/ArmCpuInfo.inf -p edk2/ArmPkg/ArmPkg.dsc
