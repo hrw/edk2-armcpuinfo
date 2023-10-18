@@ -13,7 +13,7 @@ jobs:
 
     steps:
     - name: install deps
-      run: sudo apt-get install git gcc-aarch64-linux-gnu build-essential uuid-dev iasl git nasm python-is-python3 coreutils
+      run: sudo apt-get install git gcc-aarch64-linux-gnu build-essential uuid-dev iasl git nasm python-is-python3 coreutils mdm
       
     - name: checkout EDK2
       uses: actions/checkout@v4
@@ -25,26 +25,28 @@ jobs:
     - name: checkout ArmCpuInfo
       uses: actions/checkout@v4
       with:
-        path: edk2/ArmPkg/Application/ArmCpuInfo
+        path: edk2/ArmPkg/Application
   
     - name: enable ArmCpuInfo
       run: echo "ArmPkg/Application/ArmCpuInfo/ArmCpuInfo.inf" >> edk2/ArmPkg/ArmPkg.dsc 
 
     - name: build BaseTools
-      run: make -C edk2/BaseTools
+      run: make -C edk2/BaseTools -j$(ncpus)
       env:
         WORKSPACE: $PWD
         GCC_AARCH64_PREFIX: aarch64-linux-gnu-
         PACKAGES_PATH: $WORKSPACE/edk2
       
     - name: build ArmCpuInfo
-      run: source edk2/edksetup.sh; build -t GCC -a AARCH64 -b RELEASE -m edk2/ArmPkg/Application/ArmCpuInfo/ArmCpuInfo.inf -p edk2/ArmPkg/ArmPkg.dsc
+      run: |
+        source edk2/edksetup.sh; 
+        export PATH=$PWD/edk2/BaseTools/Bin/Linux-x86_64:$PWD/edk2/BaseTools/BinWrappers/PosixLike:$PATH;
+        build -t GCC -a AARCH64 -b RELEASE -m edk2/ArmPkg/Application/ArmCpuInfo/ArmCpuInfo.inf -p edk2/ArmPkg/ArmPkg.dsc
       env:
         WORKSPACE: $PWD
         GCC_AARCH64_PREFIX: aarch64-linux-gnu-
         PACKAGES_PATH: $WORKSPACE/edk2
-        PATH: $PWD/edk2/BaseTools/Bin/Linux-x86_64:$PWD/edk2/BaseTools/BinWrappers/PosixLike:$PATH
-
+      
     - name: upload ArmCpuInfo binary
       uses: actions/upload-artifact@v3
       with:
