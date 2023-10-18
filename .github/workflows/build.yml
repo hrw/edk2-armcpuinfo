@@ -39,3 +39,13 @@ jobs:
       
     - name: build
       run: source edk2/edksetup.sh; build -t GCC -a AARCH64 -b RELEASE -m edk2/ArmPkg/Application/ArmCpuInfo/ArmCpuInfo.inf -p edk2/ArmPkg/ArmPkg.dsc
+      env:
+        WORKSPACE: $PWD
+        GCC_AARCH64_PREFIX: aarch64-linux-gnu-
+        PACKAGES_PATH: $WORKSPACE/edk2
+
+    - name: upload ArmCpuInfo binary
+      uses: actions/upload-artifact@v3
+      with:
+        name: ArmCpuInfo
+        path: Build/Arm/RELEASE_GCC/AARCH64/ArmCpuInfo.efi
