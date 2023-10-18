@@ -13,10 +13,14 @@ jobs:
 
     steps:
     - name: install deps
-      run: sudo apt-get install git gcc-aarch64-linux-gnu make
+      run: sudo apt-get install git gcc-aarch64-linux-gnu build-essential uuid-dev iasl git  nasm  python-is-python3
       
     - name: checkout EDK2
       run: git clone --depth 1 https://github.com/tianocore/edk2.git
+
+    - name: checkout EDK2 submodules
+      run: git submodule update --init
+      working-directory: edk2
       
     - name: checkout ArmCpuInfo
       uses: actions/checkout@v4
