@@ -39,11 +39,11 @@ jobs:
       
     - name: build ArmCpuInfo
       run: |
-        source edk2/edksetup.sh; 
         export PATH=$PWD/edk2/BaseTools/Bin/Linux-x86_64:$PWD/edk2/BaseTools/BinWrappers/PosixLike:$PATH;
         export WORKSPACE=$PWD;
         export GCC_AARCH64_PREFIX=aarch64-linux-gnu-;
         export PACKAGES_PATH=$WORKSPACE/edk2;
+        source edk2/edksetup.sh; 
         build -t GCC -a AARCH64 -b RELEASE -m edk2/ArmPkg/Application/ArmCpuInfo/ArmCpuInfo.inf -p edk2/ArmPkg/ArmPkg.dsc
       
     - name: upload ArmCpuInfo binary
