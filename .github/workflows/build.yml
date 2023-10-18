@@ -16,11 +16,11 @@ jobs:
       run: sudo apt-get install git gcc-aarch64-linux-gnu build-essential uuid-dev iasl git  nasm  python-is-python3
       
     - name: checkout EDK2
-      run: git clone --depth 1 https://github.com/tianocore/edk2.git
-
-    - name: checkout EDK2 submodules
-      run: git submodule update --init
-      working-directory: edk2
+      uses: actions/checkout@v4
+      with:
+        repository: tianocore/edk2
+        submodules: true
+        path: edk2
       
     - name: checkout ArmCpuInfo
       uses: actions/checkout@v4
@@ -43,6 +43,7 @@ jobs:
         WORKSPACE: $PWD
         GCC_AARCH64_PREFIX: aarch64-linux-gnu-
         PACKAGES_PATH: $WORKSPACE/edk2
+        PATH: $PWD/edk2/BaseTools/Bin/Linux-x86_64:$PWD/edk2/BaseTools/BinWrappers/PosixLike:$PATH
 
     - name: upload ArmCpuInfo binary
       uses: actions/upload-artifact@v3
