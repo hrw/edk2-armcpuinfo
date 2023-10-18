@@ -13,7 +13,7 @@ jobs:
 
     steps:
     - name: install deps
-      run: sudo apt-get install git gcc-aarch64-linux-gnu build-essential uuid-dev iasl git  nasm  python-is-python3
+      run: sudo apt-get install git gcc-aarch64-linux-gnu build-essential uuid-dev iasl git nasm python-is-python3 coreutils
       
     - name: checkout EDK2
       uses: actions/checkout@v4
@@ -37,7 +37,7 @@ jobs:
         GCC_AARCH64_PREFIX: aarch64-linux-gnu-
         PACKAGES_PATH: $WORKSPACE/edk2
       
-    - name: build
+    - name: build ArmCpuInfo
       run: source edk2/edksetup.sh; build -t GCC -a AARCH64 -b RELEASE -m edk2/ArmPkg/Application/ArmCpuInfo/ArmCpuInfo.inf -p edk2/ArmPkg/ArmPkg.dsc
       env:
         WORKSPACE: $PWD
