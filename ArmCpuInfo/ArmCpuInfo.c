@@ -2412,6 +2412,9 @@ HandleAa64Smfr0 (
     case b0000:
       Description = "Mandatory SME instructions are implemented.";
       break;
+    case b0001:
+      Description = "FEAT_SME2 implemented.";
+      break;
     default:
       Description = "unknown";
       break;
