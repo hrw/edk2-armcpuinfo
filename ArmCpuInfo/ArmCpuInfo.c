@@ -966,14 +966,16 @@ HandleAa64Isar2 (
   CONST CHAR8         *Description;
   CONST CHAR8         *Bits;
 
-  Bits  = "3:0 ";
-  Value = Aa64Isar2 & 0xf;
+  // 63:28 reserved
+
+  Bits  = "27:24";
+  Value = (Aa64Isar2 >> 24) & 0xf;
   switch (Value) {
     case b0000:
-      Description = "FEAT_WFxT not implemented.";
+      Description = "FEAT_CONSTPACFIELD not implemented.";
       break;
-    case b0010:
-      Description = "FEAT_WFxT implemented.";
+    case b0001:
+      Description = "FEAT_CONSTPACFIELD implemented.";
       break;
     default:
       Description = "unknown";
@@ -982,14 +984,14 @@ HandleAa64Isar2 (
 
   PrintValues (RegName, Bits, Value, Description);
 
-  Bits  = "7:4 ";
-  Value = (Aa64Isar2 >>  4) & 0xf;
+  Bits  = "23:20";
+  Value = (Aa64Isar2 >> 20) & 0xf;
   switch (Value) {
     case b0000:
-      Description = "FEAT_RPRES not implemented.";
+      Description = "FEAT_HBC not implemented.";
       break;
     case b0001:
-      Description = "FEAT_RPRES implemented.";
+      Description = "FEAT_HBC implemented.";
       break;
     default:
       Description = "unknown";
@@ -998,14 +1000,14 @@ HandleAa64Isar2 (
 
   PrintValues (RegName, Bits, Value, Description);
 
-  Bits  = "11:8 ";
-  Value = (Aa64Isar2 >>  8) & 0xf;
+  Bits  = "19:16";
+  Value = (Aa64Isar2 >> 16) & 0xf;
   switch (Value) {
     case b0000:
-      Description = "FEAT_PACQARMA3 not implemented.";
+      Description = "FEAT_MOPS not implemented.";
       break;
     case b0001:
-      Description = "FEAT_PACQARMA3 implemented.";
+      Description = "FEAT_MOPS implemented.";
       break;
     default:
       Description = "unknown";
@@ -1042,14 +1044,14 @@ HandleAa64Isar2 (
 
   PrintValues (RegName, Bits, Value, Description);
 
-  Bits  = "19:16";
-  Value = (Aa64Isar2 >> 16) & 0xf;
+  Bits  = "11:8 ";
+  Value = (Aa64Isar2 >>  8) & 0xf;
   switch (Value) {
     case b0000:
-      Description = "FEAT_MOPS not implemented.";
+      Description = "FEAT_PACQARMA3 not implemented.";
       break;
     case b0001:
-      Description = "FEAT_MOPS implemented.";
+      Description = "FEAT_PACQARMA3 implemented.";
       break;
     default:
       Description = "unknown";
@@ -1058,14 +1060,14 @@ HandleAa64Isar2 (
 
   PrintValues (RegName, Bits, Value, Description);
 
-  Bits  = "23:20";
-  Value = (Aa64Isar2 >> 20) & 0xf;
+  Bits  = "7:4 ";
+  Value = (Aa64Isar2 >>  4) & 0xf;
   switch (Value) {
     case b0000:
-      Description = "FEAT_HBC not implemented.";
+      Description = "FEAT_RPRES not implemented.";
       break;
     case b0001:
-      Description = "FEAT_HBC implemented.";
+      Description = "FEAT_RPRES implemented.";
       break;
     default:
       Description = "unknown";
@@ -1074,14 +1076,14 @@ HandleAa64Isar2 (
 
   PrintValues (RegName, Bits, Value, Description);
 
-  Bits  = "27:24";
-  Value = (Aa64Isar2 >> 24) & 0xf;
+  Bits  = "3:0 ";
+  Value = Aa64Isar2 & 0xf;
   switch (Value) {
     case b0000:
-      Description = "FEAT_CONSTPACFIELD not implemented.";
+      Description = "FEAT_WFxT not implemented.";
       break;
-    case b0001:
-      Description = "FEAT_CONSTPACFIELD implemented.";
+    case b0010:
+      Description = "FEAT_WFxT implemented.";
       break;
     default:
       Description = "unknown";
@@ -1089,8 +1091,6 @@ HandleAa64Isar2 (
   }
 
   PrintValues (RegName, Bits, Value, Description);
-
-  // 63:28 reserved
 }
 
 /**
