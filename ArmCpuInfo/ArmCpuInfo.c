@@ -1772,10 +1772,10 @@ HandleAa64Mmfr2 (
       Description = "FEAT_EVT not implemented.";
       break;
     case b0001:
-      Description = "FEAT_EVT: HCR_EL2.{TOCU, TICAB, TID4} traps are supported.";
+      Description = "FEAT_EVT: HCR_EL2.{TOCU, TICAB, TID4} traps.";
       break;
     case b0010:
-      Description = "FEAT_EVT: HCR_EL2.{TTLBOS, TTLSBIS, TOCU, TICAB, TID4} traps are supported.";
+      Description = "FEAT_EVT: HCR_EL2.{TTLBOS, TTLSBIS, TOCU, TICAB, TID4} traps.";
       break;
     default:
       Description = "unknown";
@@ -1789,13 +1789,13 @@ HandleAa64Mmfr2 (
   Value = (Aa64Mmfr2 >> 52) & 0xf;
   switch (Value) {
     case b0000:
-      Description = "FEAT_BBM: Level 0 support for changing block size is supported.";
+      Description = "FEAT_BBM: Level 0 support for changing block size.";
       break;
     case b0001:
-      Description = "FEAT_BBM: Level 1 support for changing block size is supported.";
+      Description = "FEAT_BBM: Level 1 support for changing block size.";
       break;
     case b0010:
-      Description = "FEAT_BBM: Level 2 support for changing block size is supported.";
+      Description = "FEAT_BBM: Level 2 support for changing block size.";
       break;
     default:
       Description = "unknown";
