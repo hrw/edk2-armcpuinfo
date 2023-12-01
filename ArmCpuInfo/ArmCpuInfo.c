@@ -1266,7 +1266,7 @@ HandleAa64Mmfr0 (
   PrintValues (RegName, Name, Bits, Value, Description);
 
   Bits  = "23:20";
-  Name  = "Tgran16";
+  Name  = "TGran16";
   Value = (Aa64Mmfr0 >> 20) & 0xf;
   switch (Value) {
     case b0000:
