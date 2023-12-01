@@ -6,17 +6,22 @@ Example output:
 
 ```
 [..]
-MMFR0 |  3:0  |  0101 | 48 Bits (256TB) of physical address range supported.
-MMFR0 |  7:4  |  0010 | ASID: 16 Bits
-MMFR0 | 11:8  |  0001 | Mixed-endian support.
-MMFR0 | 19:16 |  0000 | No mixed-endian support at EL0.
-MMFR0 | 15:12 |  0001 | Supports a distinction between Secure and Non-Secure Memory.
-MMFR0 | 31:28 |  0000 |  4KB granule supported.
-MMFR0 | 23:20 |  0001 | 16KB granule supported.
-MMFR0 | 27:24 |  0000 | 64KB granule supported.
-MMFR0 | 47:44 |  0000 | FEAT_ExS not implemented.
-MMFR0 | 59:56 |  0000 | FEAT_FGT not implemented.
-MMFR0 | 63:60 |  0000 | FEAT_ECV not implemented.
+------|-------------|-------|-------|----------------------------------------------
+MMFR0 | ECV         | 63:60 |  0000 | FEAT_ECV not implemented.
+MMFR0 | FGT         | 59:56 |  0000 | FEAT_FGT not implemented.
+MMFR0 | ExS         | 47:44 |  0000 | FEAT_ExS not implemented.
+MMFR0 | TGran4      | 31:28 |  0000 |  4KB granule supported.
+MMFR0 | TGran4_2    | 43:40 |  0000 |  4KB granule support at stage2 as above.
+MMFR0 | Tgran16     | 23:20 |  0001 | 16KB granule supported.
+MMFR0 | TGran16_2   | 35:32 |  0000 | 16KB granule support at stage2 as above.
+MMFR0 | TGran64     | 27:24 |  0000 | 64KB granule supported.
+MMFR0 | TGran64_2   | 39:36 |  0000 | 64KB granule support at stage2 as above.
+MMFR0 | SNSMem      | 15:12 |  0001 | Supports a distinction between Secure and Non-Secure Memory.
+MMFR0 | BigEnd      | 11:8  |  0001 | Mixed-endian support.
+MMFR0 | BigEndEL0   | 19:16 |  0000 | No mixed-endian support at EL0.
+MMFR0 | ASIDBits    |  7:4  |  0010 | ASID: 16 Bits
+MMFR0 | PARange     |  3:0  |  0101 | 48 Bits (256TB) of physical address range supported.
+------|-------------|-------|-------|----------------------------------------------
 [..]
 ```
 
