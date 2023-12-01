@@ -1108,48 +1108,17 @@ HandleAa64Mmfr0 (
   CONST CHAR8         *Description;
   CONST CHAR8         *Bits;
 
-  Bits  = "3:0 ";
-  Value = Aa64Mmfr0 & 0xf;
+  Bits  = "63:60";
+  Value = (Aa64Mmfr0 >> 60) & 0xf;
   switch (Value) {
     case b0000:
-      Description = "32 Bits (4GB) of physical address range supported.";
+      Description = "FEAT_ECV not implemented.";
       break;
     case b0001:
-      Description = "36 Bits (64GB) of physical address range supported.";
+      Description = "FEAT_ECV implemented.";
       break;
     case b0010:
-      Description = "40 Bits (1TB) of physical address range supported.";
-      break;
-    case b0011:
-      Description = "42 Bits (4TB) of physical address range supported.";
-      break;
-    case b0100:
-      Description = "44 Bits (16TB) of physical address range supported.";
-      break;
-    case b0101:
-      Description = "48 Bits (256TB) of physical address range supported.";
-      break;
-    case b0110:
-      Description = "52 Bits (4PB) of physical address range supported.";
-      break;
-    default:
-      Description = "unknown";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-  if (Value == b0110) {
-    PrintText ("", "", "", "FEAT_LPA implemented.");
-  }
-
-  Bits  = "7:4 ";
-  Value = (Aa64Mmfr0 >>  4) & 0xf;
-  switch (Value) {
-    case b0000:
-      Description = "ASID: 8 Bits";
-      break;
-    case b0010:
-      Description = "ASID: 16 Bits";
+      Description = "FEAT_ECV implemented with extras.";
       break;
     default:
       Description = "unknown";
@@ -1158,14 +1127,14 @@ HandleAa64Mmfr0 (
 
   PrintValues (RegName, Bits, Value, Description);
 
-  Bits  = "11:8 ";
-  Value = (Aa64Mmfr0 >>  8) & 0xf;
+  Bits  = "59:56";
+  Value = (Aa64Mmfr0 >> 56) & 0xf;
   switch (Value) {
     case b0000:
-      Description = "No mixed-endian support.";
+      Description = "FEAT_FGT not implemented.";
       break;
     case b0001:
-      Description = "Mixed-endian support.";
+      Description = "FEAT_FGT implemented.";
       break;
     default:
       Description = "unknown";
@@ -1174,25 +1143,16 @@ HandleAa64Mmfr0 (
 
   PrintValues (RegName, Bits, Value, Description);
 
-  // If mixed-endian is present, check whether supported at EL0
-  if (((Aa64Mmfr0 >>  8) & 0xf) != b0000 ) {
-    if (((Aa64Mmfr0 >> 16) & 0xf) == b0000 ) {
-      PrintValues ("MMFR0", "19:16", b0000, "No mixed-endian support at EL0.");
-    }
+  // 55:48 reserved
 
-    if (((Aa64Mmfr0 >> 16) & 0xf) == b0001 ) {
-      PrintValues ("MMFR0", "19:16", b0001, "Mixed-endian support at EL0.");
-    }
-  }
-
-  Bits  = "15:12";
-  Value = (Aa64Mmfr0 >> 12) & 0xf;
+  Bits  = "47:44";
+  Value = (Aa64Mmfr0 >> 44) & 0xf;
   switch (Value) {
     case b0000:
-      Description = "No support for a distinction between Secure and Non-Secure Memory.";
+      Description = "FEAT_ExS not implemented.";
       break;
     case b0001:
-      Description = "Supports a distinction between Secure and Non-Secure Memory.";
+      Description = "FEAT_ExS implemented.";
       break;
     default:
       Description = "unknown";
@@ -1207,11 +1167,11 @@ HandleAa64Mmfr0 (
     case b0000:
       Description = " 4KB granule supported.";
       break;
-    case b1111:
-      Description = " 4KB granule not supported.";
-      break;
     case b0001:
       Description = " 4KB granule supported for 52-bit address.";
+      break;
+    case b1111:
+      Description = " 4KB granule not supported.";
       break;
     default:
       Description = "unknown";
@@ -1318,14 +1278,14 @@ HandleAa64Mmfr0 (
 
   PrintValues (RegName, Bits, Value, Description);
 
-  Bits  = "47:44";
-  Value = (Aa64Mmfr0 >> 44) & 0xf;
+  Bits  = "15:12";
+  Value = (Aa64Mmfr0 >> 12) & 0xf;
   switch (Value) {
     case b0000:
-      Description = "FEAT_ExS not implemented.";
+      Description = "No support for a distinction between Secure and Non-Secure Memory.";
       break;
     case b0001:
-      Description = "FEAT_ExS implemented.";
+      Description = "Supports a distinction between Secure and Non-Secure Memory.";
       break;
     default:
       Description = "unknown";
@@ -1334,16 +1294,14 @@ HandleAa64Mmfr0 (
 
   PrintValues (RegName, Bits, Value, Description);
 
-  // 55:48 reserved
-
-  Bits  = "59:56";
-  Value = (Aa64Mmfr0 >> 56) & 0xf;
+  Bits  = "11:8 ";
+  Value = (Aa64Mmfr0 >>  8) & 0xf;
   switch (Value) {
     case b0000:
-      Description = "FEAT_FGT not implemented.";
+      Description = "No mixed-endian support.";
       break;
     case b0001:
-      Description = "FEAT_FGT implemented.";
+      Description = "Mixed-endian support.";
       break;
     default:
       Description = "unknown";
@@ -1352,17 +1310,25 @@ HandleAa64Mmfr0 (
 
   PrintValues (RegName, Bits, Value, Description);
 
-  Bits  = "63:60";
-  Value = (Aa64Mmfr0 >> 60) & 0xf;
+  // If mixed-endian is present, check whether supported at EL0
+  if (((Aa64Mmfr0 >>  8) & 0xf) != b0000 ) {
+    if (((Aa64Mmfr0 >> 16) & 0xf) == b0000 ) {
+      PrintValues (RegName, "19:16", b0000, "No mixed-endian support at EL0.");
+    }
+
+    if (((Aa64Mmfr0 >> 16) & 0xf) == b0001 ) {
+      PrintValues (RegName, "19:16", b0001, "Mixed-endian support at EL0.");
+    }
+  }
+
+  Bits  = "7:4 ";
+  Value = (Aa64Mmfr0 >>  4) & 0xf;
   switch (Value) {
     case b0000:
-      Description = "FEAT_ECV not implemented.";
-      break;
-    case b0001:
-      Description = "FEAT_ECV implemented.";
+      Description = "ASID: 8 Bits";
       break;
     case b0010:
-      Description = "FEAT_ECV implemented with extras.";
+      Description = "ASID: 16 Bits";
       break;
     default:
       Description = "unknown";
@@ -1370,6 +1336,40 @@ HandleAa64Mmfr0 (
   }
 
   PrintValues (RegName, Bits, Value, Description);
+
+  Bits  = "3:0 ";
+  Value = Aa64Mmfr0 & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "32 Bits (4GB) of physical address range supported.";
+      break;
+    case b0001:
+      Description = "36 Bits (64GB) of physical address range supported.";
+      break;
+    case b0010:
+      Description = "40 Bits (1TB) of physical address range supported.";
+      break;
+    case b0011:
+      Description = "42 Bits (4TB) of physical address range supported.";
+      break;
+    case b0100:
+      Description = "44 Bits (16TB) of physical address range supported.";
+      break;
+    case b0101:
+      Description = "48 Bits (256TB) of physical address range supported.";
+      break;
+    case b0110:
+      Description = "52 Bits (4PB) of physical address range supported.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+  if (Value == b0110) {
+    PrintText ("", "", "", "FEAT_LPA implemented.");
+  }
 }
 
 /**
