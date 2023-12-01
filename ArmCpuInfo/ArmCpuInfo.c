@@ -118,23 +118,14 @@ HandleAa64Dfr0 (
   CONST CHAR8         *Description;
   CONST CHAR8         *Bits;
 
-  Bits  = "3:0 ";
-  Value = Aa64Dfr0 & 0xf;
+  Bits  = "63:60";
+  Value = (Aa64Dfr0 >> 60) & 0xf;
   switch (Value) {
-    case b0110:
-      Description = "Armv8 debug architecture";
+    case b0000:
+      Description = "Setting MDCR_EL2.HPMN to zero has CONSTRAINED UNPREDICTABLE behavior.";
       break;
-    case b0111:
-      Description = "Armv8 debug architecture with VHE";
-      break;
-    case b1000:
-      Description = "FEAT_Debugv8p2 implemented.";
-      break;
-    case b1001:
-      Description = "FEAT_Debugv8p4 implemented.";
-      break;
-    case b1010:
-      Description = "FEAT_Debugv8p8 implemented.";
+    case b0001:
+      Description = "FEAT_HPMN0 implemented.";
       break;
     default:
       Description = "unknown";
@@ -143,17 +134,154 @@ HandleAa64Dfr0 (
 
   PrintValues (RegName, Bits, Value, Description);
 
-  Bits  = "7:4 ";
-  Value = (Aa64Dfr0 >>  4) & 0xf;
+  // 59:56 reserved
+
+  Bits  = "55:52";
+  Value = (Aa64Dfr0 >> 52) & 0xf;
   switch (Value) {
     case b0000:
-      Description = "Trace unit System registers not implemented.";
+      Description = "FEAT_BRBE not implemented.";
       break;
     case b0001:
-      Description = "Trace unit System registers implemented.";
+      Description = "FEAT_BRBE implemented.";
+      break;
+    case b0010:
+      Description = "FEAT_BRBEv1p1 implemented.";
       break;
     default:
       Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+
+  Bits  = "51:48";
+  Value = (Aa64Dfr0 >> 48) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "FEAT_MTPMU not implemented.";
+      break;
+    case b0001:
+      Description = "FEAT_MTPMU and FEAT_PMUv3 implemented.";
+      break;
+    case b1111:
+      Description = "FEAT_MTPMU not implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+
+  Bits  = "47:44";
+  Value = (Aa64Dfr0 >> 44) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "FEAT_TRBE not implemented.";
+      break;
+    case b0001:
+      Description = "FEAT_TRBE implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+
+  Bits  = "43:40";
+  Value = (Aa64Dfr0 >> 40) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "FEAT_TRF not implemented.";
+      break;
+    case b0001:
+      Description = "FEAT_TRF implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+
+  Bits  = "39:36";
+  Value = (Aa64Dfr0 >> 36) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "FEAT_DoubleLock implemented.";
+      break;
+    case b1111:
+      Description = "FEAT_DoubleLock not implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+
+  Bits  = "35:32";
+  Value = (Aa64Dfr0 >> 32) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "FEAT_SPE not implemented.";
+      break;
+    case b0001:
+      Description = "FEAT_SPE implemented.";
+      break;
+    case b0010:
+      Description = "FEAT_SPEv1p1 implemented.";
+      break;
+    case b0011:
+      Description = "FEAT_SPEv1p2 implemented.";
+      break;
+    case b0100:
+      Description = "FEAT_SPEv1p3 implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+
+  Bits  = "31:28";
+  Value = (Aa64Dfr0 >> 28) & 0xf;
+  switch (Value) {
+    default:
+      Description = "Number of breakpoints that are context-aware, minus 1.";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+
+  // 27:24 reserved
+
+  Bits  = "23:20";
+  Value = (Aa64Dfr0 >> 20) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "reserved";
+      break;
+    default:
+      Description = "Number of watchpoints, minus 1.";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+
+  // 19:16 reserved
+
+  Bits  = "15:12";
+  Value = (Aa64Dfr0 >> 12) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "reserved";
+      break;
+    default:
+      Description = "Number of breakpoints, minus 1.";
       break;
   }
 
@@ -193,63 +321,14 @@ HandleAa64Dfr0 (
 
   PrintValues (RegName, Bits, Value, Description);
 
-  Bits  = "15:12";
-  Value = (Aa64Dfr0 >> 12) & 0xf;
+  Bits  = "7:4 ";
+  Value = (Aa64Dfr0 >>  4) & 0xf;
   switch (Value) {
     case b0000:
-      Description = "reserved";
-      break;
-    default:
-      Description = "Number of breakpoints, minus 1.";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  // 19:16 reserved
-
-  Bits  = "23:20";
-  Value = (Aa64Dfr0 >> 20) & 0xf;
-  switch (Value) {
-    case b0000:
-      Description = "reserved";
-      break;
-    default:
-      Description = "Number of watchpoints, minus 1.";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  // 27:24 reserved
-
-  Bits  = "31:28";
-  Value = (Aa64Dfr0 >> 28) & 0xf;
-  switch (Value) {
-    default:
-      Description = "Number of breakpoints that are context-aware, minus 1.";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  Bits  = "35:32";
-  Value = (Aa64Dfr0 >> 32) & 0xf;
-  switch (Value) {
-    case b0000:
-      Description = "FEAT_SPE not implemented.";
+      Description = "Trace unit System registers not implemented.";
       break;
     case b0001:
-      Description = "FEAT_SPE implemented.";
-      break;
-    case b0010:
-      Description = "FEAT_SPEv1p1 implemented.";
-      break;
-    case b0011:
-      Description = "FEAT_SPEv1p2 implemented.";
-      break;
-    case b0100:
-      Description = "FEAT_SPEv1p3 implemented.";
+      Description = "Trace unit System registers implemented.";
       break;
     default:
       Description = "unknown";
@@ -258,102 +337,23 @@ HandleAa64Dfr0 (
 
   PrintValues (RegName, Bits, Value, Description);
 
-  Bits  = "39:36";
-  Value = (Aa64Dfr0 >> 36) & 0xf;
+  Bits  = "3:0 ";
+  Value = Aa64Dfr0 & 0xf;
   switch (Value) {
-    case b0000:
-      Description = "FEAT_DoubleLock implemented.";
+    case b0110:
+      Description = "Armv8 debug architecture";
       break;
-    case b1111:
-      Description = "FEAT_DoubleLock not implemented.";
+    case b0111:
+      Description = "Armv8 debug architecture with VHE";
       break;
-    default:
-      Description = "unknown";
+    case b1000:
+      Description = "FEAT_Debugv8p2 implemented.";
       break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  Bits  = "43:40";
-  Value = (Aa64Dfr0 >> 40) & 0xf;
-  switch (Value) {
-    case b0000:
-      Description = "FEAT_TRF not implemented.";
+    case b1001:
+      Description = "FEAT_Debugv8p4 implemented.";
       break;
-    case b0001:
-      Description = "FEAT_TRF implemented.";
-      break;
-    default:
-      Description = "unknown";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  Bits  = "47:44";
-  Value = (Aa64Dfr0 >> 44) & 0xf;
-  switch (Value) {
-    case b0000:
-      Description = "FEAT_TRBE not implemented.";
-      break;
-    case b0001:
-      Description = "FEAT_TRBE implemented.";
-      break;
-    default:
-      Description = "unknown";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  Bits  = "51:48";
-  Value = (Aa64Dfr0 >> 48) & 0xf;
-  switch (Value) {
-    case b0000:
-      Description = "FEAT_MTPMU not implemented.";
-      break;
-    case b0001:
-      Description = "FEAT_MTPMU and FEAT_PMUv3 implemented.";
-      break;
-    case b1111:
-      Description = "FEAT_MTPMU not implemented.";
-      break;
-    default:
-      Description = "unknown";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  Bits  = "55:52";
-  Value = (Aa64Dfr0 >> 52) & 0xf;
-  switch (Value) {
-    case b0000:
-      Description = "FEAT_BRBE not implemented.";
-      break;
-    case b0001:
-      Description = "FEAT_BRBE implemented.";
-      break;
-    case b0010:
-      Description = "FEAT_BRBEv1p1 implemented.";
-      break;
-    default:
-      Description = "unknown";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  // 59:56 reserved
-
-  Bits  = "63:60";
-  Value = (Aa64Dfr0 >> 60) & 0xf;
-  switch (Value) {
-    case b0000:
-      Description = "Setting MDCR_EL2.HPMN to zero has CONSTRAINED UNPREDICTABLE behavior.";
-      break;
-    case b0001:
-      Description = "FEAT_HPMN0 implemented.";
+    case b1010:
+      Description = "FEAT_Debugv8p8 implemented.";
       break;
     default:
       Description = "unknown";
