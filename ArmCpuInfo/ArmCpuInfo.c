@@ -1658,214 +1658,14 @@ HandleAa64Mmfr2 (
   CONST CHAR8         *Description;
   CONST CHAR8         *Bits;
 
-  Bits  = "3:0 ";
-  Value = Aa64Mmfr2 & 0xf;
+  Bits  = "63:60";
+  Value = (Aa64Mmfr2 >> 60) & 0xf;
   switch (Value) {
     case b0000:
-      Description = "FEAT_TTCNP not implemented.";
+      Description = "FEAT_E0PD not implemented.";
       break;
     case b0001:
-      Description = "FEAT_TTCNP implemented.";
-      break;
-    default:
-      Description = "unknown";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  Bits  = "7:4 ";
-  Value = (Aa64Mmfr2 >>  4) & 0xf;
-  switch (Value) {
-    case b0000:
-      Description = "FEAT_UAO not implemented.";
-      break;
-    case b0001:
-      Description = "FEAT_UAO implemented.";
-      break;
-    default:
-      Description = "unknown";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  Bits  = "11:8 ";
-  Value = (Aa64Mmfr2 >>  8) & 0xf;
-  switch (Value) {
-    case b0000:
-      Description = "FEAT_LSMAOC not implemented.";
-      break;
-    case b0001:
-      Description = "FEAT_LSMAOC implemented.";
-      break;
-    default:
-      Description = "unknown";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  Bits  = "15:12";
-  Value = (Aa64Mmfr2 >> 12) & 0xf;
-  switch (Value) {
-    case b0000:
-      Description = "FEAT_IESB not implemented.";
-      break;
-    case b0001:
-      Description = "FEAT_IESB implemented.";
-      break;
-    default:
-      Description = "unknown";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  Bits  = "19:16";
-  Value = (Aa64Mmfr2 >> 16) & 0xf;
-  switch (Value) {
-    case b0000:
-      Description = "FEAT_LVA not implemented.";
-      break;
-    case b0001:
-      Description = "FEAT_LVA implemented.";
-      break;
-    default:
-      Description = "unknown";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  Bits  = "23:20";
-  Value = (Aa64Mmfr2 >> 20) & 0xf;
-  switch (Value) {
-    case b0000:
-      Description = "FEAT_CCIDX not implemented.";
-      break;
-    case b0001:
-      Description = "FEAT_CCIDX implemented.";
-      break;
-    default:
-      Description = "unknown";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  Bits  = "27:24";
-  Value = (Aa64Mmfr2 >> 24) & 0xf;
-  switch (Value) {
-    case b0000:
-      Description = "FEAT_NV not implemented.";
-      break;
-    case b0001:
-      Description = "FEAT_NV implemented.";
-      break;
-    case b0010:
-      Description = "FEAT_NV2 implemented.";
-      break;
-    default:
-      Description = "unknown";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  Bits  = "31:28";
-  Value = (Aa64Mmfr2 >> 28) & 0xf;
-  switch (Value) {
-    case b0000:
-      Description = "FEAT_TTST not implemented.";
-      break;
-    case b0001:
-      Description = "FEAT_TTST implemented.";
-      break;
-    default:
-      Description = "unknown";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  Bits  = "35:32";
-  Value = (Aa64Mmfr2 >> 32) & 0xf;
-  switch (Value) {
-    case b0000:
-      Description = "FEAT_LSE2 not implemented.";
-      break;
-    case b0001:
-      Description = "FEAT_LSE2 implemented.";
-      break;
-    default:
-      Description = "unknown";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  Bits  = "39:36";
-  Value = (Aa64Mmfr2 >> 36) & 0xf;
-  switch (Value) {
-    case b0000:
-      Description = "FEAT_IDST not implemented.";
-      break;
-    case b0001:
-      Description = "FEAT_IDST implemented.";
-      break;
-    default:
-      Description = "unknown";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  Bits  = "43:40";
-  Value = (Aa64Mmfr2 >> 40) & 0xf;
-  switch (Value) {
-    case b0000:
-      Description = "FEAT_S2FWB not implemented.";
-      break;
-    case b0001:
-      Description = "FEAT_S2FWB implemented.";
-      break;
-    default:
-      Description = "unknown";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  // 47:44 reserved
-
-  Bits  = "51:48";
-  Value = (Aa64Mmfr2 >> 48) & 0xf;
-  switch (Value) {
-    case b0000:
-      Description = "FEAT_TTL not implemented.";
-      break;
-    case b0001:
-      Description = "FEAT_TTL implemented.";
-      break;
-    default:
-      Description = "unknown";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  Bits  = "55:52";
-  Value = (Aa64Mmfr2 >> 52) & 0xf;
-  switch (Value) {
-    case b0000:
-      Description = "FEAT_BBM: Level 0 support for changing block size is supported.";
-      break;
-    case b0001:
-      Description = "FEAT_BBM: Level 1 support for changing block size is supported.";
-      break;
-    case b0010:
-      Description = "FEAT_BBM: Level 2 support for changing block size is supported.";
+      Description = "FEAT_E0PD implemented.";
       break;
     default:
       Description = "unknown";
@@ -1893,14 +1693,214 @@ HandleAa64Mmfr2 (
 
   PrintValues (RegName, Bits, Value, Description);
 
-  Bits  = "63:60";
-  Value = (Aa64Mmfr2 >> 60) & 0xf;
+  Bits  = "55:52";
+  Value = (Aa64Mmfr2 >> 52) & 0xf;
   switch (Value) {
     case b0000:
-      Description = "FEAT_E0PD not implemented.";
+      Description = "FEAT_BBM: Level 0 support for changing block size is supported.";
       break;
     case b0001:
-      Description = "FEAT_E0PD implemented.";
+      Description = "FEAT_BBM: Level 1 support for changing block size is supported.";
+      break;
+    case b0010:
+      Description = "FEAT_BBM: Level 2 support for changing block size is supported.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+
+  Bits  = "51:48";
+  Value = (Aa64Mmfr2 >> 48) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "FEAT_TTL not implemented.";
+      break;
+    case b0001:
+      Description = "FEAT_TTL implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+
+  Bits  = "43:40";
+  Value = (Aa64Mmfr2 >> 40) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "FEAT_S2FWB not implemented.";
+      break;
+    case b0001:
+      Description = "FEAT_S2FWB implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+
+  // 47:44 reserved
+
+  Bits  = "39:36";
+  Value = (Aa64Mmfr2 >> 36) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "FEAT_IDST not implemented.";
+      break;
+    case b0001:
+      Description = "FEAT_IDST implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+
+  Bits  = "35:32";
+  Value = (Aa64Mmfr2 >> 32) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "FEAT_LSE2 not implemented.";
+      break;
+    case b0001:
+      Description = "FEAT_LSE2 implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+
+  Bits  = "31:28";
+  Value = (Aa64Mmfr2 >> 28) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "FEAT_TTST not implemented.";
+      break;
+    case b0001:
+      Description = "FEAT_TTST implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+
+  Bits  = "27:24";
+  Value = (Aa64Mmfr2 >> 24) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "FEAT_NV not implemented.";
+      break;
+    case b0001:
+      Description = "FEAT_NV implemented.";
+      break;
+    case b0010:
+      Description = "FEAT_NV2 implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+
+  Bits  = "23:20";
+  Value = (Aa64Mmfr2 >> 20) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "FEAT_CCIDX not implemented.";
+      break;
+    case b0001:
+      Description = "FEAT_CCIDX implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+
+  Bits  = "19:16";
+  Value = (Aa64Mmfr2 >> 16) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "FEAT_LVA not implemented.";
+      break;
+    case b0001:
+      Description = "FEAT_LVA implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+
+  Bits  = "15:12";
+  Value = (Aa64Mmfr2 >> 12) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "FEAT_IESB not implemented.";
+      break;
+    case b0001:
+      Description = "FEAT_IESB implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+
+  Bits  = "11:8 ";
+  Value = (Aa64Mmfr2 >>  8) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "FEAT_LSMAOC not implemented.";
+      break;
+    case b0001:
+      Description = "FEAT_LSMAOC implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+
+  Bits  = "7:4 ";
+  Value = (Aa64Mmfr2 >>  4) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "FEAT_UAO not implemented.";
+      break;
+    case b0001:
+      Description = "FEAT_UAO implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+
+  Bits  = "3:0 ";
+  Value = Aa64Mmfr2 & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "FEAT_TTCNP not implemented.";
+      break;
+    case b0001:
+      Description = "FEAT_TTCNP implemented.";
       break;
     default:
       Description = "unknown";
