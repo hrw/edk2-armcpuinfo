@@ -649,45 +649,20 @@ HandleAa64Isar1 (
   CONST CHAR8         *Description;
   CONST CHAR8         *Bits;
 
-  Bits  = "3:0 ";
-  Value = Aa64Isar1 & 0xf;
+  Bits  = "63:60";
+  Value = (Aa64Isar1 >> 60) & 0xf;
   switch (Value) {
     case b0000:
-      Description = "DC CVAP not implemented.";
+      Description = "FEAT_LS64 not implemented.";
       break;
     case b0001:
-      Description = "FEAT_DPB implemented.";
+      Description = "FEAT_LS64 implemented.";
       break;
     case b0010:
-      Description = "FEAT_DPB2 implemented.";
-      break;
-    default:
-      Description = "unknown";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  Bits  = "7:4 ";
-  Value = (Aa64Isar1 >>  4) & 0xf;
-  switch (Value) {
-    case b0000:
-      Description = "Address Authentication (APA) not implemented.";
-      break;
-    case b0001:
-      Description = "FEAT_PAuth implemented.";
-      break;
-    case b0010:
-      Description = "FEAT_EPAC implemented.";
+      Description = "FEAT_LS64_V implemented.";
       break;
     case b0011:
-      Description = "FEAT_PAuth2 implemented.";
-      break;
-    case b0100:
-      Description = "FEAT_FPAC implemented.";
-      break;
-    case b0101:
-      Description = "FEAT_FPACCOMBINE implemented.";
+      Description = "FEAT_LS64_ACCDATA implemented.";
       break;
     default:
       Description = "unknown";
@@ -695,9 +670,204 @@ HandleAa64Isar1 (
   }
 
   PrintValues (RegName, Bits, Value, Description);
-  if (Value > 0) {
-    PrintText ("", "", "", "FEAT_PACQARMA5 implemented.");
+
+  Bits  = "59:56";
+  Value = (Aa64Isar1 >> 56) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "FEAT_XS not implemented.";
+      break;
+    case b0001:
+      Description = "FEAT_XS implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
   }
+
+  PrintValues (RegName, Bits, Value, Description);
+
+  Bits  = "55:52";
+  Value = (Aa64Isar1 >> 52) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "FEAT_I8MM not implemented.";
+      break;
+    case b0001:
+      Description = "FEAT_I8MM implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+
+  Bits  = "51:48";
+  Value = (Aa64Isar1 >> 48) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "FEAT_DGH not implemented.";
+      break;
+    case b0001:
+      Description = "FEAT_DGH implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+
+  Bits  = "47:44";
+  Value = (Aa64Isar1 >> 44) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "FEAT_BF16 not implemented.";
+      break;
+    case b0001:
+      Description = "FEAT_BF16 implemented.";
+      break;
+    case b0010:
+      Description = "FEAT_EBF16 implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+
+  Bits  = "43:40";
+  Value = (Aa64Isar1 >> 40) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "FEAT_SPECRES not implemented.";
+      break;
+    case b0001:
+      Description = "FEAT_SPECRES implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+
+  Bits  = "39:36";
+  Value = (Aa64Isar1 >> 36) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "FEAT_SB not implemented.";
+      break;
+    case b0001:
+      Description = "FEAT_SB implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+
+  Bits  = "35:32";
+  Value = (Aa64Isar1 >> 32) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "FEAT_FRINTTS not implemented.";
+      break;
+    case b0001:
+      Description = "FEAT_FRINTTS implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+
+  Bits  = "31:28";
+  Value = (Aa64Isar1 >> 28) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "FEAT_PACIMP not implemented.";
+      break;
+    case b0001:
+      Description = "FEAT_PACIMP implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+
+  Bits  = "27:24";
+  Value = (Aa64Isar1 >> 24) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "FEAT_PACQARMA5 not implemented.";
+      break;
+    case b0001:
+      Description = "FEAT_PACQARMA5 implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+
+  Bits  = "23:20";
+  Value = (Aa64Isar1 >> 20) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "FEAT_LRCPC(2) not implemented.";
+      break;
+    case b0001:
+      Description = "FEAT_LRCPC implemented.";
+      break;
+    case b0010:
+      Description = "FEAT_LRCPC2 implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+
+  Bits  = "19:16";
+  Value = (Aa64Isar1 >> 16) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "FEAT_FCMA not implemented.";
+      break;
+    case b0001:
+      Description = "FEAT_FCMA implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+
+  Bits  = "15:12";
+  Value = (Aa64Isar1 >> 12) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "FEAT_JSCVT not implemented.";
+      break;
+    case b0001:
+      Description = "FEAT_JSCVT implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
 
   Bits  = "11:8 ";
   Value = (Aa64Isar1 >>  8) & 0xf;
@@ -730,218 +900,48 @@ HandleAa64Isar1 (
     PrintText ("", "", "", "FEAT_PACIMP implemented.");
   }
 
-  Bits  = "15:12";
-  Value = (Aa64Isar1 >> 12) & 0xf;
+  Bits  = "7:4 ";
+  Value = (Aa64Isar1 >>  4) & 0xf;
   switch (Value) {
     case b0000:
-      Description = "FEAT_JSCVT not implemented.";
+      Description = "Address Authentication (APA) not implemented.";
       break;
     case b0001:
-      Description = "FEAT_JSCVT implemented.";
-      break;
-    default:
-      Description = "unknown";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  Bits  = "19:16";
-  Value = (Aa64Isar1 >> 16) & 0xf;
-  switch (Value) {
-    case b0000:
-      Description = "FEAT_FCMA not implemented.";
-      break;
-    case b0001:
-      Description = "FEAT_FCMA implemented.";
-      break;
-    default:
-      Description = "unknown";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  Bits  = "23:20";
-  Value = (Aa64Isar1 >> 20) & 0xf;
-  switch (Value) {
-    case b0000:
-      Description = "FEAT_LRCPC (2) not implemented.";
-      break;
-    case b0001:
-      Description = "FEAT_LRCPC implemented.";
+      Description = "FEAT_PAuth implemented.";
       break;
     case b0010:
-      Description = "FEAT_LRCPC2 implemented.";
-      break;
-    default:
-      Description = "unknown";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  Bits  = "27:24";
-  Value = (Aa64Isar1 >> 24) & 0xf;
-  switch (Value) {
-    case b0000:
-      Description = "FEAT_PACQARMA5 not implemented.";
-      break;
-    case b0001:
-      Description = "FEAT_PACQARMA5 implemented.";
-      break;
-    default:
-      Description = "unknown";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  Bits  = "31:28";
-  Value = (Aa64Isar1 >> 28) & 0xf;
-  switch (Value) {
-    case b0000:
-      Description = "FEAT_PACIMP not implemented.";
-      break;
-    case b0001:
-      Description = "FEAT_PACIMP implemented.";
-      break;
-    default:
-      Description = "unknown";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  Bits  = "35:32";
-  Value = (Aa64Isar1 >> 32) & 0xf;
-  switch (Value) {
-    case b0000:
-      Description = "FEAT_FRINTTS not implemented.";
-      break;
-    case b0001:
-      Description = "FEAT_FRINTTS implemented.";
-      break;
-    default:
-      Description = "unknown";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  Bits  = "39:36";
-  Value = (Aa64Isar1 >> 36) & 0xf;
-  switch (Value) {
-    case b0000:
-      Description = "FEAT_SB not implemented.";
-      break;
-    case b0001:
-      Description = "FEAT_SB implemented.";
-      break;
-    default:
-      Description = "unknown";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  Bits  = "43:40";
-  Value = (Aa64Isar1 >> 40) & 0xf;
-  switch (Value) {
-    case b0000:
-      Description = "FEAT_SPECRES not implemented.";
-      break;
-    case b0001:
-      Description = "FEAT_SPECRES implemented.";
-      break;
-    default:
-      Description = "unknown";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  Bits  = "47:44";
-  Value = (Aa64Isar1 >> 44) & 0xf;
-  switch (Value) {
-    case b0000:
-      Description = "FEAT_BF16 not implemented.";
-      break;
-    case b0001:
-      Description = "FEAT_BF16 implemented.";
-      break;
-    case b0010:
-      Description = "FEAT_EBF16 implemented.";
-      break;
-    default:
-      Description = "unknown";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  Bits  = "51:48";
-  Value = (Aa64Isar1 >> 48) & 0xf;
-  switch (Value) {
-    case b0000:
-      Description = "FEAT_DGH not implemented.";
-      break;
-    case b0001:
-      Description = "FEAT_DGH implemented.";
-      break;
-    default:
-      Description = "unknown";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  Bits  = "55:52";
-  Value = (Aa64Isar1 >> 52) & 0xf;
-  switch (Value) {
-    case b0000:
-      Description = "FEAT_I8MM not implemented.";
-      break;
-    case b0001:
-      Description = "FEAT_I8MM implemented.";
-      break;
-    default:
-      Description = "unknown";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  Bits  = "59:56";
-  Value = (Aa64Isar1 >> 56) & 0xf;
-  switch (Value) {
-    case b0000:
-      Description = "FEAT_XS not implemented.";
-      break;
-    case b0001:
-      Description = "FEAT_XS implemented.";
-      break;
-    default:
-      Description = "unknown";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  Bits  = "63:60";
-  Value = (Aa64Isar1 >> 60) & 0xf;
-  switch (Value) {
-    case b0000:
-      Description = "FEAT_LS64 not implemented.";
-      break;
-    case b0001:
-      Description = "FEAT_LS64 implemented.";
-      break;
-    case b0010:
-      Description = "FEAT_LS64_V implemented.";
+      Description = "FEAT_EPAC implemented.";
       break;
     case b0011:
-      Description = "FEAT_LS64_ACCDATA implemented.";
+      Description = "FEAT_PAuth2 implemented.";
+      break;
+    case b0100:
+      Description = "FEAT_FPAC implemented.";
+      break;
+    case b0101:
+      Description = "FEAT_FPACCOMBINE implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+  if (Value > 0) {
+    PrintText ("", "", "", "FEAT_PACQARMA5 implemented.");
+  }
+
+  Bits  = "3:0 ";
+  Value = Aa64Isar1 & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "DC CVAP not implemented.";
+      break;
+    case b0001:
+      Description = "FEAT_DPB implemented.";
+      break;
+    case b0010:
+      Description = "FEAT_DPB2 implemented.";
       break;
     default:
       Description = "unknown";
