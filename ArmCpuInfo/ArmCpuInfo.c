@@ -2458,7 +2458,23 @@ HandleAa64Smfr0 (
 
   PrintValues (RegName, Bits, Value, Description);
 
-  // 47:40 reserved
+  Bits  = "47:44";
+  Value = (Aa64Smfr0 >> 44) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "SME2 I16I32 not implemented.";
+      break;
+    case b1111:
+      Description = "SME2 I16I32 implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+
+  // 43:40 reserved
 
   Bits  = "39:36";
   Value = (Aa64Smfr0 >> 36) & 0xf;
