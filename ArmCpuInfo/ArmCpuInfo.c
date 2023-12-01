@@ -2541,14 +2541,16 @@ HandleAa64Zfr0 (
   CONST CHAR8         *Description;
   CONST CHAR8         *Bits;
 
-  Bits  = "3:0 ";
-  Value = Aa64Zfr0 & 0xf;
+  // 63:60 reserved
+
+  Bits  = "59:56";
+  Value = (Aa64Zfr0 >> 56) & 0xf;
   switch (Value) {
     case b0000:
-      Description = "FEAT_SVE implemented.";
+      Description = "FEAT_F64MM SVE not implemented";
       break;
     case b0001:
-      Description = "FEAT_SVE2 implemented.";
+      Description = "FEAT_F64MM SVE implemented";
       break;
     default:
       Description = "unknown";
@@ -2557,17 +2559,14 @@ HandleAa64Zfr0 (
 
   PrintValues (RegName, Bits, Value, Description);
 
-  Bits  = "7:4 ";
-  Value = (Aa64Zfr0 >>  4) & 0xf;
+  Bits  = "55:52";
+  Value = (Aa64Zfr0 >> 52) & 0xf;
   switch (Value) {
     case b0000:
-      Description = "FEAT_SVE_AES not implemented.";
+      Description = "FEAT_F32MM SVE not implemented";
       break;
     case b0001:
-      Description = "FEAT_SVE_AES implemented.";
-      break;
-    case b0010:
-      Description = "FEAT_SVE_AES and FEAT_SVE_PMULL128 implemented.";
+      Description = "FEAT_F32MM SVE implemented";
       break;
     default:
       Description = "unknown";
@@ -2576,16 +2575,16 @@ HandleAa64Zfr0 (
 
   PrintValues (RegName, Bits, Value, Description);
 
-  // 15:8 reserved
+  // 51:48 reserved
 
-  Bits  = "19:16";
-  Value = (Aa64Zfr0 >> 16) & 0xf;
+  Bits  = "47:44";
+  Value = (Aa64Zfr0 >> 44) & 0xf;
   switch (Value) {
     case b0000:
-      Description = "FEAT_SVE_BitPerm not implemented.";
+      Description = "FEAT_I8MM SVE not implemented.";
       break;
     case b0001:
-      Description = "FEAT_SVE_BitPerm implemented.";
+      Description = "FEAT_I8MM SVE implemented.";
       break;
     default:
       Description = "unknown";
@@ -2593,6 +2592,42 @@ HandleAa64Zfr0 (
   }
 
   PrintValues (RegName, Bits, Value, Description);
+
+  Bits  = "43:40";
+  Value = (Aa64Zfr0 >> 40) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "FEAT_SVE_SM4 not implemented.";
+      break;
+    case b0001:
+      Description = "FEAT_SVE_SM4 implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+
+  // 39:36 reserved
+
+  Bits  = "35:32";
+  Value = (Aa64Zfr0 >> 32) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "FEAT_SVE_SHA3 not implemented.";
+      break;
+    case b0001:
+      Description = "FEAT_SVE_SHA3 implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+
+  // 31:24 reserved
 
   Bits  = "23:20";
   Value = (Aa64Zfr0 >> 20) & 0xf;
@@ -2613,16 +2648,14 @@ HandleAa64Zfr0 (
 
   PrintValues (RegName, Bits, Value, Description);
 
-  // 31:24 reserved
-
-  Bits  = "35:32";
-  Value = (Aa64Zfr0 >> 32) & 0xf;
+  Bits  = "19:16";
+  Value = (Aa64Zfr0 >> 16) & 0xf;
   switch (Value) {
     case b0000:
-      Description = "FEAT_SVE_SHA3 not implemented.";
+      Description = "FEAT_SVE_BitPerm not implemented.";
       break;
     case b0001:
-      Description = "FEAT_SVE_SHA3 implemented.";
+      Description = "FEAT_SVE_BitPerm implemented.";
       break;
     default:
       Description = "unknown";
@@ -2631,16 +2664,19 @@ HandleAa64Zfr0 (
 
   PrintValues (RegName, Bits, Value, Description);
 
-  // 39:36 reserved
+  // 15:8 reserved
 
-  Bits  = "43:40";
-  Value = (Aa64Zfr0 >> 40) & 0xf;
+  Bits  = "7:4 ";
+  Value = (Aa64Zfr0 >>  4) & 0xf;
   switch (Value) {
     case b0000:
-      Description = "FEAT_SVE_SM4 not implemented.";
+      Description = "FEAT_SVE_AES not implemented.";
       break;
     case b0001:
-      Description = "FEAT_SVE_SM4 implemented.";
+      Description = "FEAT_SVE_AES implemented.";
+      break;
+    case b0010:
+      Description = "FEAT_SVE_AES and FEAT_SVE_PMULL128 implemented.";
       break;
     default:
       Description = "unknown";
@@ -2649,14 +2685,14 @@ HandleAa64Zfr0 (
 
   PrintValues (RegName, Bits, Value, Description);
 
-  Bits  = "47:44";
-  Value = (Aa64Zfr0 >> 44) & 0xf;
+  Bits  = "3:0 ";
+  Value = Aa64Zfr0 & 0xf;
   switch (Value) {
     case b0000:
-      Description = "FEAT_I8MM SVE not implemented.";
+      Description = "FEAT_SVE implemented.";
       break;
     case b0001:
-      Description = "FEAT_I8MM SVE implemented.";
+      Description = "FEAT_SVE2 implemented.";
       break;
     default:
       Description = "unknown";
@@ -2664,42 +2700,6 @@ HandleAa64Zfr0 (
   }
 
   PrintValues (RegName, Bits, Value, Description);
-
-  // 51:48 reserved
-
-  Bits  = "55:52";
-  Value = (Aa64Zfr0 >> 52) & 0xf;
-  switch (Value) {
-    case b0000:
-      Description = "FEAT_F32MM SVE not implemented";
-      break;
-    case b0001:
-      Description = "FEAT_F32MM SVE implemented";
-      break;
-    default:
-      Description = "unknown";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  Bits  = "59:56";
-  Value = (Aa64Zfr0 >> 56) & 0xf;
-  switch (Value) {
-    case b0000:
-      Description = "FEAT_F64MM SVE not implemented";
-      break;
-    case b0001:
-      Description = "FEAT_F64MM SVE implemented";
-      break;
-    default:
-      Description = "unknown";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  // 63:60 reserved
 }
 
 /**
