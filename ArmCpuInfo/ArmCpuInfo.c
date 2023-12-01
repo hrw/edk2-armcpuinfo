@@ -2390,16 +2390,14 @@ HandleAa64Smfr0 (
   CONST CHAR8         *Description;
   CONST CHAR8         *Bits;
 
-  // 31:0 reserved
-
-  Bits  = "   32";
-  Value = (Aa64Smfr0 >> 32) & 0x1;
+  Bits  = "   63";
+  Value = (Aa64Smfr0 >> 63) & 0x1;
   switch (Value) {
     case 0:
-      Description = "SME F32F32 not implemented.";
+      Description = "SME_FA64 not implemented.";
       break;
     case 1:
-      Description = "SME F32F32 implemented.";
+      Description = "SME_FA64 implemented.";
       break;
     default:
       Description = "unknown";
@@ -2408,16 +2406,65 @@ HandleAa64Smfr0 (
 
   PrintValues (RegName, Bits, Value, Description);
 
-  // 33 reserved
+  Bits  = "59:56";
+  Value = (Aa64Smfr0 >> 56) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "Mandatory SME instructions are implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
 
-  Bits  = "   34";
-  Value = (Aa64Smfr0 >> 34) & 0x1;
+  PrintValues (RegName, Bits, Value, Description);
+
+  // 62:60 reserved
+
+  Bits  = "55:52";
+  Value = (Aa64Smfr0 >> 52) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "SME I16I64 not implemented";
+      break;
+    case b1111:
+      Description = "SME I16I64 implemented";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+
+  // 51:49 reserved
+
+  Bits  = "   48";
+  Value = (Aa64Smfr0 >> 48) & 0x1;
   switch (Value) {
     case 0:
-      Description = "SME B16F32 not implemented.";
+      Description = "SME F64F64 not implemented.";
       break;
     case 1:
-      Description = "SME B16F32 implemented.";
+      Description = "SME F64F64 implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+
+  // 47:40 reserved
+
+  Bits  = "39:36";
+  Value = (Aa64Smfr0 >> 36) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "SME I8I32 not implemented.";
+      break;
+    case b1111:
+      Description = "SME I8I32 implemented.";
       break;
     default:
       Description = "unknown";
@@ -2442,32 +2489,14 @@ HandleAa64Smfr0 (
 
   PrintValues (RegName, Bits, Value, Description);
 
-  Bits  = "39:36";
-  Value = (Aa64Smfr0 >> 36) & 0xf;
-  switch (Value) {
-    case b0000:
-      Description = "SME I8I32 not implemented.";
-      break;
-    case b1111:
-      Description = "SME I8I32 implemented.";
-      break;
-    default:
-      Description = "unknown";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  // 47:40 reserved
-
-  Bits  = "   48";
-  Value = (Aa64Smfr0 >> 48) & 0x1;
+  Bits  = "   34";
+  Value = (Aa64Smfr0 >> 34) & 0x1;
   switch (Value) {
     case 0:
-      Description = "SME F64F64 not implemented.";
+      Description = "SME B16F32 not implemented.";
       break;
     case 1:
-      Description = "SME F64F64 implemented.";
+      Description = "SME B16F32 implemented.";
       break;
     default:
       Description = "unknown";
@@ -2476,47 +2505,16 @@ HandleAa64Smfr0 (
 
   PrintValues (RegName, Bits, Value, Description);
 
-  // 51:49 reserved
+  // 33 reserved
 
-  Bits  = "55:52";
-  Value = (Aa64Smfr0 >> 52) & 0xf;
-  switch (Value) {
-    case b0000:
-      Description = "SME I16I64 not implemented";
-      break;
-    case b1111:
-      Description = "SME I16I64 implemented";
-      break;
-    default:
-      Description = "unknown";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  Bits  = "59:56";
-  Value = (Aa64Smfr0 >> 56) & 0xf;
-  switch (Value) {
-    case b0000:
-      Description = "Mandatory SME instructions are implemented.";
-      break;
-    default:
-      Description = "unknown";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  // 62:60 reserved
-
-  Bits  = "   63";
-  Value = (Aa64Smfr0 >> 63) & 0x1;
+  Bits  = "   32";
+  Value = (Aa64Smfr0 >> 32) & 0x1;
   switch (Value) {
     case 0:
-      Description = "SME_FA64 not implemented.";
+      Description = "SME F32F32 not implemented.";
       break;
     case 1:
-      Description = "SME_FA64 implemented.";
+      Description = "SME F32F32 implemented.";
       break;
     default:
       Description = "unknown";
@@ -2524,6 +2522,8 @@ HandleAa64Smfr0 (
   }
 
   PrintValues (RegName, Bits, Value, Description);
+
+  // 31:0 reserved
 }
 
 /**
