@@ -1389,17 +1389,16 @@ HandleAa64Mmfr1 (
   CONST CHAR8         *Description;
   CONST CHAR8         *Bits;
 
-  Bits  = "3:0 ";
-  Value = Aa64Mmfr1 & 0xf;
+  // 63:60 reserved
+
+  Bits  = "59:56";
+  Value = (Aa64Mmfr1 >> 56) & 0xf;
   switch (Value) {
     case b0000:
-      Description = "FEAT_HAFDBS not implemented.";
+      Description = "FEAT_CMOW not implemented.";
       break;
     case b0001:
-      Description = "FEAT_HAFDBS implemented without dirty status support.";
-      break;
-    case b0010:
-      Description = "FEAT_HAFDBS implemented with dirty status support.";
+      Description = "FEAT_CMOW implemented.";
       break;
     default:
       Description = "unknown";
@@ -1408,14 +1407,14 @@ HandleAa64Mmfr1 (
 
   PrintValues (RegName, Bits, Value, Description);
 
-  Bits  = "7:4 ";
-  Value = (Aa64Mmfr1 >>  4) & 0xf;
+  Bits  = "55:52";
+  Value = (Aa64Mmfr1 >> 52) & 0xf;
   switch (Value) {
     case b0000:
-      Description = "FEAT_VMID16 not implemented.";
+      Description = "FEAT_TIDCP1 not implemented";
       break;
-    case b0010:
-      Description = "FEAT_VMID16 implemented.";
+    case b0001:
+      Description = "FEAT_TIDCP1 implemented";
       break;
     default:
       Description = "unknown";
@@ -1424,14 +1423,147 @@ HandleAa64Mmfr1 (
 
   PrintValues (RegName, Bits, Value, Description);
 
-  Bits  = "11:8 ";
-  Value = (Aa64Mmfr1 >>  8) & 0xf;
+  Bits  = "51:48";
+  Value = (Aa64Mmfr1 >> 48) & 0xf;
   switch (Value) {
     case b0000:
-      Description = "FEAT_VHE not implemented.";
+      Description = "FEAT_nTLBPA not implemented.";
       break;
     case b0001:
-      Description = "FEAT_VHE implemented.";
+      Description = "FEAT_nTLBPA implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+
+  Bits  = "47:44";
+  Value = (Aa64Mmfr1 >> 44) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "FEAT_AFP not implemented.";
+      break;
+    case b0001:
+      Description = "FEAT_AFP implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+
+  Bits  = "43:40";
+  Value = (Aa64Mmfr1 >> 40) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "FEAT_HCX not implemented.";
+      break;
+    case b0001:
+      Description = "FEAT_HCX implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+
+  Bits  = "39:36";
+  Value = (Aa64Mmfr1 >> 36) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "FEAT_ETS not implemented.";
+      break;
+    case b0001:
+      Description = "FEAT_ETS implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+
+  Bits  = "35:32";
+  Value = (Aa64Mmfr1 >> 32) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "FEAT_TWED not implemented.";
+      break;
+    case b0001:
+      Description = "FEAT_TWED implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+
+  Bits  = "31:28";
+  Value = (Aa64Mmfr1 >> 28) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "FEAT_XNX not implemented.";
+      break;
+    case b0001:
+      Description = "FEAT_XNX implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+
+  // when FEAT_RAS implemented
+  if ((((Aa64Pfr0 >> 28) & 0xf) == b0001) ||
+      (((Aa64Pfr0 >> 28) & 0xf) == b0010))
+  {
+    if (((Aa64Mmfr1 >> 24) & 0xf) == b0000 ) {
+      PrintValues (RegName, "27:24", b0000, "The PE never generates an SError interrupt due to");
+      PrintText ("", "", "", "an External abort on a speculative read.");
+    }
+
+    if (((Aa64Mmfr1 >> 24) & 0xf) == b0001 ) {
+      PrintValues (RegName, "27:24", b0001, "The PE might generate an SError interrupt due to");
+      PrintText ("", "", "", "an External abort on a speculative read.");
+    }
+  }
+
+  Bits  = "23:20";
+  Value = (Aa64Mmfr1 >> 20) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "FEAT_PAN not implemented.";
+      break;
+    case b0001:
+      Description = "FEAT_PAN implemented.";
+      break;
+    case b0010:
+      Description = "FEAT_PAN2 implemented.";
+      break;
+    case b0011:
+      Description = "FEAT_PAN3 implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+
+  Bits  = "19:16";
+  Value = (Aa64Mmfr1 >> 16) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "FEAT_LOR not implemented.";
+      break;
+    case b0001:
+      Description = "FEAT_LOR implemented.";
       break;
     default:
       Description = "unknown";
@@ -1459,14 +1591,14 @@ HandleAa64Mmfr1 (
 
   PrintValues (RegName, Bits, Value, Description);
 
-  Bits  = "19:16";
-  Value = (Aa64Mmfr1 >> 16) & 0xf;
+  Bits  = "11:8 ";
+  Value = (Aa64Mmfr1 >>  8) & 0xf;
   switch (Value) {
     case b0000:
-      Description = "FEAT_LOR not implemented.";
+      Description = "FEAT_VHE not implemented.";
       break;
     case b0001:
-      Description = "FEAT_LOR implemented.";
+      Description = "FEAT_VHE implemented.";
       break;
     default:
       Description = "unknown";
@@ -1475,20 +1607,14 @@ HandleAa64Mmfr1 (
 
   PrintValues (RegName, Bits, Value, Description);
 
-  Bits  = "23:20";
-  Value = (Aa64Mmfr1 >> 20) & 0xf;
+  Bits  = "7:4 ";
+  Value = (Aa64Mmfr1 >>  4) & 0xf;
   switch (Value) {
     case b0000:
-      Description = "FEAT_PAN not implemented.";
-      break;
-    case b0001:
-      Description = "FEAT_PAN implemented.";
+      Description = "FEAT_VMID16 not implemented.";
       break;
     case b0010:
-      Description = "FEAT_PAN2 implemented.";
-      break;
-    case b0011:
-      Description = "FEAT_PAN3 implemented.";
+      Description = "FEAT_VMID16 implemented.";
       break;
     default:
       Description = "unknown";
@@ -1497,29 +1623,17 @@ HandleAa64Mmfr1 (
 
   PrintValues (RegName, Bits, Value, Description);
 
-  // when FEAT_RAS implemented
-  if ((((Aa64Pfr0 >> 28) & 0xf) == b0001) ||
-      (((Aa64Pfr0 >> 28) & 0xf) == b0010))
-  {
-    if (((Aa64Mmfr1 >> 24) & 0xf) == b0000 ) {
-      PrintValues ("MMFR1", "27:24", b0000, "The PE never generates an SError interrupt due to");
-      PrintText ("", "", "", "an External abort on a speculative read.");
-    }
-
-    if (((Aa64Mmfr1 >> 24) & 0xf) == b0001 ) {
-      PrintValues ("MMFR1", "27:24", b0001, "The PE might generate an SError interrupt due to");
-      PrintText ("", "", "", "an External abort on a speculative read.");
-    }
-  }
-
-  Bits  = "31:28";
-  Value = (Aa64Mmfr1 >> 28) & 0xf;
+  Bits  = "3:0 ";
+  Value = Aa64Mmfr1 & 0xf;
   switch (Value) {
     case b0000:
-      Description = "FEAT_XNX not implemented.";
+      Description = "FEAT_HAFDBS not implemented.";
       break;
     case b0001:
-      Description = "FEAT_XNX implemented.";
+      Description = "FEAT_HAFDBS implemented without dirty status support.";
+      break;
+    case b0010:
+      Description = "FEAT_HAFDBS implemented with dirty status support.";
       break;
     default:
       Description = "unknown";
@@ -1527,120 +1641,6 @@ HandleAa64Mmfr1 (
   }
 
   PrintValues (RegName, Bits, Value, Description);
-
-  Bits  = "35:32";
-  Value = (Aa64Mmfr1 >> 32) & 0xf;
-  switch (Value) {
-    case b0000:
-      Description = "FEAT_TWED not implemented.";
-      break;
-    case b0001:
-      Description = "FEAT_TWED implemented.";
-      break;
-    default:
-      Description = "unknown";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  Bits  = "39:36";
-  Value = (Aa64Mmfr1 >> 36) & 0xf;
-  switch (Value) {
-    case b0000:
-      Description = "FEAT_ETS not implemented.";
-      break;
-    case b0001:
-      Description = "FEAT_ETS implemented.";
-      break;
-    default:
-      Description = "unknown";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  Bits  = "43:40";
-  Value = (Aa64Mmfr1 >> 40) & 0xf;
-  switch (Value) {
-    case b0000:
-      Description = "FEAT_HCX not implemented.";
-      break;
-    case b0001:
-      Description = "FEAT_HCX implemented.";
-      break;
-    default:
-      Description = "unknown";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  Bits  = "47:44";
-  Value = (Aa64Mmfr1 >> 44) & 0xf;
-  switch (Value) {
-    case b0000:
-      Description = "FEAT_AFP not implemented.";
-      break;
-    case b0001:
-      Description = "FEAT_AFP implemented.";
-      break;
-    default:
-      Description = "unknown";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  Bits  = "51:48";
-  Value = (Aa64Mmfr1 >> 48) & 0xf;
-  switch (Value) {
-    case b0000:
-      Description = "FEAT_nTLBPA not implemented.";
-      break;
-    case b0001:
-      Description = "FEAT_nTLBPA implemented.";
-      break;
-    default:
-      Description = "unknown";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  Bits  = "55:52";
-  Value = (Aa64Mmfr1 >> 52) & 0xf;
-  switch (Value) {
-    case b0000:
-      Description = "FEAT_TIDCP1 not implemented";
-      break;
-    case b0001:
-      Description = "FEAT_TIDCP1 implemented";
-      break;
-    default:
-      Description = "unknown";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  Bits  = "59:56";
-  Value = (Aa64Mmfr1 >> 56) & 0xf;
-  switch (Value) {
-    case b0000:
-      Description = "FEAT_CMOW not implemented.";
-      break;
-    case b0001:
-      Description = "FEAT_CMOW implemented.";
-      break;
-    default:
-      Description = "unknown";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  // 63:60 reserved
 }
 
 /**
