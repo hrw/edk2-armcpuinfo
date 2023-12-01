@@ -2261,14 +2261,76 @@ HandleAa64Pfr1 (
   CONST CHAR8         *Description;
   CONST CHAR8         *Bits;
 
-  Bits  = "3:0 ";
-  Value = Aa64Pfr1 & 0xf;
+  // 63:40 are reserved
+
+  Bits  = "39:36";
+  Value = (Aa64Pfr1 >> 36) & 0xf;
   switch (Value) {
     case b0000:
-      Description = "FEAT_BTI not implemented.";
+      Description = "FEAT_NMI not implemented.";
       break;
     case b0001:
-      Description = "FEAT_BTI implemented.";
+      Description = "FEAT_NMI implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+
+  Bits  = "31:28";
+  Value = (Aa64Pfr1 >> 28) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "FEAT_RNG_TRAP not implemented.";
+      break;
+    case b0001:
+      Description = "FEAT_RNG_TRAP implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+
+  // 35:32 is CSV2_frac
+
+  Bits  = "27:24";
+  Value = (Aa64Pfr1 >> 24) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "FEAT_SME not implemented.";
+      break;
+    case b0001:
+      Description = "FEAT_SME implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+
+  // 23:20 is reserved
+  // 19:16 is MPAM_frac
+  // 15:12 is RAS_frac
+
+  Bits  = "11:8 ";
+  Value = (Aa64Pfr1 >>  8) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "FEAT_MTE not implemented.";
+      break;
+    case b0001:
+      Description = "FEAT_MTE implemented.";
+      break;
+    case b0010:
+      Description = "FEAT_MTE2 implemented.";
+      break;
+    case b0011:
+      Description = "FEAT_MTE3 implemented.";
       break;
     default:
       Description = "unknown";
@@ -2296,20 +2358,14 @@ HandleAa64Pfr1 (
 
   PrintValues (RegName, Bits, Value, Description);
 
-  Bits  = "11:8 ";
-  Value = (Aa64Pfr1 >>  8) & 0xf;
+  Bits  = "3:0 ";
+  Value = Aa64Pfr1 & 0xf;
   switch (Value) {
     case b0000:
-      Description = "FEAT_MTE not implemented.";
+      Description = "FEAT_BTI not implemented.";
       break;
     case b0001:
-      Description = "FEAT_MTE implemented.";
-      break;
-    case b0010:
-      Description = "FEAT_MTE2 implemented.";
-      break;
-    case b0011:
-      Description = "FEAT_MTE3 implemented.";
+      Description = "FEAT_BTI implemented.";
       break;
     default:
       Description = "unknown";
@@ -2317,62 +2373,6 @@ HandleAa64Pfr1 (
   }
 
   PrintValues (RegName, Bits, Value, Description);
-
-  // 15:12 is RAS_frac
-  // 19:16 is MPAM_frac
-  // 23:20 is reserved
-
-  Bits  = "27:24";
-  Value = (Aa64Pfr1 >> 24) & 0xf;
-  switch (Value) {
-    case b0000:
-      Description = "FEAT_SME not implemented.";
-      break;
-    case b0001:
-      Description = "FEAT_SME implemented.";
-      break;
-    default:
-      Description = "unknown";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  Bits  = "31:28";
-  Value = (Aa64Pfr1 >> 28) & 0xf;
-  switch (Value) {
-    case b0000:
-      Description = "FEAT_RNG_TRAP not implemented.";
-      break;
-    case b0001:
-      Description = "FEAT_RNG_TRAP implemented.";
-      break;
-    default:
-      Description = "unknown";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  // 35:32 is CSV2_frac
-
-  Bits  = "39:36";
-  Value = (Aa64Pfr1 >> 36) & 0xf;
-  switch (Value) {
-    case b0000:
-      Description = "FEAT_NMI not implemented.";
-      break;
-    case b0001:
-      Description = "FEAT_NMI implemented.";
-      break;
-    default:
-      Description = "unknown";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  // 63:40 are reserved
 }
 
 /**
