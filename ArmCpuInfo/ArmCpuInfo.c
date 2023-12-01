@@ -1927,269 +1927,14 @@ HandleAa64Pfr0 (
   CONST CHAR8         *Description;
   CONST CHAR8         *Bits;
 
-  Bits  = "3:0 ";
-  Value = Aa64Pfr0 & 0xf;
-  switch (Value) {
-    case b0001:
-      Description = "EL0 in AArch64 only";
-      break;
-    case b0010:
-      Description = "EL0 in AArch64 and AArch32";
-      break;
-    default:
-      Description = "unknown";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  Bits  = "7:4 ";
-  Value = (Aa64Pfr0 >>  4) & 0xf;
-  switch (Value) {
-    case b0001:
-      Description = "EL1 in AArch64 only";
-      break;
-    case b0010:
-      Description = "EL1 in AArch64 and AArch32";
-      break;
-    default:
-      Description = "unknown";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  Bits  = "11:8 ";
-  Value = (Aa64Pfr0 >>  8) & 0xf;
+  Bits  = "63:60";
+  Value = (Aa64Pfr0 >> 60) & 0xf;
   switch (Value) {
     case b0000:
-      Description = "EL2 not implemented.";
+      Description = "FEAT_CSV3 not implemented.";
       break;
     case b0001:
-      Description = "EL2 in AArch64 only";
-      break;
-    case b0010:
-      Description = "EL2 in AArch64 and AArch32";
-      break;
-    default:
-      Description = "unknown";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  Bits  = "15:12";
-  Value = (Aa64Pfr0 >> 12) & 0xf;
-  switch (Value) {
-    case b0000:
-      Description = "EL3 not implemented.";
-      break;
-    case b0001:
-      Description = "EL3 in AArch64 only";
-      break;
-    case b0010:
-      Description = "EL3 in AArch64 and AArch32";
-      break;
-    default:
-      Description = "unknown";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  Bits  = "19:16";
-  Value = (Aa64Pfr0 >> 16) & 0xf;
-  switch (Value) {
-    case b0000:
-      Description = "Floating-point implemented.";
-      break;
-    case b0001:
-      Description = "Floating-point with half-precision support (FEAT_FP16).";
-      break;
-    case b1111:
-      Description = "Floating-point not implemented.";
-      break;
-    default:
-      Description = "unknown";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  Bits  = "23:20";
-  Value = (Aa64Pfr0 >> 20) & 0xf;
-  switch (Value) {
-    case b0000:
-      Description = "Advanced SIMD implemented.";
-      break;
-    case b0001:
-      Description = "Advanced SIMD with half precision support (FEAT_FP16).";
-      break;
-    case b1111:
-      Description = "Advanced SIMD not implemented.";
-      break;
-    default:
-      Description = "unknown";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  Bits  = "27:24";
-  Value = (Aa64Pfr0 >> 24) & 0xf;
-  switch (Value) {
-    case b0000:
-      Description = "System registers of GIC CPU not implemented.";
-      break;
-    case b0001:
-      Description = "System registers to versions 3.0/4.0 of GIC CPU implemented.";
-      break;
-    case b0011:
-      Description = "System registers to versions 4.1 of GIC CPU implemented.";
-      break;
-    default:
-      Description = "unknown";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  Bits  = "31:28";
-  Value = (Aa64Pfr0 >> 28) & 0xf;
-  switch (Value) {
-    case b0000:
-      Description = "FEAT_RAS not implemented.";
-      break;
-    case b0001:
-      Description = "FEAT_RAS implemented.";
-      break;
-    case b0010:
-      Description = "FEAT_RASv1p1 implemented.";
-      // b0010 FEAT_RASv1p1 implemented and, if EL3 is implemented, FEAT_DoubleFault implemented.
-      if ((((Aa64Pfr0 >> 12) & 0xf) == b0001) ||
-          (((Aa64Pfr0 >> 12) & 0xf) == b0010))
-      {
-        Description = "FEAT_RASv1p1 implemented. FEAT_DoubleFault implemented.";
-      }
-
-      break;
-    default:
-      Description = "unknown";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-  if (Value == b0001) {
-    if (((Aa64Pfr1 >> 12) & 0xf) == b0001 ) {
-      PrintValues ("PRF1", "15:12", b0001, "FEAT_RASv1p1 implemented.");
-    }
-  }
-
-  Bits  = "35:32";
-  Value = (Aa64Pfr0 >> 32) & 0xf;
-  switch (Value) {
-    case b0000:
-      Description = "FEAT_SVE not implemented.";
-      break;
-    case b0001:
-      Description = "FEAT_SVE implemented.";
-      break;
-    default:
-      Description = "unknown";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  Bits  = "39:36";
-  Value = (Aa64Pfr0 >> 36) & 0xf;
-  switch (Value) {
-    case b0000:
-      Description = "Secure EL2 not implemented.";
-      break;
-    case b0001:
-      Description = "Secure EL2 implemented.";
-      break;
-    default:
-      Description = "unknown";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  Bits  = "43:40";
-  Value = (Aa64Pfr0 >> 40) & 0xf;
-  switch (Value) {
-    case b0000:
-      if (((Aa64Pfr1 >> 16) & 0xf) == b0000 ) {
-        Description = "FEAT_MPAM not implemented.";
-      }
-
-      if (((Aa64Pfr1 >> 16) & 0xf) == b0001 ) {
-        Description = "FEAT_MPAM v0.1 implemented.";
-      }
-
-      break;
-    case b0001:
-      if (((Aa64Pfr1 >> 16) & 0xf) == b0000 ) {
-        Description = "FEAT_MPAM v1.0 implemented.";
-      }
-
-      if (((Aa64Pfr1 >> 16) & 0xf) == b0001 ) {
-        Description = "FEAT_MPAM v1.1 implemented.";
-      }
-
-      break;
-    default:
-      Description = "unknown";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  Bits  = "47:44";
-  Value = (Aa64Pfr0 >> 44) & 0xf;
-  switch (Value) {
-    case b0000:
-      Description = "FEAT_AMU not implemented.";
-      break;
-    case b0001:
-      Description = "FEAT_AMUv1 implemented.";
-      break;
-    case b0010:
-      Description = "FEAT_AMUv1p1 implemented.";
-      break;
-    default:
-      Description = "unknown";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  Bits  = "51:48";
-  Value = (Aa64Pfr0 >> 48) & 0xf;
-  switch (Value) {
-    case b0000:
-      Description = "FEAT_DIT not implemented.";
-      break;
-    case b0001:
-      Description = "FEAT_DIT implemented.";
-      break;
-    default:
-      Description = "unknown";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  Bits  = "55:52";
-  Value = (Aa64Pfr0 >> 52) & 0xf;
-  switch (Value) {
-    case b0000:
-      Description = "FEAT_RME not implemented";
-      break;
-    case b0001:
-      Description = "FEAT_RME implemented";
+      Description = "FEAT_CSV3 implemented.";
       break;
     default:
       Description = "unknown";
@@ -2229,14 +1974,269 @@ HandleAa64Pfr0 (
     }
   }
 
-  Bits  = "63:60";
-  Value = (Aa64Pfr0 >> 60) & 0xf;
+  Bits  = "55:52";
+  Value = (Aa64Pfr0 >> 52) & 0xf;
   switch (Value) {
     case b0000:
-      Description = "FEAT_CSV3 not implemented.";
+      Description = "FEAT_RME not implemented";
       break;
     case b0001:
-      Description = "FEAT_CSV3 implemented.";
+      Description = "FEAT_RME implemented";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+
+  Bits  = "51:48";
+  Value = (Aa64Pfr0 >> 48) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "FEAT_DIT not implemented.";
+      break;
+    case b0001:
+      Description = "FEAT_DIT implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+
+  Bits  = "47:44";
+  Value = (Aa64Pfr0 >> 44) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "FEAT_AMU not implemented.";
+      break;
+    case b0001:
+      Description = "FEAT_AMUv1 implemented.";
+      break;
+    case b0010:
+      Description = "FEAT_AMUv1p1 implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+
+  Bits  = "43:40";
+  Value = (Aa64Pfr0 >> 40) & 0xf;
+  switch (Value) {
+    case b0000:
+      if (((Aa64Pfr1 >> 16) & 0xf) == b0000 ) {
+        Description = "FEAT_MPAM not implemented.";
+      }
+
+      if (((Aa64Pfr1 >> 16) & 0xf) == b0001 ) {
+        Description = "FEAT_MPAM v0.1 implemented.";
+      }
+
+      break;
+    case b0001:
+      if (((Aa64Pfr1 >> 16) & 0xf) == b0000 ) {
+        Description = "FEAT_MPAM v1.0 implemented.";
+      }
+
+      if (((Aa64Pfr1 >> 16) & 0xf) == b0001 ) {
+        Description = "FEAT_MPAM v1.1 implemented.";
+      }
+
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+
+  Bits  = "39:36";
+  Value = (Aa64Pfr0 >> 36) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "Secure EL2 not implemented.";
+      break;
+    case b0001:
+      Description = "Secure EL2 implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+
+  Bits  = "35:32";
+  Value = (Aa64Pfr0 >> 32) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "FEAT_SVE not implemented.";
+      break;
+    case b0001:
+      Description = "FEAT_SVE implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+
+  Bits  = "31:28";
+  Value = (Aa64Pfr0 >> 28) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "FEAT_RAS not implemented.";
+      break;
+    case b0001:
+      Description = "FEAT_RAS implemented.";
+      break;
+    case b0010:
+      Description = "FEAT_RASv1p1 implemented.";
+      // b0010 FEAT_RASv1p1 implemented and, if EL3 is implemented, FEAT_DoubleFault implemented.
+      if ((((Aa64Pfr0 >> 12) & 0xf) == b0001) ||
+          (((Aa64Pfr0 >> 12) & 0xf) == b0010))
+      {
+        Description = "FEAT_RASv1p1 implemented. FEAT_DoubleFault implemented.";
+      }
+
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+  if (Value == b0001) {
+    if (((Aa64Pfr1 >> 12) & 0xf) == b0001 ) {
+      PrintValues ("PRF1", "15:12", b0001, "FEAT_RASv1p1 implemented.");
+    }
+  }
+
+  Bits  = "27:24";
+  Value = (Aa64Pfr0 >> 24) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "System registers of GIC CPU not implemented.";
+      break;
+    case b0001:
+      Description = "System registers to versions 3.0/4.0 of GIC CPU implemented.";
+      break;
+    case b0011:
+      Description = "System registers to versions 4.1 of GIC CPU implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+
+  Bits  = "23:20";
+  Value = (Aa64Pfr0 >> 20) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "Advanced SIMD implemented.";
+      break;
+    case b0001:
+      Description = "Advanced SIMD with half precision support (FEAT_FP16).";
+      break;
+    case b1111:
+      Description = "Advanced SIMD not implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+
+  Bits  = "19:16";
+  Value = (Aa64Pfr0 >> 16) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "Floating-point implemented.";
+      break;
+    case b0001:
+      Description = "Floating-point with half-precision support (FEAT_FP16).";
+      break;
+    case b1111:
+      Description = "Floating-point not implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+
+  Bits  = "15:12";
+  Value = (Aa64Pfr0 >> 12) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "EL3 not implemented.";
+      break;
+    case b0001:
+      Description = "EL3 in AArch64 only";
+      break;
+    case b0010:
+      Description = "EL3 in AArch64 and AArch32";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+
+  Bits  = "11:8 ";
+  Value = (Aa64Pfr0 >>  8) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "EL2 not implemented.";
+      break;
+    case b0001:
+      Description = "EL2 in AArch64 only";
+      break;
+    case b0010:
+      Description = "EL2 in AArch64 and AArch32";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+
+  Bits  = "7:4 ";
+  Value = (Aa64Pfr0 >>  4) & 0xf;
+  switch (Value) {
+    case b0001:
+      Description = "EL1 in AArch64 only";
+      break;
+    case b0010:
+      Description = "EL1 in AArch64 and AArch32";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+
+  Bits  = "3:0 ";
+  Value = Aa64Pfr0 & 0xf;
+  switch (Value) {
+    case b0001:
+      Description = "EL0 in AArch64 only";
+      break;
+    case b0010:
+      Description = "EL0 in AArch64 and AArch32";
       break;
     default:
       Description = "unknown";
