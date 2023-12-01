@@ -378,217 +378,15 @@ HandleAa64Isar0 (
   CONST CHAR8         *Description;
   CONST CHAR8         *Bits;
 
-  // 3:0 reserved
 
-  Bits  = "7:4 ";
-  Value = (Aa64Isar0 >>  4) & 0xf;
+  Bits  = "63:60";
+  Value = (Aa64Isar0 >> 60) & 0xf;
   switch (Value) {
     case b0000:
-      Description = "FEAT_AES, FEAT_PMULL not implemented.";
+      Description = "FEAT_RNG not implemented.";
       break;
     case b0001:
-      Description = "FEAT_AES implemented.";
-      break;
-    case b0010:
-      Description = "FEAT_AES and FEAT_PMULL implemented.";
-      break;
-    default:
-      Description = "unknown";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  Bits  = "11:8 ";
-  Value = (Aa64Isar0 >>  8) & 0xf;
-  switch (Value) {
-    case b0000:
-      Description = "FEAT_SHA1 not implemented.";
-      break;
-    case b0001:
-      Description = "FEAT_SHA1 implemented.";
-      break;
-    default:
-      Description = "unknown";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  Bits  = "15:12";
-  Value = (Aa64Isar0 >> 12) & 0xf;
-  switch (Value) {
-    case b0000:
-      Description = "FEAT_SHA256, FEAT_SHA512 not implemented.";
-      break;
-    case b0001:
-      Description = "FEAT_SHA256 implemented.";
-      break;
-    case b0010:
-      Description = "FEAT_SHA512 implemented.";
-      break;
-    default:
-      Description = "unknown";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  Bits  = "19:16";
-  Value = (Aa64Isar0 >> 16) & 0xf;
-  switch (Value) {
-    case b0000:
-      Description = "CRC32 not implemented.";
-      break;
-    case b0001:
-      Description = "CRC32 instructions implemented.";
-      break;
-    default:
-      Description = "unknown";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  Bits  = "23:20";
-  Value = (Aa64Isar0 >> 20) & 0xf;
-  switch (Value) {
-    case b0000:
-      Description = "FEAT_LSE not implemented.";
-      break;
-    case b0010:
-      Description = "FEAT_LSE implemented.";
-      break;
-    default:
-      Description = "unknown";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  Bits  = "27:24";
-  Value = (Aa64Isar0 >> 24) & 0xf;
-  switch (Value) {
-    case b0000:
-      Description = "TME instructions not implemented.";
-      break;
-    case b0001:
-      Description = "TME instructions implemented.";
-      break;
-    default:
-      Description = "unknown";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  Bits  = "31:28";
-  Value = (Aa64Isar0 >> 28) & 0xf;
-  switch (Value) {
-    case b0000:
-      Description = "FEAT_RDM not implemented.";
-      break;
-    case b0001:
-      Description = "FEAT_RDM implemented.";
-      break;
-    default:
-      Description = "unknown";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  Bits  = "35:32";
-  Value = (Aa64Isar0 >> 32) & 0xf;
-  switch (Value) {
-    case b0000:
-      Description = "FEAT_SHA3 not implemented.";
-      break;
-    case b0001:
-      Description = "FEAT_SHA3 implemented.";
-      break;
-    default:
-      Description = "unknown";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  Bits  = "39:36";
-  Value = (Aa64Isar0 >> 36) & 0xf;
-  switch (Value) {
-    case b0000:
-      Description = "FEAT_SM3 not implemented.";
-      break;
-    case b0001:
-      Description = "FEAT_SM3 implemented.";
-      break;
-    default:
-      Description = "unknown";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  Bits  = "43:40";
-  Value = (Aa64Isar0 >> 40) & 0xf;
-  switch (Value) {
-    case b0000:
-      Description = "FEAT_SM4 not implemented.";
-      break;
-    case b0001:
-      Description = "FEAT_SM4 implemented.";
-      break;
-    default:
-      Description = "unknown";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  Bits  = "47:44";
-  Value = (Aa64Isar0 >> 44) & 0xf;
-  switch (Value) {
-    case b0000:
-      Description = "FEAT_DotProd not implemented.";
-      break;
-    case b0001:
-      Description = "FEAT_DotProd implemented.";
-      break;
-    default:
-      Description = "unknown";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  Bits  = "51:48";
-  Value = (Aa64Isar0 >> 48) & 0xf;
-  switch (Value) {
-    case b0000:
-      Description = "FEAT_FHM not implemented.";
-      break;
-    case b0001:
-      Description = "FEAT_FHM implemented.";
-      break;
-    default:
-      Description = "unknown";
-      break;
-  }
-
-  PrintValues (RegName, Bits, Value, Description);
-
-  Bits  = "55:52";
-  Value = (Aa64Isar0 >> 52) & 0xf;
-  switch (Value) {
-    case b0000:
-      Description = "FEAT_FlagM/FEAT_FlagM2 not implemented.";
-      break;
-    case b0001:
-      Description = "FEAT_FlagM implemented.";
-      break;
-    case b0010:
-      Description = "FEAT_FlagM2 implemented.";
+      Description = "FEAT_RNG implemented.";
       break;
     default:
       Description = "unknown";
@@ -616,14 +414,17 @@ HandleAa64Isar0 (
 
   PrintValues (RegName, Bits, Value, Description);
 
-  Bits  = "63:60";
-  Value = (Aa64Isar0 >> 60) & 0xf;
+  Bits  = "55:52";
+  Value = (Aa64Isar0 >> 52) & 0xf;
   switch (Value) {
     case b0000:
-      Description = "FEAT_RNG not implemented.";
+      Description = "FEAT_FlagM/FEAT_FlagM2 not implemented.";
       break;
     case b0001:
-      Description = "FEAT_RNG implemented.";
+      Description = "FEAT_FlagM implemented.";
+      break;
+    case b0010:
+      Description = "FEAT_FlagM2 implemented.";
       break;
     default:
       Description = "unknown";
@@ -631,6 +432,206 @@ HandleAa64Isar0 (
   }
 
   PrintValues (RegName, Bits, Value, Description);
+
+  Bits  = "51:48";
+  Value = (Aa64Isar0 >> 48) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "FEAT_FHM not implemented.";
+      break;
+    case b0001:
+      Description = "FEAT_FHM implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+
+  Bits  = "47:44";
+  Value = (Aa64Isar0 >> 44) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "FEAT_DotProd not implemented.";
+      break;
+    case b0001:
+      Description = "FEAT_DotProd implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+
+  Bits  = "43:40";
+  Value = (Aa64Isar0 >> 40) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "FEAT_SM4 not implemented.";
+      break;
+    case b0001:
+      Description = "FEAT_SM4 implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+
+  Bits  = "39:36";
+  Value = (Aa64Isar0 >> 36) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "FEAT_SM3 not implemented.";
+      break;
+    case b0001:
+      Description = "FEAT_SM3 implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+
+  Bits  = "35:32";
+  Value = (Aa64Isar0 >> 32) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "FEAT_SHA3 not implemented.";
+      break;
+    case b0001:
+      Description = "FEAT_SHA3 implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+
+  Bits  = "31:28";
+  Value = (Aa64Isar0 >> 28) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "FEAT_RDM not implemented.";
+      break;
+    case b0001:
+      Description = "FEAT_RDM implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+
+  Bits  = "27:24";
+  Value = (Aa64Isar0 >> 24) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "TME instructions not implemented.";
+      break;
+    case b0001:
+      Description = "TME instructions implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+
+  Bits  = "23:20";
+  Value = (Aa64Isar0 >> 20) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "FEAT_LSE not implemented.";
+      break;
+    case b0010:
+      Description = "FEAT_LSE implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+
+  Bits  = "19:16";
+  Value = (Aa64Isar0 >> 16) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "CRC32 not implemented.";
+      break;
+    case b0001:
+      Description = "CRC32 instructions implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+
+  Bits  = "15:12";
+  Value = (Aa64Isar0 >> 12) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "FEAT_SHA256, FEAT_SHA512 not implemented.";
+      break;
+    case b0001:
+      Description = "FEAT_SHA256 implemented.";
+      break;
+    case b0010:
+      Description = "FEAT_SHA512 implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+
+  Bits  = "11:8 ";
+  Value = (Aa64Isar0 >>  8) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "FEAT_SHA1 not implemented.";
+      break;
+    case b0001:
+      Description = "FEAT_SHA1 implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+
+  Bits  = "7:4 ";
+  Value = (Aa64Isar0 >>  4) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "FEAT_AES, FEAT_PMULL not implemented.";
+      break;
+    case b0001:
+      Description = "FEAT_AES implemented.";
+      break;
+    case b0010:
+      Description = "FEAT_AES and FEAT_PMULL implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Bits, Value, Description);
+
+  // 3:0 reserved
 }
 
 /**
