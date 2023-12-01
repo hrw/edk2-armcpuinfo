@@ -2394,10 +2394,10 @@ HandleAa64Smfr0 (
   Value = (Aa64Smfr0 >> 63) & 0x1;
   switch (Value) {
     case 0:
-      Description = "SME_FA64 not implemented.";
+      Description = "FEAT_SME_FA64 not implemented.";
       break;
     case 1:
-      Description = "SME_FA64 implemented.";
+      Description = "FEAT_SME_FA64 implemented.";
       break;
     default:
       Description = "unknown";
@@ -2405,6 +2405,8 @@ HandleAa64Smfr0 (
   }
 
   PrintValues (RegName, Bits, Value, Description);
+
+  // 62:60 reserved
 
   Bits  = "59:56";
   Value = (Aa64Smfr0 >> 56) & 0xf;
@@ -2422,16 +2424,14 @@ HandleAa64Smfr0 (
 
   PrintValues (RegName, Bits, Value, Description);
 
-  // 62:60 reserved
-
   Bits  = "55:52";
   Value = (Aa64Smfr0 >> 52) & 0xf;
   switch (Value) {
     case b0000:
-      Description = "SME I16I64 not implemented";
+      Description = "FEAT_SME_I16I64 not implemented";
       break;
     case b1111:
-      Description = "SME I16I64 implemented";
+      Description = "FEAT_SME_I16I64 implemented";
       break;
     default:
       Description = "unknown";
@@ -2446,10 +2446,10 @@ HandleAa64Smfr0 (
   Value = (Aa64Smfr0 >> 48) & 0x1;
   switch (Value) {
     case 0:
-      Description = "SME F64F64 not implemented.";
+      Description = "FEAT_SME_F64F64 not implemented.";
       break;
     case 1:
-      Description = "SME F64F64 implemented.";
+      Description = "FEAT_SME_F64F64 implemented.";
       break;
     default:
       Description = "unknown";
