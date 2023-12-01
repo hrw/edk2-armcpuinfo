@@ -1728,6 +1728,8 @@ HandleAa64Mmfr2 (
 
   PrintValues (RegName, Bits, Value, Description);
 
+  // 47:44 reserved
+
   Bits  = "43:40";
   Value = (Aa64Mmfr2 >> 40) & 0xf;
   switch (Value) {
@@ -1743,8 +1745,6 @@ HandleAa64Mmfr2 (
   }
 
   PrintValues (RegName, Bits, Value, Description);
-
-  // 47:44 reserved
 
   Bits  = "39:36";
   Value = (Aa64Mmfr2 >> 36) & 0xf;
@@ -2279,6 +2279,8 @@ HandleAa64Pfr1 (
 
   PrintValues (RegName, Bits, Value, Description);
 
+  // 35:32 is CSV2_frac (shown with PFR0)
+
   Bits  = "31:28";
   Value = (Aa64Pfr1 >> 28) & 0xf;
   switch (Value) {
@@ -2294,8 +2296,6 @@ HandleAa64Pfr1 (
   }
 
   PrintValues (RegName, Bits, Value, Description);
-
-  // 35:32 is CSV2_frac
 
   Bits  = "27:24";
   Value = (Aa64Pfr1 >> 24) & 0xf;
@@ -2314,8 +2314,8 @@ HandleAa64Pfr1 (
   PrintValues (RegName, Bits, Value, Description);
 
   // 23:20 is reserved
-  // 19:16 is MPAM_frac
-  // 15:12 is RAS_frac
+  // 19:16 is MPAM_frac (shown with PFR0)
+  // 15:12 is RAS_frac (shown with PFR0)
 
   Bits  = "11:8 ";
   Value = (Aa64Pfr1 >>  8) & 0xf;
