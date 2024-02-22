@@ -642,6 +642,9 @@ HandleAa64Isar0 (
     case b0010:
       Description = "FEAT_LSE implemented.";
       break;
+    case b0011:
+      Description = "FEAT_LSE128 implemented.";
+      break;
     default:
       Description = "unknown";
       break;
