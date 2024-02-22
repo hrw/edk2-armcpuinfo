@@ -138,7 +138,22 @@ HandleAa64Dfr0 (
 
   PrintValues (RegName, Name, Bits, Value, Description);
 
-  // 59:56 reserved
+  Bits  = "59:56";
+  Name  = "ExtTrcBuff";
+  Value = (Aa64Dfr0 >> 56) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "Trace Buffer External Mode not implemented.";
+      break;
+    case b0001:
+      Description = "FEAT_TRBE_EXT implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Name, Bits, Value, Description);
 
   Bits  = "55:52";
   Name  = "BRBE";
@@ -250,6 +265,12 @@ HandleAa64Dfr0 (
     case b0100:
       Description = "FEAT_SPEv1p3 implemented.";
       break;
+    case b0101:
+      Description = "FEAT_SPEv1p4 implemented.";
+      break;
+    case b0110:
+      Description = "FEAT_SPE_SME implemented.";
+      break;
     default:
       Description = "unknown";
       break;
@@ -268,7 +289,22 @@ HandleAa64Dfr0 (
 
   PrintValues (RegName, Name, Bits, Value, Description);
 
-  // 27:24 reserved
+  Bits  = "27:24";
+  Name  = "SEBEP";
+  Value = (Aa64Dfr0 >> 24) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "FEAT_SEBEP not implemented.";
+      break;
+    case b0001:
+      Description = "FEAT_SEBEP implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Name, Bits, Value, Description);
 
   Bits  = "23:20";
   Name  = "WRPs";
@@ -284,7 +320,22 @@ HandleAa64Dfr0 (
 
   PrintValues (RegName, Name, Bits, Value, Description);
 
-  // 19:16 reserved
+  Bits  = "19:16";
+  Name  = "PMSS";
+  Value = (Aa64Dfr0 >> 16) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "FEAT_PMUv2_SS not implemented.";
+      break;
+    case b0001:
+      Description = "FEAT_PMUv2_SS implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Name, Bits, Value, Description);
 
   Bits  = "15:12";
   Name  = "BRPs";
@@ -324,6 +375,12 @@ HandleAa64Dfr0 (
       break;
     case b1000:
       Description = "FEAT_PMUv3p8 implemented.";
+      break;
+    case b1001:
+      Description = "FEAT_PMUv3p9 implemented.";
+      break;
+    case b1010:
+      Description = "FEAT_PMUv3_SME implemented.";
       break;
     case b1111:
       Description = "IMPLEMENTATION DEFINED form of performance monitors supported.";
@@ -370,6 +427,9 @@ HandleAa64Dfr0 (
       break;
     case b1010:
       Description = "FEAT_Debugv8p8 implemented.";
+      break;
+    case b1011:
+      Description = "FEAT_Debugv8p9 implemented.";
       break;
     default:
       Description = "unknown";
