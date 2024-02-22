@@ -1091,7 +1091,144 @@ HandleAa64Isar2 (
   CONST CHAR8         *Name;
   CONST CHAR8         *Bits;
 
-  // 63:28 reserved
+
+  Bits  = "63:60";
+  Name  = "ATS1A";
+  Value = (Aa64Isar2 >> 60) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "Address Translate Stage 1 instructions without Permissions Checks are not implemented.";
+      break;
+    case b0001:
+      Description = "Address Translate Stage 1 instructions without Permissions Checks are implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Name, Bits, Value, Description);
+
+  Bits  = "59:56";
+  Name  = "LUT";
+  Value = (Aa64Isar2 >> 56) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "FEAT_LUT not implemented.";
+      break;
+    case b0001:
+      Description = "FEAT_LUT implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Name, Bits, Value, Description);
+
+  Bits  = "55:52";
+  Name  = "CSSC";
+  Value = (Aa64Isar2 >> 52) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "FEAT_CSSC not implemented.";
+      break;
+    case b0001:
+      Description = "FEAT_CSSC implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Name, Bits, Value, Description);
+
+  Bits  = "51:48";
+  Name  = "RPRFM";
+  Value = (Aa64Isar2 >> 48) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "FEAT_RPRFM not implemented.";
+      break;
+    case b0001:
+      Description = "FEAT_RPRFM implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Name, Bits, Value, Description);
+
+  // 47:44 reserved
+
+  Bits  = "43:40";
+  Name  = "PRFMSLC";
+  Value = (Aa64Isar2 >> 40) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "FEAT_PRFMSLC not implemented.";
+      break;
+    case b0001:
+      Description = "FEAT_PRFMSLC implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Name, Bits, Value, Description);
+
+  Bits  = "39:36";
+  Name  = "SYSINSTR_128";
+  Value = (Aa64Isar2 >> 36) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "FEAT_SYSINSTR128 not implemented.";
+      break;
+    case b0001:
+      Description = "FEAT_SYSINSTR128 implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Name, Bits, Value, Description);
+
+  Bits  = "35:32";
+  Name  = "SYSREG_128";
+  Value = (Aa64Isar2 >> 32) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "FEAT_SYSREG128 not implemented.";
+      break;
+    case b0001:
+      Description = "FEAT_SYSREG128 implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Name, Bits, Value, Description);
+
+  Bits  = "31:28";
+  Name  = "CLRBHB";
+  Value = (Aa64Isar2 >> 28) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "FEAT_CLRBHB not implemented.";
+      break;
+    case b0001:
+      Description = "FEAT_CLRBHB implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Name, Bits, Value, Description);
 
   Bits  = "27:24";
   Name  = "PAC_frac";
@@ -1165,6 +1302,9 @@ HandleAa64Isar2 (
       break;
     case b0101:
       Description = "FEAT_FPACCOMBINE implemented.";
+      break;
+    case b0110:
+      Description = "FEAT_PAuth_LR implemented.";
       break;
     default:
       Description = "unknown";
