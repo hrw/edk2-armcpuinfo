@@ -1885,13 +1885,13 @@ HandleAa64Mmfr1 (
       (((Aa64Pfr0 >> 28) & 0xf) == b0010))
   {
     if (((Aa64Mmfr1 >> 24) & 0xf) == b0000 ) {
-      PrintValues (RegName, Name, "27:24", b0000, "The PE never generates an SError interrupt due to");
-      PrintText ("", "", "", "", "an External abort on a speculative read.");
+      PrintValues (RegName, Name, "27:24", b0000, "The PE never generates an SError interrupt due to "
+                                                  "an External abort on a speculative read.");
     }
 
     if (((Aa64Mmfr1 >> 24) & 0xf) == b0001 ) {
-      PrintValues (RegName, Name, "27:24", b0001, "The PE might generate an SError interrupt due to");
-      PrintText ("", "", "", "", "an External abort on a speculative read.");
+      PrintValues (RegName, Name, "27:24", b0001, "The PE might generate an SError interrupt due to "
+                                                  "an External abort on a speculative read.");
     }
   }
 
