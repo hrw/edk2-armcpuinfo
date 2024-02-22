@@ -849,6 +849,9 @@ HandleAa64Isar1 (
     case b0001:
       Description = "FEAT_SPECRES implemented.";
       break;
+    case b0010:
+      Description = "FEAT_SPECRES2 implemented.";
+      break;
     default:
       Description = "unknown";
       break;
@@ -937,6 +940,9 @@ HandleAa64Isar1 (
     case b0010:
       Description = "FEAT_LRCPC2 implemented.";
       break;
+    case b0011:
+      Description = "FEAT_LRCPC3 implemented.";
+      break;
     default:
       Description = "unknown";
       break;
@@ -1000,6 +1006,9 @@ HandleAa64Isar1 (
     case b0101:
       Description = "FEAT_FPACCOMBINE implemented.";
       break;
+    case b0110:
+      Description = "FEAT_PAuth_LR implemented.";
+      break;
     default:
       Description = "unknown";
       break;
@@ -1031,6 +1040,9 @@ HandleAa64Isar1 (
       break;
     case b0101:
       Description = "FEAT_FPACCOMBINE implemented.";
+      break;
+    case b0110:
+      Description = "FEAT_PAuth_LR implemented.";
       break;
     default:
       Description = "unknown";
