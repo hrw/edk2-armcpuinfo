@@ -1648,6 +1648,9 @@ HandleAa64Mmfr0 (
     case b0110:
       Description = "52 Bits (4PB) of physical address range supported.";
       break;
+    case b0111:
+      Description = "56 Bits (64PB) of physical address range supported.";
+      break;
     default:
       Description = "unknown";
       break;
@@ -1656,6 +1659,9 @@ HandleAa64Mmfr0 (
   PrintValues (RegName, Name, Bits, Value, Description);
   if (Value == b0110) {
     PrintText ("", "", "", "", "FEAT_LPA implemented.");
+  }
+  if (Value == b0111) {
+    PrintText ("", "", "", "", "FEAT_D128 implemented.");
   }
 }
 
