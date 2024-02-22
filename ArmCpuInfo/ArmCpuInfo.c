@@ -2182,6 +2182,9 @@ HandleAa64Mmfr2 (
     case b0001:
       Description = "FEAT_LVA implemented.";
       break;
+    case b0010:
+      Description = "FEAT_LVA3 implemented.";
+      break;
     default:
       Description = "unknown";
       break;
