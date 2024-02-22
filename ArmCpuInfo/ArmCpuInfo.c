@@ -3301,7 +3301,24 @@ HandleAa64Zfr0 (
 
   PrintValues (RegName, Name, Bits, Value, Description);
 
-  // 31:24 reserved
+  // 31:28 reserved
+
+  Bits  = "27:24";
+  Name  = "B16B16";
+  Value = (Aa64Zfr0 >> 24) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "FEAT_SVE_B16B16 not implemented.";
+      break;
+    case b0001:
+      Description = "FEAT_SVE_B16B16 implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Name, Bits, Value, Description);
 
   Bits  = "23:20";
   Name  = "BF16";
@@ -3371,6 +3388,9 @@ HandleAa64Zfr0 (
       break;
     case b0001:
       Description = "FEAT_SVE2 implemented.";
+      break;
+    case b0010:
+      Description = "FEAT_SVE2p1 implemented.";
       break;
     default:
       Description = "unknown";
