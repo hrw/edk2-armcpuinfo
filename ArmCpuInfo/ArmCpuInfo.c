@@ -2340,6 +2340,9 @@ HandleAa64Pfr0 (
     case b0001:
       Description = "FEAT_RME implemented";
       break;
+    case b0010:
+      Description = "FEAT_RME_GPC2 implemented";
+      break;
     default:
       Description = "unknown";
       break;
@@ -2468,6 +2471,9 @@ HandleAa64Pfr0 (
         Description = "FEAT_RASv1p1 implemented. FEAT_DoubleFault implemented.";
       }
 
+      break;
+    case b0011:
+      Description = "FEAT_RASv2 implemented.";
       break;
     default:
       Description = "unknown";
