@@ -2894,7 +2894,24 @@ HandleAa64Smfr0 (
 
   PrintValues (RegName, Name, Bits, Value, Description);
 
-  // 62:60 reserved
+  // 62:61 reserved
+
+  Bits  = "   60";
+  Name  = "LUTv2";
+  Value = (Aa64Smfr0 >> 60) & 0x1;
+  switch (Value) {
+    case 0:
+      Description = "FEAT_SME_LUTv2 not implemented.";
+      break;
+    case 1:
+      Description = "FEAT_SME_LUTv2 implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Name, Bits, Value, Description);
 
   Bits  = "59:56";
   Name  = "SMEver";
@@ -2905,6 +2922,9 @@ HandleAa64Smfr0 (
       break;
     case b0001:
       Description = "FEAT_SME2 implemented.";
+      break;
+    case b0010:
+      Description = "FEAT_SME2p1 implemented.";
       break;
     default:
       Description = "unknown";
@@ -2966,9 +2986,74 @@ HandleAa64Smfr0 (
 
   PrintValues (RegName, Name, Bits, Value, Description);
 
-  // 43:40 reserved
+  Bits  = "   43";
+  Name  = "B16B16";
+  Value = (Aa64Smfr0 >> 43) & 0x1;
+  switch (Value) {
+    case 0:
+      Description = "FEAT_SME_B16B16 not implemented.";
+      break;
+    case 1:
+      Description = "FEAT_SME_B16B16 implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
 
-  Bits  = "39:36";
+  PrintValues (RegName, Name, Bits, Value, Description);
+
+  Bits  = "   42";
+  Name  = "F16F16";
+  Value = (Aa64Smfr0 >> 42) & 0x1;
+  switch (Value) {
+    case 0:
+      Description = "FEAT_SME_F16F16 not implemented.";
+      break;
+    case 1:
+      Description = "FEAT_SME_F16F16 implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Name, Bits, Value, Description);
+
+  Bits  = "   41";
+  Name  = "F8F16";
+  Value = (Aa64Smfr0 >> 41) & 0x1;
+  switch (Value) {
+    case 0:
+      Description = "FEAT_SME_F8F16 not implemented.";
+      break;
+    case 1:
+      Description = "FEAT_SME_F8F16 implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Name, Bits, Value, Description);
+
+  Bits  = "   40";
+  Name  = "F8F32";
+  Value = (Aa64Smfr0 >> 40) & 0x1;
+  switch (Value) {
+    case 0:
+      Description = "FEAT_SME_F8F32 not implemented.";
+      break;
+    case 1:
+      Description = "FEAT_SME_F8F32 implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Name, Bits, Value, Description);
+
   Name  = "I8I32";
   Value = (Aa64Smfr0 >> 36) & 0xf;
   switch (Value) {
@@ -3053,7 +3138,60 @@ HandleAa64Smfr0 (
 
   PrintValues (RegName, Name, Bits, Value, Description);
 
-  // 31:0 reserved
+  // 31 reserved
+
+  Bits  = "   30";
+  Name  = "SF8FMA";
+  Value = (Aa64Smfr0 >> 30) & 0x1;
+  switch (Value) {
+    case 0:
+      Description = "FEAT_SSVE_FP8FMA not implemented.";
+      break;
+    case 1:
+      Description = "FEAT_SSVE_FP8FMA implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Name, Bits, Value, Description);
+
+  Bits  = "   29";
+  Name  = "SF8DP4";
+  Value = (Aa64Smfr0 >> 29) & 0x1;
+  switch (Value) {
+    case 0:
+      Description = "FEAT_SSVE_FP8DOT4 not implemented.";
+      break;
+    case 1:
+      Description = "FEAT_SSVE_FP8DOT4 implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Name, Bits, Value, Description);
+
+  Bits  = "   28";
+  Name  = "SF8DP2";
+  Value = (Aa64Smfr0 >> 30) & 0x1;
+  switch (Value) {
+    case 0:
+      Description = "FEAT_SSVE_FP8DOT2 not implemented.";
+      break;
+    case 1:
+      Description = "FEAT_SSVE_FP8DOT2 implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Name, Bits, Value, Description);
+
+  // 27:0 reserved
 }
 
 /**
