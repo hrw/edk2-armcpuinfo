@@ -2638,7 +2638,107 @@ HandleAa64Pfr1 (
   CONST CHAR8         *Name;
   CONST CHAR8         *Bits;
 
-  // 63:40 are reserved
+  Bits  = "63:60";
+  Name  = "PFAR";
+  Value = (Aa64Pfr1 >> 60) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "FEAT_PFAR not implemented.";
+      break;
+    case b0001:
+      Description = "FEAT_PFAR implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Name, Bits, Value, Description);
+
+  Bits  = "59:56";
+  Name  = "DF2";
+  Value = (Aa64Pfr1 >> 56) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "FEAT_DoubleFault2 not implemented.";
+      break;
+    case b0001:
+      Description = "FEAT_DoubleFault2 implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Name, Bits, Value, Description);
+
+  Bits  = "55:52";
+  Name  = "MTEX";
+  Value = (Aa64Pfr1 >> 52) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "Canonical Tag checking and Memory tagging with Address tagging disabled are not supported.";
+      break;
+    case b0001:
+      Description = "FEAT_MTE_NO_ADDRESS_TAGS and FEAT_MTE_CANONICAL_TAG implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Name, Bits, Value, Description);
+
+  Bits  = "51:48";
+  Name  = "THE";
+  Value = (Aa64Pfr1 >> 48) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "FEAT_THE not implemented.";
+      break;
+    case b0001:
+      Description = "FEAT_THE implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Name, Bits, Value, Description);
+
+  Bits  = "47:44";
+  Name  = "GCS";
+  Value = (Aa64Pfr1 >> 44) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "FEAT_GCS not implemented.";
+      break;
+    case b0001:
+      Description = "FEAT_GCS implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Name, Bits, Value, Description);
+
+  Bits  = "43:40";
+  Name  = "MTE_frac";
+  Value = (Aa64Pfr1 >> 40) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "FEAT_MTE_ASYNC implemented.";
+      break;
+    case b1111:
+      Description = "FEAT_MTE_ASYNC not implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
+
+  PrintValues (RegName, Name, Bits, Value, Description);
 
   Bits  = "39:36";
   Name  = "NMI";
@@ -2685,6 +2785,9 @@ HandleAa64Pfr1 (
       break;
     case b0001:
       Description = "FEAT_SME implemented.";
+      break;
+    case b0010:
+      Description = "FEAT_SME2 implemented.";
       break;
     default:
       Description = "unknown";
