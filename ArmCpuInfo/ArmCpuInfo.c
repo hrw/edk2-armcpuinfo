@@ -13,6 +13,8 @@ SPDX-License-Identifier: BSD-2-Clause-Patent
 #include <Library/UefiLib.h>
 #include <Library/ArmLib/AArch64/AArch64Lib.h>
 
+#define MAX_DESC_LENGTH 60
+
 // We cannot assume GCC extensions to be present so let use
 // binary numbers via enum.
 // Arm ARM uses binary numbers so this way it is more readable.
@@ -69,6 +71,29 @@ PrintText (
   AsciiPrint ("%-5a | %-12a | %5a | %5a | %a\n", Field, Name, Bits, Value, Description);
 }
 
+
+UINTN
+AsciiStrStrPos (
+  CONST CHAR8 *String,
+  CONST CHAR8 *SubString,
+  UINTN MaxPos
+  )
+{
+  CHAR8* StrStrPos = AsciiStrStr(String, SubString) + 1;
+  UINTN PrevPos = 0;
+
+  do {
+    StrStrPos = AsciiStrStr(StrStrPos, SubString) + 1;
+
+    if (StrStrPos - String < MaxPos) {
+      PrevPos = StrStrPos - String;
+    }
+
+  } while (MaxPos > StrStrPos - String);
+
+  return PrevPos;
+}
+
 /**
   Print formatted table line with value printed in binary.
 
@@ -91,7 +116,23 @@ PrintValues (
     "1000", "1001", "1010", "1011", "1100", "1101", "1110", "1111"
   };
 
-  PrintText (Field, Name, Bits, Nibbles[Value & 0xf], Description);
+  UINTN Length;
+
+  Length = AsciiStrLen(Description);
+
+  if (Length > MAX_DESC_LENGTH) {
+     CHAR8 Buffer[MAX_DESC_LENGTH + 1];
+
+     UINTN SpacePos =  AsciiStrStrPos(Description, " ", MAX_DESC_LENGTH);
+
+     AsciiStrnCpyS(Buffer, MAX_DESC_LENGTH + 1, Description, SpacePos);
+
+	PrintText (Field, Name, Bits, Nibbles[Value & 0xf], Buffer);
+	PrintText ("",    "",   "",   "",                   Description + SpacePos);
+  }
+  else {
+	PrintText (Field, Name, Bits, Nibbles[Value & 0xf], Description);
+  }
 }
 
 /**
