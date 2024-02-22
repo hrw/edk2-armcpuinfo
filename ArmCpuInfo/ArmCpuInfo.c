@@ -66,7 +66,7 @@ PrintText (
   CONST CHAR8  *Description
   )
 {
-  AsciiPrint ("%-5a | %-11a | %5a | %5a | %a\n", Field, Name, Bits, Value, Description);
+  AsciiPrint ("%-5a | %-12a | %5a | %5a | %a\n", Field, Name, Bits, Value, Description);
 }
 
 /**
@@ -102,7 +102,7 @@ PrintSpacer (
   VOID
   )
 {
-  AsciiPrint ("------|-------------|-------|-------|----------------------------------------------\n");
+  AsciiPrint ("------|--------------|-------|-------|----------------------------------------------\n");
 }
 
 /**
