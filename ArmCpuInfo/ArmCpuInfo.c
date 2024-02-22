@@ -1683,8 +1683,22 @@ HandleAa64Mmfr1 (
   CONST CHAR8         *Name;
   CONST CHAR8         *Bits;
 
-  // 63:60 reserved
+  Bits  = "63:60";
+  Name  = "ECBHB";
+  Value = (Aa64Mmfr1 >> 60) & 0xf;
+  switch (Value) {
+    case b0000:
+      Description = "FEAT_ECBHB not implemented.";
+      break;
+    case b0001:
+      Description = "FEAT_ECBHB implemented.";
+      break;
+    default:
+      Description = "unknown";
+      break;
+  }
 
+  PrintValues (RegName, Name, Bits, Value, Description);
   Bits  = "59:56";
   Name  = "CMOW";
   Value = (Aa64Mmfr1 >> 56) & 0xf;
@@ -1779,6 +1793,9 @@ HandleAa64Mmfr1 (
       break;
     case b0001:
       Description = "FEAT_ETS implemented.";
+      break;
+    case b0010:
+      Description = "FEAT_ETS2 implemented.";
       break;
     default:
       Description = "unknown";
@@ -1936,13 +1953,19 @@ HandleAa64Mmfr1 (
   Value = Aa64Mmfr1 & 0xf;
   switch (Value) {
     case b0000:
-      Description = "FEAT_HAFDBS not implemented.";
+      Description = "Hardware update of the Access flag and dirty state are not supported.";
       break;
     case b0001:
       Description = "FEAT_HAFDBS implemented without dirty status support.";
       break;
     case b0010:
       Description = "FEAT_HAFDBS implemented with dirty status support.";
+      break;
+    case b0011:
+      Description = "FEAT_HAFT implemented.";
+      break;
+    case b0100:
+      Description = "FEAT_HDBSS implemented.";
       break;
     default:
       Description = "unknown";
