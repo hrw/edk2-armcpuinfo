@@ -25,6 +25,16 @@ MMFR0 | PARange     |  3:0  |  0101 | 48 Bits (256TB) of physical address range 
 [..]
 ```
 
+## Usage
+
+ArmCpuInfo.efi binary can be run on any AArch64 system capable of running EFI
+binaries:
+
+- EDK2 
+- U-Boot with EFI support
+
+Application assumes terminal with 100 columns.
+
 
 ## Build instructions
 
