@@ -19,6 +19,7 @@
 
 [Sources]
   ArmCpuInfo.c
+  AArch64LibExtra.h
   AArch64Support.S
 
 [Packages]

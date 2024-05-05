@@ -12,6 +12,7 @@ SPDX-License-Identifier: BSD-2-Clause-Patent
 
 #include <Library/UefiLib.h>
 #include <Library/ArmLib/AArch64/AArch64Lib.h>
+#include "AArch64LibExtra.h"
 
 #define MAX_DESC_LENGTH 60
 
