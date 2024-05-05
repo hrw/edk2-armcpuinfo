@@ -3563,13 +3563,13 @@ UefiMain (
   HandleAa64Dfr0 (Aa64Dfr0);
   PrintSpacer ();
 
-  if (Aa64Smfr0) {
-    HandleAa64Smfr0 (Aa64Smfr0);
+  if (Aa64Zfr0) {
+    HandleAa64Zfr0 (Aa64Zfr0);
     PrintSpacer ();
   }
 
-  if (Aa64Zfr0) {
-    HandleAa64Zfr0 (Aa64Zfr0);
+  if (Aa64Smfr0) {
+    HandleAa64Smfr0 (Aa64Smfr0);
     PrintSpacer ();
   }
 
