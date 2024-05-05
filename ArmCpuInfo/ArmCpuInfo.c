@@ -3475,6 +3475,7 @@ UefiMain (
   UINT64  Aa64Mmfr4;
   UINT64  Aa64Pfr0;
   UINT64  Aa64Pfr1;
+  UINT64  Aa64Pfr2;
   UINT64  Aa64Smfr0;
   UINT64  Aa64Zfr0;
 
@@ -3494,6 +3495,7 @@ UefiMain (
   Aa64Mmfr4 = ArmReadIdAA64Mmfr4 ();
   Aa64Pfr0  = ArmReadIdAA64Pfr0 ();
   Aa64Pfr1  = ArmReadIdAA64Pfr1 ();
+  Aa64Pfr2  = ArmReadIdAA64Pfr2 ();
   Aa64Smfr0 = ArmReadIdAA64Smfr0 ();
   Aa64Zfr0  = ArmReadIdAA64Zfr0 ();
 
@@ -3516,6 +3518,7 @@ UefiMain (
   AsciiPrint ("ID_AA64ISAR1_EL1 = 0x%016lx\n", Aa64Isar1);
   AsciiPrint ("ID_AA64ISAR2_EL1 = 0x%016lx\n", Aa64Isar2);
   AsciiPrint ("ID_AA64DFR0_EL1  = 0x%016lx\n", Aa64Dfr0);
+  AsciiPrint ("ID_AA64PFR2_EL1  = 0x%016lx\n", Aa64Pfr2);
   AsciiPrint ("ID_AA64SMFR0_EL1 = 0x%016lx\n", Aa64Smfr0);
   AsciiPrint ("ID_AA64ZFR0_EL1  = 0x%016lx\n", Aa64Zfr0);
   AsciiPrint ("\n");
