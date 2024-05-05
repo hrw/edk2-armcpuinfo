@@ -3575,5 +3575,14 @@ UefiMain (
     PrintSpacer ();
   }
 
+  if (Aa64Afr0 | Aa64Afr1 | Aa64Dfr1 | Aa64Mmfr3 | Aa64Mmfr4 | Aa64Isar3 | Aa64Pfr2) {
+    AsciiPrint (
+      "\n"
+      "Your system has something this app does not handle. Please contact author.\n"
+      "Open issue at https://github.com/hrw/edk2-armcpuinfo/issues and copy output.\n"
+      "\n"
+    );
+  }
+
   return EFI_SUCCESS;
 }
