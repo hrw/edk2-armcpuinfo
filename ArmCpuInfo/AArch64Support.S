@@ -10,8 +10,8 @@
 #
 #------------------------------------------------------------------------------
 
-#include <Chipset/AArch64.h>
-#include <AsmMacroIoLibV8.h>
+#include <AArch64/AArch64.h>
+#include <AsmMacroLib.h>
 
 ASM_FUNC(ArmReadIdAA64Afr0)
   mrs   x0, ID_AA64AFR0_EL1
