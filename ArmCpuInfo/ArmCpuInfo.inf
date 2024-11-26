@@ -20,6 +20,7 @@
 
 [Sources]
   common.c
+  id_aa64dfr.c
   ArmCpuInfo.c
   AArch64LibExtra.h
   AArch64Support.S
