@@ -12,3 +12,18 @@ HandleAa64Dfr0 (
   CONST UINT64  Aa64Dfr0
   );
 VOID
+
+
+HandleAa64Isar0 (
+  CONST UINT64  Aa64Isar0
+  );
+
+VOID
+HandleAa64Isar1 (
+  CONST UINT64  Aa64Isar1
+  );
+
+VOID
+HandleAa64Isar2 (
+  CONST UINT64  Aa64Isar2
+  );
