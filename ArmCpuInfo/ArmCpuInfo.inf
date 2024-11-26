@@ -22,6 +22,7 @@
   common.c
   id_aa64dfr.c
   id_aa64isar.c
+  id_aa64mfr.c
   ArmCpuInfo.c
   AArch64LibExtra.h
   AArch64Support.S

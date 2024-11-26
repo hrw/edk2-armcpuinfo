@@ -27,3 +27,20 @@ VOID
 HandleAa64Isar2 (
   CONST UINT64  Aa64Isar2
   );
+
+
+VOID
+HandleAa64Mmfr0 (
+  CONST UINT64  Aa64Mmfr0
+  );
+
+VOID
+HandleAa64Mmfr1 (
+  CONST UINT64  Aa64Mmfr1,
+  CONST UINT64  Aa64Pfr0;
+  );
+
+VOID
+HandleAa64Mmfr2 (
+  CONST UINT64  Aa64Mmfr2
+  );
