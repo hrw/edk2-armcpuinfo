@@ -1,8 +1,7 @@
 /** @file
   Application to present AArch64 cpu information.
 
-  Based on ARM DDI 0487J.a. Update this information when the
-  app is updated with features from subsequent releases.
+  Based on ARM DDI 0487: https://developer.arm.com/documentation/ddi0487
 
 Copyright (c) 2023, Linaro Ltd. All rights reserved.<BR>
 Copyright (c) 2023 - 2024, Marcin Juszkiewicz<BR>
