@@ -14,18 +14,6 @@ SPDX-License-Identifier: BSD-2-Clause-Patent
 #include <Library/UefiLib.h>
 #include <Library/ArmLib/AArch64/AArch64Lib.h>
 #include "AArch64LibExtra.h"
-
-UINTN
-EFIAPI
-ArmReadIdAA64Smfr0 (
-  VOID
-  );
-
-UINTN
-EFIAPI
-ArmReadIdAA64Zfr0 (
-  VOID
-  );
 #include "common.h"
 #include "id_aa64.h"
 
