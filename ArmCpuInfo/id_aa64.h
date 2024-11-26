@@ -62,3 +62,9 @@ VOID
 HandleAa64Smfr0 (
   CONST UINT64  Aa64Smfr0
   );
+
+
+VOID
+HandleAa64Zfr0 (
+  CONST UINT64  Aa64Zfr0
+  );
