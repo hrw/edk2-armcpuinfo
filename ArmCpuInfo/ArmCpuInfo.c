@@ -85,7 +85,7 @@ UefiMain (
   Aa64Smfr0 = ArmReadIdAA64Smfr0 ();
   Aa64Zfr0  = ArmReadIdAA64Zfr0 ();
 
-  AsciiPrint ("ArmCpuInfo v1.3.0\n");
+  AsciiPrint ("ArmCpuInfo v1.3.1\n");
   AsciiPrint ("\n");
 
   AsciiPrint ("ID_AA64AFR0_EL1  = 0x%016lx\n", Aa64Afr0);
