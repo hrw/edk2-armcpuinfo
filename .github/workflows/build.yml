@@ -51,3 +51,21 @@ jobs:
       with:
         name: ArmCpuInfo
         path: Build/Arm/RELEASE_GCC/AARCH64/ArmCpuInfo.efi
+
+  release:
+    name: Do a release
+    if: startsWith(github.ref, 'refs/tags/')  # only on tag pushes
+    needs:
+    - build
+    runs-on: ubuntu-22.04
+
+    permissions:
+      id-token: write  # IMPORTANT: mandatory for trusted publishing
+
+    steps:
+    - name: Do a release
+      uses: ncipollo/release-action@v1
+      with:
+        artifacts: "ArmCpuInfo*"
+        generatereleasenotes: true
+
