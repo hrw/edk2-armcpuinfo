@@ -3,6 +3,7 @@ name: Build ArmCpuInfo
 on:
   push:
     branches: [ "devel" ]
+    tags: "v*"
   pull_request:
     branches: [ "devel" ]
 
@@ -68,4 +69,3 @@ jobs:
       with:
         artifacts: "ArmCpuInfo*"
         generatereleasenotes: true
-
