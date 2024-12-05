@@ -61,9 +61,14 @@ jobs:
     runs-on: ubuntu-latest
 
     permissions:
-      id-token: write  # IMPORTANT: mandatory for trusted publishing
+      contents: write  # IMPORTANT: mandatory for trusted publishing
 
     steps:
+    - name: Download artifact
+      uses: actions/download-artifact@v4
+      with:
+        name: ArmCpuInfo
+
     - name: Do a release
       uses: ncipollo/release-action@v1
       with:
