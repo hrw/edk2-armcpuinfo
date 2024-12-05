@@ -9,7 +9,7 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
 
     steps:
     - name: install deps
@@ -57,7 +57,7 @@ jobs:
     if: startsWith(github.ref, 'refs/tags/')  # only on tag pushes
     needs:
     - build
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
 
     permissions:
       id-token: write  # IMPORTANT: mandatory for trusted publishing
