@@ -37,7 +37,7 @@ HandleAa64Mmfr0 (
 VOID
 HandleAa64Mmfr1 (
   CONST UINT64  Aa64Mmfr1,
-  CONST UINT64  Aa64Pfr0;
+  CONST UINT64  Aa64Pfr0
   );
 
 VOID
