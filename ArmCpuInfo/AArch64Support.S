@@ -41,11 +41,6 @@ ASM_FUNC(ArmReadIdAA64Mmfr4)
 #  mrs   x0, ID_AA64MMFR4_EL1
   ret
 
-ASM_FUNC(ArmReadIdAA64Pfr2)
-  mrs   x0, s3_0_c0_c4_2
-#  mrs   x0, ID_AA64PFR2_EL1
-  ret
-
 ASM_FUNC(ArmReadIdAA64Smfr0)
   mrs   x0, ID_AA64SMFR0_EL1
   ret
