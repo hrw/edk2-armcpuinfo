@@ -124,7 +124,7 @@ HandleAa64Smfr0 (
     case b0000:
       Description = "SME2 I16I32 not implemented.";
       break;
-    case b1111:
+    case b0101:
       Description = "SME2 I16I32 implemented.";
       break;
     default:
