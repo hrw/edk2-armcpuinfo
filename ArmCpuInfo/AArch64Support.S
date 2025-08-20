@@ -21,6 +21,10 @@ ASM_FUNC(ArmReadIdAA64Afr1)
   mrs   x0, ID_AA64AFR1_EL1
   ret
 
+ASM_FUNC(ArmReadIdAA64Dfr2)
+  mrs   x0, ID_AA64DFR2_EL1
+  ret
+
 ASM_FUNC(ArmReadIdAA64Fpfr0)
   mrs   x0, s3_0_c0_c4_7
 #  mrs   x0, ID_AA64FPFR0_EL1

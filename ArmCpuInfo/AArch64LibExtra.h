@@ -20,6 +20,12 @@ ArmReadIdAA64Afr1 (
 
 UINTN
 EFIAPI
+ArmReadIdAA64Dfr2 (
+  VOID
+  );
+
+UINTN
+EFIAPI
 ArmReadIdAA64Fpfr0 (
   VOID
   );
