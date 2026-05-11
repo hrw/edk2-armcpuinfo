@@ -115,6 +115,10 @@ HandleAa64Mmfr0 (
     "52 Bits (4PB) of physical address range supported.",
     "56 Bits (64PB) of physical address range supported."
   };
+  STATIC CONST CHAR8 *PARangeExtraInfo[] = {
+    [6] = "FEAT_LPA implemented.",
+    [7] = "FEAT_D128 implemented."
+  };
 
   Bits  = "63:60";
   Name  = "ECV";
@@ -300,6 +304,9 @@ HandleAa64Mmfr0 (
     UnknownCount++;
   }
   PrintValues (RegName, Name, Bits, Value, Description);
+  if (Value < ARRAY_SIZE(PARangeExtraInfo) && PARangeExtraInfo[Value] != NULL) {
+    PrintValues("", "", "", "", PARangeExtraInfo[Value]);
+  }
 
   return UnknownCount;
 }
@@ -677,6 +684,9 @@ HandleAa64Mmfr2 (
     "FEAT_LVA implemented.",
     "FEAT_LVA3 implemented."
   };
+  STATIC CONST CHAR8 *VARangeExtraInfo[] = {
+    [2] = "FEAT_D128 implemented."
+  };
   STATIC CONST CHAR8 *IESBDesc[] = {
     "FEAT_IESB not implemented.",
     "FEAT_IESB implemented."
@@ -836,6 +846,9 @@ HandleAa64Mmfr2 (
     UnknownCount++;
   }
   PrintValues (RegName, Name, Bits, Value, Description);
+  if (Value < ARRAY_SIZE(VARangeExtraInfo) && VARangeExtraInfo[Value] != NULL) {
+    PrintValues("", "", "", "", VARangeExtraInfo[Value]);
+  }
 
   Bits  = "15:12";
   Name  = "IESB";
@@ -1798,6 +1811,14 @@ HandleAa64Isar1 (
     "FEAT_FPACCOMBINE implemented.",
     "FEAT_PAuth_LR implemented."
   };
+  STATIC CONST CHAR8 *APIExtraInfo[] = {
+    [1] = "FEAT_PACIMP implemented.",
+    [2] = "FEAT_PACIMP implemented.",
+    [3] = "FEAT_PACIMP implemented.",
+    [4] = "FEAT_PACIMP implemented.",
+    [5] = "FEAT_PACIMP implemented.",
+    [6] = "FEAT_PACIMP implemented."
+  };
   STATIC CONST CHAR8 *APADesc[] = {
     "Address Authentication (APA) not implemented.",
     "FEAT_PAuth implemented.",
@@ -1994,6 +2015,9 @@ HandleAa64Isar1 (
     UnknownCount++;
   }
   PrintValues (RegName, Name, Bits, Value, Description);
+  if (Value < ARRAY_SIZE(APIExtraInfo) && APIExtraInfo[Value] != NULL) {
+    PrintValues("", "", "", "", APIExtraInfo[Value]);
+  }
 
   Bits  = "7:4 ";
   Name  = "APA";

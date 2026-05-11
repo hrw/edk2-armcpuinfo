@@ -104,6 +104,9 @@ ID_AA64MMFR0_EL1:
         5: "48 Bits (256TB) of physical address range supported."
         6: "52 Bits (4PB) of physical address range supported."
         7: "56 Bits (64PB) of physical address range supported."
+      extra_info:
+        6: "FEAT_LPA implemented."
+        7: "FEAT_D128 implemented."
 
 ID_AA64MMFR1_EL1:
   fields:
@@ -282,6 +285,8 @@ ID_AA64MMFR2_EL1:
         0: "FEAT_LVA not implemented."
         1: "FEAT_LVA implemented."
         2: "FEAT_LVA3 implemented."
+      extra_info:
+        2: "FEAT_D128 implemented."
 
     IESB:
       bits: "15:12"
@@ -691,6 +696,13 @@ ID_AA64ISAR1_EL1:
         4: "FEAT_FPAC implemented."
         5: "FEAT_FPACCOMBINE implemented."
         6: "FEAT_PAuth_LR implemented."
+      extra_info:
+        1: "FEAT_PACIMP implemented."
+        2: "FEAT_PACIMP implemented."
+        3: "FEAT_PACIMP implemented."
+        4: "FEAT_PACIMP implemented."
+        5: "FEAT_PACIMP implemented."
+        6: "FEAT_PACIMP implemented."
 
     APA:
       bits: "7:4"

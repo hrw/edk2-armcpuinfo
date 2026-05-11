@@ -73,6 +73,30 @@ def generate_description_arrays(register_name, fields):
 
         arrays.append("  };")
 
+        # Generate extra_info array if present
+        extra_info = field_data.get('extra_info')
+        if extra_info:
+            info_keys = sorted(extra_info.keys())
+            max_info_key = max(info_keys)
+            is_info_sparse = info_keys != list(range(max_info_key + 1))
+
+            arrays.append(
+                f"  STATIC CONST CHAR8 *{field_name}ExtraInfo[] = {{"
+            )
+
+            if is_info_sparse:
+                for key in info_keys:
+                    comma = "," if key != info_keys[-1] else ""
+                    arrays.append(
+                        f'    [{key}] = "{extra_info[key]}"{comma}'
+                    )
+            else:
+                for key in info_keys:
+                    comma = "," if key != max_info_key else ""
+                    arrays.append(f'    "{extra_info[key]}"{comma}')
+
+            arrays.append("  };")
+
     return "\n".join(arrays)
 
 
@@ -176,6 +200,19 @@ def generate_field_handler(
             f"{indent}  PrintValues ({reg_name_var}, Name, "
             f"Bits, Value, Description);"
         )
+
+    # Print extra_info if present for this value
+    extra_info = field_data.get('extra_info')
+    if extra_info:
+        code.append(
+            f"{indent}  if (Value < ARRAY_SIZE({field_name}ExtraInfo) "
+            f"&& {field_name}ExtraInfo[Value] != NULL) {{"
+        )
+        code.append(
+            f'{indent}    PrintValues("", "", "", "", '
+            f'{field_name}ExtraInfo[Value]);'
+        )
+        code.append(f"{indent}  }}")
 
     return "\n".join(code)
 

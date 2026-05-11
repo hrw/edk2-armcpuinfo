@@ -79,6 +79,10 @@ def decode_register(register_data, value):
         descriptions = field_data.get('descriptions', {})
         description = descriptions.get(field_value, "unknown")
 
+        # Get extra_info if present for this value
+        extra_info_dict = field_data.get('extra_info', {})
+        extra_info = extra_info_dict.get(field_value)
+
         # Check if conditional
         conditional = field_data.get('conditional')
 
@@ -87,6 +91,7 @@ def decode_register(register_data, value):
             'bits': bits.strip(),
             'value': field_value,
             'description': description,
+            'extra_info': extra_info,
             'conditional': conditional
         })
 
@@ -155,6 +160,16 @@ def format_output(register_name, register_value, results):
             f"{reg_short:5} | {r['name']:12} | {bits_display} | "
             f"{value_display:6} | {desc}{conditional_marker}"
         )
+
+        # Print extra info if present
+        if r.get('extra_info'):
+            extra = r['extra_info']
+            if len(extra) > max_desc:
+                extra = extra[:max_desc - 3] + "..."
+            print(
+                f"      | {''  :12} | {' ':5} | "
+                f"{' ':6} | {extra}"
+            )
 
     # Print warnings and notes
     print()
