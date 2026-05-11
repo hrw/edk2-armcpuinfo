@@ -2370,7 +2370,8 @@ HandleAa64Dfr0 (
   };
   STATIC CONST CHAR8 *TraceBufferDesc[] = {
     "FEAT_TRBE not implemented.",
-    "FEAT_TRBE implemented."
+    "FEAT_TRBE implemented.",
+    "FEAT_TRBEv1p1 implemented."
   };
   STATIC CONST CHAR8 *TraceFiltDesc[] = {
     "FEAT_TRF not implemented.",
@@ -2387,7 +2388,7 @@ HandleAa64Dfr0 (
     "FEAT_SPEv1p2 implemented.",
     "FEAT_SPEv1p3 implemented.",
     "FEAT_SPEv1p4 implemented.",
-    "FEAT_SPE_SME implemented."
+    "FEAT_SPEv1p5 implemented."
   };
   STATIC CONST CHAR8 *CTX_CMPsDesc[] = {
     "Number of breakpoints that are context-aware, minus 1.",
@@ -2406,10 +2407,6 @@ HandleAa64Dfr0 (
     "Number of breakpoints that are context-aware, minus 1.",
     "Number of breakpoints that are context-aware, minus 1.",
     "Number of breakpoints that are context-aware, minus 1."
-  };
-  STATIC CONST CHAR8 *SEBEPDesc[] = {
-    "FEAT_SEBEP not implemented.",
-    "FEAT_SEBEP implemented."
   };
   STATIC CONST CHAR8 *WRPsDesc[] = {
     "reserved",
@@ -2430,8 +2427,8 @@ HandleAa64Dfr0 (
     "Number of watchpoints, minus 1."
   };
   STATIC CONST CHAR8 *PMSSDesc[] = {
-    "FEAT_PMUv2_SS not implemented.",
-    "FEAT_PMUv2_SS implemented."
+    "FEAT_PMUv3_SS not implemented.",
+    "FEAT_PMUv3_SS implemented."
   };
   STATIC CONST CHAR8 *BRPsDesc[] = {
     "reserved",
@@ -2460,7 +2457,6 @@ HandleAa64Dfr0 (
     [7] = "FEAT_PMUv3p7 implemented.",
     [8] = "FEAT_PMUv3p8 implemented.",
     [9] = "FEAT_PMUv3p9 implemented.",
-    [10] = "FEAT_PMUv3_SME implemented.",
     [15] = "IMPLEMENTATION DEFINED form of performance monitors supported."
   };
   STATIC CONST CHAR8 *TraceVerDesc[] = {
@@ -2585,19 +2581,6 @@ HandleAa64Dfr0 (
   Value = (Aa64Dfr0 >> 28) & 0xf;
   if (Value < ARRAY_SIZE(CTX_CMPsDesc) && CTX_CMPsDesc[Value] != NULL) {
     Description = CTX_CMPsDesc[Value];
-  } else {
-    Description = "unknown";
-  }
-  if (AsciiStrCmp(Description, "unknown") == 0) {
-    UnknownCount++;
-  }
-  PrintValues (RegName, Name, Bits, Value, Description);
-
-  Bits  = "27:24";
-  Name  = "SEBEP";
-  Value = (Aa64Dfr0 >> 24) & 0xf;
-  if (Value < ARRAY_SIZE(SEBEPDesc) && SEBEPDesc[Value] != NULL) {
-    Description = SEBEPDesc[Value];
   } else {
     Description = "unknown";
   }
