@@ -2951,6 +2951,26 @@ HandleAa64Smfr0 (
     "FEAT_SSVE_FP8DOT2 not implemented.",
     "FEAT_SSVE_FP8DOT2 implemented."
   };
+  STATIC CONST CHAR8 *SBitPermDesc[] = {
+    "FEAT_SSVE_BitPerm not implemented.",
+    "FEAT_SSVE_BitPerm implemented."
+  };
+  STATIC CONST CHAR8 *AESDesc[] = {
+    "FEAT_SSVE_AES not implemented.",
+    "FEAT_SSVE_AES implemented."
+  };
+  STATIC CONST CHAR8 *SFEXPADesc[] = {
+    "FEAT_SSVE_FEXPA not implemented.",
+    "FEAT_SSVE_FEXPA implemented."
+  };
+  STATIC CONST CHAR8 *STMOPDesc[] = {
+    "FEAT_SME_TMOP not implemented.",
+    "FEAT_SME_TMOP implemented."
+  };
+  STATIC CONST CHAR8 *SMOP4Desc[] = {
+    "FEAT_SME_MOP4 not implemented.",
+    "FEAT_SME_MOP4 implemented."
+  };
 
   Bits  = "   63";
   Name  = "FA64";
@@ -3178,6 +3198,71 @@ HandleAa64Smfr0 (
   Value = (Aa64Smfr0 >> 28) & 0x1;
   if (Value < ARRAY_SIZE(SF8DP2Desc) && SF8DP2Desc[Value] != NULL) {
     Description = SF8DP2Desc[Value];
+  } else {
+    Description = "unknown";
+  }
+  if (AsciiStrCmp(Description, "unknown") == 0) {
+    UnknownCount++;
+  }
+  PrintValues (RegName, Name, Bits, Value, Description);
+
+  Bits  = "   25";
+  Name  = "SBitPerm";
+  Value = (Aa64Smfr0 >> 25) & 0x1;
+  if (Value < ARRAY_SIZE(SBitPermDesc) && SBitPermDesc[Value] != NULL) {
+    Description = SBitPermDesc[Value];
+  } else {
+    Description = "unknown";
+  }
+  if (AsciiStrCmp(Description, "unknown") == 0) {
+    UnknownCount++;
+  }
+  PrintValues (RegName, Name, Bits, Value, Description);
+
+  Bits  = "   24";
+  Name  = "AES";
+  Value = (Aa64Smfr0 >> 24) & 0x1;
+  if (Value < ARRAY_SIZE(AESDesc) && AESDesc[Value] != NULL) {
+    Description = AESDesc[Value];
+  } else {
+    Description = "unknown";
+  }
+  if (AsciiStrCmp(Description, "unknown") == 0) {
+    UnknownCount++;
+  }
+  PrintValues (RegName, Name, Bits, Value, Description);
+
+  Bits  = "   23";
+  Name  = "SFEXPA";
+  Value = (Aa64Smfr0 >> 23) & 0x1;
+  if (Value < ARRAY_SIZE(SFEXPADesc) && SFEXPADesc[Value] != NULL) {
+    Description = SFEXPADesc[Value];
+  } else {
+    Description = "unknown";
+  }
+  if (AsciiStrCmp(Description, "unknown") == 0) {
+    UnknownCount++;
+  }
+  PrintValues (RegName, Name, Bits, Value, Description);
+
+  Bits  = "   16";
+  Name  = "STMOP";
+  Value = (Aa64Smfr0 >> 16) & 0x1;
+  if (Value < ARRAY_SIZE(STMOPDesc) && STMOPDesc[Value] != NULL) {
+    Description = STMOPDesc[Value];
+  } else {
+    Description = "unknown";
+  }
+  if (AsciiStrCmp(Description, "unknown") == 0) {
+    UnknownCount++;
+  }
+  PrintValues (RegName, Name, Bits, Value, Description);
+
+  Bits  = "    0";
+  Name  = "SMOP4";
+  Value = Aa64Smfr0 & 0x1;
+  if (Value < ARRAY_SIZE(SMOP4Desc) && SMOP4Desc[Value] != NULL) {
+    Description = SMOP4Desc[Value];
   } else {
     Description = "unknown";
   }

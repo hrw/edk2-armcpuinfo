@@ -1144,3 +1144,33 @@ ID_AA64SMFR0_EL1:
       descriptions:
         0: "FEAT_SSVE_FP8DOT2 not implemented."
         1: "FEAT_SSVE_FP8DOT2 implemented."
+
+    SBitPerm:
+      bits: "25"
+      descriptions:
+        0: "FEAT_SSVE_BitPerm not implemented."
+        1: "FEAT_SSVE_BitPerm implemented."
+
+    AES:
+      bits: "24"
+      descriptions:
+        0: "FEAT_SSVE_AES not implemented."
+        1: "FEAT_SSVE_AES implemented."
+
+    SFEXPA:
+      bits: "23"
+      descriptions:
+        0: "FEAT_SSVE_FEXPA not implemented."
+        1: "FEAT_SSVE_FEXPA implemented."
+
+    STMOP:
+      bits: "16"
+      descriptions:
+        0: "FEAT_SME_TMOP not implemented."
+        1: "FEAT_SME_TMOP implemented."
+
+    SMOP4:
+      bits: "0"
+      descriptions:
+        0: "FEAT_SME_MOP4 not implemented."
+        1: "FEAT_SME_MOP4 implemented."
