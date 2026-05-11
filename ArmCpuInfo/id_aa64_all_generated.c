@@ -305,7 +305,7 @@ HandleAa64Mmfr0 (
   }
   PrintValues (RegName, Name, Bits, Value, Description);
   if (Value < ARRAY_SIZE(PARangeExtraInfo) && PARangeExtraInfo[Value] != NULL) {
-    PrintValues("", "", "", "", PARangeExtraInfo[Value]);
+    PrintText("", "", "", "", PARangeExtraInfo[Value]);
   }
 
   return UnknownCount;
@@ -847,7 +847,7 @@ HandleAa64Mmfr2 (
   }
   PrintValues (RegName, Name, Bits, Value, Description);
   if (Value < ARRAY_SIZE(VARangeExtraInfo) && VARangeExtraInfo[Value] != NULL) {
-    PrintValues("", "", "", "", VARangeExtraInfo[Value]);
+    PrintText("", "", "", "", VARangeExtraInfo[Value]);
   }
 
   Bits  = "15:12";
@@ -2016,7 +2016,7 @@ HandleAa64Isar1 (
   }
   PrintValues (RegName, Name, Bits, Value, Description);
   if (Value < ARRAY_SIZE(APIExtraInfo) && APIExtraInfo[Value] != NULL) {
-    PrintValues("", "", "", "", APIExtraInfo[Value]);
+    PrintText("", "", "", "", APIExtraInfo[Value]);
   }
 
   Bits  = "7:4 ";

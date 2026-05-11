@@ -209,7 +209,7 @@ def generate_field_handler(
             f"&& {field_name}ExtraInfo[Value] != NULL) {{"
         )
         code.append(
-            f'{indent}    PrintValues("", "", "", "", '
+            f'{indent}    PrintText("", "", "", "", '
             f'{field_name}ExtraInfo[Value]);'
         )
         code.append(f"{indent}  }}")
