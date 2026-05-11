@@ -24,6 +24,11 @@ HandleAa64Mmfr2 (
   );
 
 UINT32
+HandleAa64Mmfr3 (
+  CONST UINT64  Aa64Mmfr3
+  );
+
+UINT32
 HandleAa64Pfr0 (
   CONST UINT64  Aa64Pfr0
   );

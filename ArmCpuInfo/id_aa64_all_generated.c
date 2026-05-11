@@ -17,6 +17,7 @@ SPDX-License-Identifier: BSD-2-Clause-Patent
 UINT64 ArmReadIdAA64Mmfr0 (VOID);
 UINT64 ArmReadIdAA64Mmfr1 (VOID);
 UINT64 ArmReadIdAA64Mmfr2 (VOID);
+UINT64 ArmReadIdAA64Mmfr3 (VOID);
 UINT64 ArmReadIdAA64Pfr0 (VOID);
 UINT64 ArmReadIdAA64Pfr1 (VOID);
 UINT64 ArmReadIdAA64Isar0 (VOID);
@@ -894,6 +895,292 @@ HandleAa64Mmfr2 (
   Value = Aa64Mmfr2 & 0xf;
   if (Value < ARRAY_SIZE(CnPDesc) && CnPDesc[Value] != NULL) {
     Description = CnPDesc[Value];
+  } else {
+    Description = "unknown";
+  }
+  if (AsciiStrCmp(Description, "unknown") == 0) {
+    UnknownCount++;
+  }
+  PrintValues (RegName, Name, Bits, Value, Description);
+
+  return UnknownCount;
+}
+
+/**
+  Handle ID_AA64MMFR3_EL1 system register.
+
+  @param[in] Aa64Mmfr3  value of ID_AA64MMFR3_EL1 system register
+
+  @retval Number of unknown field values encountered
+**/
+UINT32
+HandleAa64Mmfr3 (
+  CONST UINT64  Aa64Mmfr3
+  )
+{
+  UINT64              Value;
+  STATIC CONST CHAR8  RegName[] = "MMFR3";
+  CONST CHAR8         *Description;
+  CONST CHAR8         *Name;
+  CONST CHAR8         *Bits;
+  UINT32              UnknownCount = 0;
+
+  STATIC CONST CHAR8 *Spec_FPACCDesc[] = {
+    "",
+    ""
+  };
+  STATIC CONST CHAR8 *ADERRDesc[] = {
+    "",
+    "",
+    "FEAT_ADERR implemented.",
+    ""
+  };
+  STATIC CONST CHAR8 *SDERRDesc[] = {
+    "",
+    "",
+    "",
+    ""
+  };
+  STATIC CONST CHAR8 *ANERRDesc[] = {
+    "",
+    "",
+    "",
+    ""
+  };
+  STATIC CONST CHAR8 *SNERRDesc[] = {
+    "",
+    "",
+    "",
+    ""
+  };
+  STATIC CONST CHAR8 *D128_2Desc[] = {
+    "128-bit translation table descriptor Extension at stage 2 is not supported.",
+    "128-bit translation table descriptor Extension at stage 2 is supported."
+  };
+  STATIC CONST CHAR8 *D128Desc[] = {
+    "128-bit translation table descriptor Extension is not supported.",
+    "128-bit translation table descriptor Extension is supported."
+  };
+  STATIC CONST CHAR8 *MECDesc[] = {
+    "FEAT_MEC not implemented.",
+    "FEAT_MEC implemented."
+  };
+  STATIC CONST CHAR8 *AIEDesc[] = {
+    "FEAT_AIE not implemented.",
+    "FEAT_AIE implemented."
+  };
+  STATIC CONST CHAR8 *S2POEDesc[] = {
+    "FEAT_S2POE not implemented.",
+    "FEAT_S2POE implemented."
+  };
+  STATIC CONST CHAR8 *S1POEDesc[] = {
+    "FEAT_S1POE not implemented.",
+    "FEAT_S1POE implemented."
+  };
+  STATIC CONST CHAR8 *S2PIEDesc[] = {
+    "FEAT_S2PIE not implemented.",
+    "FEAT_S2PIE implemented."
+  };
+  STATIC CONST CHAR8 *S1PIEDesc[] = {
+    "FEAT_S1PIE not implemented.",
+    "FEAT_S1PIE implemented."
+  };
+  STATIC CONST CHAR8 *SCTLRXDesc[] = {
+    "FEAT_SCTLR2 not implemented.",
+    "FEAT_SCTLR2 implemented."
+  };
+  STATIC CONST CHAR8 *TCRXDesc[] = {
+    "FEAT_TCR2 not implemented.",
+    "FEAT_TCR2 implemented."
+  };
+
+  Bits  = "63:60";
+  Name  = "Spec_FPACC";
+  Value = (Aa64Mmfr3 >> 60) & 0xf;
+  if (Value < ARRAY_SIZE(Spec_FPACCDesc) && Spec_FPACCDesc[Value] != NULL) {
+    Description = Spec_FPACCDesc[Value];
+  } else {
+    Description = "unknown";
+  }
+  if (AsciiStrCmp(Description, "unknown") == 0) {
+    UnknownCount++;
+  }
+  PrintValues (RegName, Name, Bits, Value, Description);
+
+  Bits  = "59:56";
+  Name  = "ADERR";
+  Value = (Aa64Mmfr3 >> 56) & 0xf;
+  if (Value < ARRAY_SIZE(ADERRDesc) && ADERRDesc[Value] != NULL) {
+    Description = ADERRDesc[Value];
+  } else {
+    Description = "unknown";
+  }
+  if (AsciiStrCmp(Description, "unknown") == 0) {
+    UnknownCount++;
+  }
+  PrintValues (RegName, Name, Bits, Value, Description);
+
+  Bits  = "55:52";
+  Name  = "SDERR";
+  Value = (Aa64Mmfr3 >> 52) & 0xf;
+  if (Value < ARRAY_SIZE(SDERRDesc) && SDERRDesc[Value] != NULL) {
+    Description = SDERRDesc[Value];
+  } else {
+    Description = "unknown";
+  }
+  if (AsciiStrCmp(Description, "unknown") == 0) {
+    UnknownCount++;
+  }
+  PrintValues (RegName, Name, Bits, Value, Description);
+
+  Bits  = "47:44";
+  Name  = "ANERR";
+  Value = (Aa64Mmfr3 >> 44) & 0xf;
+  if (Value < ARRAY_SIZE(ANERRDesc) && ANERRDesc[Value] != NULL) {
+    Description = ANERRDesc[Value];
+  } else {
+    Description = "unknown";
+  }
+  if (AsciiStrCmp(Description, "unknown") == 0) {
+    UnknownCount++;
+  }
+  PrintValues (RegName, Name, Bits, Value, Description);
+
+  Bits  = "43:40";
+  Name  = "SNERR";
+  Value = (Aa64Mmfr3 >> 40) & 0xf;
+  if (Value < ARRAY_SIZE(SNERRDesc) && SNERRDesc[Value] != NULL) {
+    Description = SNERRDesc[Value];
+  } else {
+    Description = "unknown";
+  }
+  if (AsciiStrCmp(Description, "unknown") == 0) {
+    UnknownCount++;
+  }
+  PrintValues (RegName, Name, Bits, Value, Description);
+
+  Bits  = "39:36";
+  Name  = "D128_2";
+  Value = (Aa64Mmfr3 >> 36) & 0xf;
+  if (Value < ARRAY_SIZE(D128_2Desc) && D128_2Desc[Value] != NULL) {
+    Description = D128_2Desc[Value];
+  } else {
+    Description = "unknown";
+  }
+  if (AsciiStrCmp(Description, "unknown") == 0) {
+    UnknownCount++;
+  }
+  PrintValues (RegName, Name, Bits, Value, Description);
+
+  Bits  = "35:32";
+  Name  = "D128";
+  Value = (Aa64Mmfr3 >> 32) & 0xf;
+  if (Value < ARRAY_SIZE(D128Desc) && D128Desc[Value] != NULL) {
+    Description = D128Desc[Value];
+  } else {
+    Description = "unknown";
+  }
+  if (AsciiStrCmp(Description, "unknown") == 0) {
+    UnknownCount++;
+  }
+  PrintValues (RegName, Name, Bits, Value, Description);
+
+  Bits  = "31:28";
+  Name  = "MEC";
+  Value = (Aa64Mmfr3 >> 28) & 0xf;
+  if (Value < ARRAY_SIZE(MECDesc) && MECDesc[Value] != NULL) {
+    Description = MECDesc[Value];
+  } else {
+    Description = "unknown";
+  }
+  if (AsciiStrCmp(Description, "unknown") == 0) {
+    UnknownCount++;
+  }
+  PrintValues (RegName, Name, Bits, Value, Description);
+
+  Bits  = "27:24";
+  Name  = "AIE";
+  Value = (Aa64Mmfr3 >> 24) & 0xf;
+  if (Value < ARRAY_SIZE(AIEDesc) && AIEDesc[Value] != NULL) {
+    Description = AIEDesc[Value];
+  } else {
+    Description = "unknown";
+  }
+  if (AsciiStrCmp(Description, "unknown") == 0) {
+    UnknownCount++;
+  }
+  PrintValues (RegName, Name, Bits, Value, Description);
+
+  Bits  = "23:20";
+  Name  = "S2POE";
+  Value = (Aa64Mmfr3 >> 20) & 0xf;
+  if (Value < ARRAY_SIZE(S2POEDesc) && S2POEDesc[Value] != NULL) {
+    Description = S2POEDesc[Value];
+  } else {
+    Description = "unknown";
+  }
+  if (AsciiStrCmp(Description, "unknown") == 0) {
+    UnknownCount++;
+  }
+  PrintValues (RegName, Name, Bits, Value, Description);
+
+  Bits  = "19:16";
+  Name  = "S1POE";
+  Value = (Aa64Mmfr3 >> 16) & 0xf;
+  if (Value < ARRAY_SIZE(S1POEDesc) && S1POEDesc[Value] != NULL) {
+    Description = S1POEDesc[Value];
+  } else {
+    Description = "unknown";
+  }
+  if (AsciiStrCmp(Description, "unknown") == 0) {
+    UnknownCount++;
+  }
+  PrintValues (RegName, Name, Bits, Value, Description);
+
+  Bits  = "15:12";
+  Name  = "S2PIE";
+  Value = (Aa64Mmfr3 >> 12) & 0xf;
+  if (Value < ARRAY_SIZE(S2PIEDesc) && S2PIEDesc[Value] != NULL) {
+    Description = S2PIEDesc[Value];
+  } else {
+    Description = "unknown";
+  }
+  if (AsciiStrCmp(Description, "unknown") == 0) {
+    UnknownCount++;
+  }
+  PrintValues (RegName, Name, Bits, Value, Description);
+
+  Bits  = "11:8 ";
+  Name  = "S1PIE";
+  Value = (Aa64Mmfr3 >> 8) & 0xf;
+  if (Value < ARRAY_SIZE(S1PIEDesc) && S1PIEDesc[Value] != NULL) {
+    Description = S1PIEDesc[Value];
+  } else {
+    Description = "unknown";
+  }
+  if (AsciiStrCmp(Description, "unknown") == 0) {
+    UnknownCount++;
+  }
+  PrintValues (RegName, Name, Bits, Value, Description);
+
+  Bits  = "7:4 ";
+  Name  = "SCTLRX";
+  Value = (Aa64Mmfr3 >> 4) & 0xf;
+  if (Value < ARRAY_SIZE(SCTLRXDesc) && SCTLRXDesc[Value] != NULL) {
+    Description = SCTLRXDesc[Value];
+  } else {
+    Description = "unknown";
+  }
+  if (AsciiStrCmp(Description, "unknown") == 0) {
+    UnknownCount++;
+  }
+  PrintValues (RegName, Name, Bits, Value, Description);
+
+  Bits  = "3:0 ";
+  Name  = "TCRX";
+  Value = Aa64Mmfr3 & 0xf;
+  if (Value < ARRAY_SIZE(TCRXDesc) && TCRXDesc[Value] != NULL) {
+    Description = TCRXDesc[Value];
   } else {
     Description = "unknown";
   }
@@ -3294,6 +3581,7 @@ ProcessAllRegisters (
   UINT64  Aa64Mmfr0;
   UINT64  Aa64Mmfr1;
   UINT64  Aa64Mmfr2;
+  UINT64  Aa64Mmfr3;
   UINT64  Aa64Pfr0;
   UINT64  Aa64Pfr1;
   UINT64  Aa64Isar0;
@@ -3314,6 +3602,7 @@ ProcessAllRegisters (
   Aa64Mmfr0 = ArmReadIdAA64Mmfr0 ();
   Aa64Mmfr1 = ArmReadIdAA64Mmfr1 ();
   Aa64Mmfr2 = ArmReadIdAA64Mmfr2 ();
+  Aa64Mmfr3 = ArmReadIdAA64Mmfr3 ();
   Aa64Pfr0 = ArmReadIdAA64Pfr0 ();
   Aa64Pfr1 = ArmReadIdAA64Pfr1 ();
   Aa64Isar0 = ArmReadIdAA64Isar0 ();
@@ -3334,6 +3623,7 @@ ProcessAllRegisters (
   AsciiPrint ("ID_AA64MMFR0_EL1 = 0x%016lx\n", Aa64Mmfr0);
   AsciiPrint ("ID_AA64MMFR1_EL1 = 0x%016lx\n", Aa64Mmfr1);
   AsciiPrint ("ID_AA64MMFR2_EL1 = 0x%016lx\n", Aa64Mmfr2);
+  AsciiPrint ("ID_AA64MMFR3_EL1 = 0x%016lx\n", Aa64Mmfr3);
   AsciiPrint ("ID_AA64PFR0_EL1  = 0x%016lx\n", Aa64Pfr0);
   AsciiPrint ("ID_AA64PFR1_EL1  = 0x%016lx\n", Aa64Pfr1);
   AsciiPrint ("ID_AA64ISAR0_EL1 = 0x%016lx\n", Aa64Isar0);
@@ -3381,6 +3671,15 @@ ProcessAllRegisters (
     PrintSpacer ();
     if (UnknownCount > 0) {
       RegisterNames[RegistersWithUnknowns++] = "MMFR2";
+      TotalUnknowns += UnknownCount;
+    }
+  }
+
+  if (Aa64Mmfr3) {
+    UnknownCount = HandleAa64Mmfr3 (Aa64Mmfr3);
+    PrintSpacer ();
+    if (UnknownCount > 0) {
+      RegisterNames[RegistersWithUnknowns++] = "MMFR3";
       TotalUnknowns += UnknownCount;
     }
   }

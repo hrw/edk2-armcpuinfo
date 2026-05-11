@@ -312,6 +312,106 @@ ID_AA64MMFR2_EL1:
         0: "FEAT_TTCNP not implemented."
         1: "FEAT_TTCNP implemented."
 
+ID_AA64MMFR3_EL1:
+  fields:
+    Spec_FPACC:
+      bits: "63:60"
+      descriptions:
+        0: ""
+        1: ""
+
+    ADERR:
+      bits: "59:56"
+      descriptions:
+        0: ""
+        1: ""
+        2: "FEAT_ADERR implemented."
+        3: ""
+
+    SDERR:
+      bits: "55:52"
+      descriptions:
+        0: ""
+        1: ""
+        2: ""
+        3: ""
+
+    ANERR:
+      bits: "47:44"
+      descriptions:
+        0: ""
+        1: ""
+        2: ""
+        3: ""
+
+    SNERR:
+      bits: "43:40"
+      descriptions:
+        0: ""
+        1: ""
+        2: ""
+        3: ""
+
+    D128_2:
+      bits: "39:36"
+      descriptions:
+        0: "128-bit translation table descriptor Extension at stage 2 is not supported."
+        1: "128-bit translation table descriptor Extension at stage 2 is supported."
+
+    D128:
+      bits: "35:32"
+      descriptions:
+        0: "128-bit translation table descriptor Extension is not supported."
+        1: "128-bit translation table descriptor Extension is supported."
+
+    MEC:
+      bits: "31:28"
+      descriptions:
+        0: "FEAT_MEC not implemented."
+        1: "FEAT_MEC implemented."
+
+    AIE:
+      bits: "27:24"
+      descriptions:
+        0: "FEAT_AIE not implemented."
+        1: "FEAT_AIE implemented."
+
+    S2POE:
+      bits: "23:20"
+      descriptions:
+        0: "FEAT_S2POE not implemented."
+        1: "FEAT_S2POE implemented."
+
+    S1POE:
+      bits: "19:16"
+      descriptions:
+        0: "FEAT_S1POE not implemented."
+        1: "FEAT_S1POE implemented."
+
+    S2PIE:
+      bits: "15:12"
+      descriptions:
+        0: "FEAT_S2PIE not implemented."
+        1: "FEAT_S2PIE implemented."
+
+    S1PIE:
+      bits: "11:8"
+      descriptions:
+        0: "FEAT_S1PIE not implemented."
+        1: "FEAT_S1PIE implemented."
+
+    SCTLRX:
+      bits: "7:4"
+      descriptions:
+        0: "FEAT_SCTLR2 not implemented."
+        1: "FEAT_SCTLR2 implemented."
+
+    TCRX:
+      bits: "3:0"
+      descriptions:
+        0: "FEAT_TCR2 not implemented."
+        1: "FEAT_TCR2 implemented."
+
 # Processor Feature Registers
 ID_AA64PFR0_EL1:
   fields:
