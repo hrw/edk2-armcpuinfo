@@ -1,0 +1,1146 @@
+---
+# ARM CPU Register Field Definitions
+# Based on ARM DDI 0487
+# Generated field definitions for all ID_AA64*_EL1 registers
+#
+# Memory Model Feature Registers
+ID_AA64MMFR0_EL1:
+  fields:
+    ECV:
+      bits: "63:60"
+      descriptions:
+        0: "FEAT_ECV not implemented."
+        1: "FEAT_ECV implemented."
+        2: "FEAT_ECV implemented with extras."
+
+    FGT:
+      bits: "59:56"
+      descriptions:
+        0: "FEAT_FGT not implemented."
+        1: "FEAT_FGT implemented."
+
+    ExS:
+      bits: "47:44"
+      descriptions:
+        0: "FEAT_ExS not implemented."
+        1: "FEAT_ExS implemented."
+
+    TGran4:
+      bits: "31:28"
+      descriptions:
+        0: " 4KB granule supported."
+        1: " 4KB granule supported for 52-bit address."
+        15: " 4KB granule not supported."
+
+    TGran4_2:
+      bits: "43:40"
+      descriptions:
+        0: " 4KB granule support at stage2 as above."
+        1: " 4KB granule not supported at stage 2."
+        2: " 4KB granule supported at stage 2."
+        3: " 4KB granule supported at stage 2 for 52-bit address."
+
+    TGran16:
+      bits: "23:20"
+      descriptions:
+        0: "16KB granule not supported."
+        1: "16KB granule supported."
+        2: "16KB granule supported for 52-bit address."
+
+    TGran16_2:
+      bits: "35:32"
+      descriptions:
+        0: "16KB granule support at stage2 as above."
+        1: "16KB granule not supported at stage 2."
+        2: "16KB granule supported at stage 2."
+        3: "16KB granule supported at stage 2 for 52-bit address."
+
+    TGran64:
+      bits: "27:24"
+      descriptions:
+        0: "64KB granule supported."
+        15: "64KB granule not supported."
+
+    TGran64_2:
+      bits: "39:36"
+      descriptions:
+        0: "64KB granule support at stage2 as above."
+        1: "64KB granule not supported at stage 2."
+        2: "64KB granule supported at stage 2."
+
+    SNSMem:
+      bits: "15:12"
+      descriptions:
+        0: "No support for a distinction between Secure and Non-Secure Memory."
+        1: "Supports a distinction between Secure and Non-Secure Memory."
+
+    BigEnd:
+      bits: "11:8"
+      descriptions:
+        0: "No mixed-endian support."
+        1: "Mixed-endian support."
+
+    BigEndEL0:
+      bits: "19:16"
+      conditional: "((Aa64Mmfr0 >>  8) & 0xf) != b0000"
+      descriptions:
+        0: "No mixed-endian support at EL0."
+        1: "Mixed-endian support at EL0."
+
+    ASIDBits:
+      bits: "7:4"
+      descriptions:
+        0: "ASID: 8 Bits"
+        2: "ASID: 16 Bits"
+
+    PARange:
+      bits: "3:0"
+      descriptions:
+        0: "32 Bits (4GB) of physical address range supported."
+        1: "36 Bits (64GB) of physical address range supported."
+        2: "40 Bits (1TB) of physical address range supported."
+        3: "42 Bits (4TB) of physical address range supported."
+        4: "44 Bits (16TB) of physical address range supported."
+        5: "48 Bits (256TB) of physical address range supported."
+        6: "52 Bits (4PB) of physical address range supported."
+        7: "56 Bits (64PB) of physical address range supported."
+
+ID_AA64MMFR1_EL1:
+  fields:
+    ECBHB:
+      bits: "63:60"
+      descriptions:
+        0: "FEAT_ECBHB not implemented."
+        1: "FEAT_ECBHB implemented."
+
+    CMOW:
+      bits: "59:56"
+      descriptions:
+        0: "FEAT_CMOW not implemented."
+        1: "FEAT_CMOW implemented."
+
+    TIDCP1:
+      bits: "55:52"
+      descriptions:
+        0: "FEAT_TIDCP1 not implemented"
+        1: "FEAT_TIDCP1 implemented"
+
+    nTLBPA:
+      bits: "51:48"
+      descriptions:
+        0: "FEAT_nTLBPA not implemented."
+        1: "FEAT_nTLBPA implemented."
+
+    AFP:
+      bits: "47:44"
+      descriptions:
+        0: "FEAT_AFP not implemented."
+        1: "FEAT_AFP implemented."
+
+    HCX:
+      bits: "43:40"
+      descriptions:
+        0: "FEAT_HCX not implemented."
+        1: "FEAT_HCX implemented."
+
+    ETS:
+      bits: "39:36"
+      descriptions:
+        0: "FEAT_ETS not implemented."
+        1: "FEAT_ETS implemented."
+        2: "FEAT_ETS2 implemented."
+
+    TWED:
+      bits: "35:32"
+      descriptions:
+        0: "FEAT_TWED not implemented."
+        1: "FEAT_TWED implemented."
+
+    XNX:
+      bits: "31:28"
+      descriptions:
+        0: "FEAT_XNX not implemented."
+        1: "FEAT_XNX implemented."
+
+    SpecSEI:
+      bits: "27:24"
+      conditional: "((Aa64Pfr0 >> 28) & 0xf) == b0001 || ((Aa64Pfr0 >> 28) & 0xf) == b0010"
+      descriptions:
+        0: "The PE never generates an SError interrupt due to an External abort on a speculative read."
+        1: "The PE might generate an SError interrupt due to an External abort on a speculative read."
+
+    PAN:
+      bits: "23:20"
+      descriptions:
+        0: "FEAT_PAN not implemented."
+        1: "FEAT_PAN implemented."
+        2: "FEAT_PAN2 implemented."
+        3: "FEAT_PAN3 implemented."
+
+    LO:
+      bits: "19:16"
+      descriptions:
+        0: "FEAT_LOR not implemented."
+        1: "FEAT_LOR implemented."
+
+    HPDS:
+      bits: "15:12"
+      descriptions:
+        0: "FEAT_HPDS not implemented."
+        1: "FEAT_HPDS implemented."
+        2: "FEAT_HPDS2 implemented."
+
+    VH:
+      bits: "11:8"
+      descriptions:
+        0: "FEAT_VHE not implemented."
+        1: "FEAT_VHE implemented."
+
+    VMIDBits:
+      bits: "7:4"
+      descriptions:
+        0: "FEAT_VMID16 not implemented."
+        2: "FEAT_VMID16 implemented."
+
+    HAFDBS:
+      bits: "3:0"
+      descriptions:
+        0: "Hardware update of the Access flag and dirty state are not supported."
+        1: "FEAT_HAFDBS implemented without dirty status support."
+        2: "FEAT_HAFDBS implemented with dirty status support."
+        3: "FEAT_HAFT implemented."
+        4: "FEAT_HDBSS implemented."
+
+ID_AA64MMFR2_EL1:
+  fields:
+    E0PD:
+      bits: "63:60"
+      descriptions:
+        0: "FEAT_E0PD not implemented."
+        1: "FEAT_E0PD implemented."
+
+    EVT:
+      bits: "59:56"
+      descriptions:
+        0: "FEAT_EVT not implemented."
+        1: "FEAT_EVT: HCR_EL2.{TOCU, TICAB, TID4} traps."
+        2: "FEAT_EVT: HCR_EL2.{TTLBOS, TTLSBIS, TOCU, TICAB, TID4} traps."
+
+    BBM:
+      bits: "55:52"
+      descriptions:
+        0: "FEAT_BBM: Level 0 support for changing block size."
+        1: "FEAT_BBM: Level 1 support for changing block size."
+        2: "FEAT_BBM: Level 2 support for changing block size."
+
+    TTL:
+      bits: "51:48"
+      descriptions:
+        0: "FEAT_TTL not implemented."
+        1: "FEAT_TTL implemented."
+
+    FWB:
+      bits: "43:40"
+      descriptions:
+        0: "FEAT_S2FWB not implemented."
+        1: "FEAT_S2FWB implemented."
+
+    IDS:
+      bits: "39:36"
+      descriptions:
+        0: "FEAT_IDST not implemented."
+        1: "FEAT_IDST implemented."
+
+    AT:
+      bits: "35:32"
+      descriptions:
+        0: "FEAT_LSE2 not implemented."
+        1: "FEAT_LSE2 implemented."
+
+    ST:
+      bits: "31:28"
+      descriptions:
+        0: "FEAT_TTST not implemented."
+        1: "FEAT_TTST implemented."
+
+    NV:
+      bits: "27:24"
+      descriptions:
+        0: "FEAT_NV not implemented."
+        1: "FEAT_NV implemented."
+        2: "FEAT_NV2 implemented."
+
+    CCIDX:
+      bits: "23:20"
+      descriptions:
+        0: "FEAT_CCIDX not implemented."
+        1: "FEAT_CCIDX implemented."
+
+    VARange:
+      bits: "19:16"
+      descriptions:
+        0: "FEAT_LVA not implemented."
+        1: "FEAT_LVA implemented."
+        2: "FEAT_LVA3 implemented."
+
+    IESB:
+      bits: "15:12"
+      descriptions:
+        0: "FEAT_IESB not implemented."
+        1: "FEAT_IESB implemented."
+
+    LSM:
+      bits: "11:8"
+      descriptions:
+        0: "FEAT_LSMAOC not implemented."
+        1: "FEAT_LSMAOC implemented."
+
+    UAO:
+      bits: "7:4"
+      descriptions:
+        0: "FEAT_UAO not implemented."
+        1: "FEAT_UAO implemented."
+
+    CnP:
+      bits: "3:0"
+      descriptions:
+        0: "FEAT_TTCNP not implemented."
+        1: "FEAT_TTCNP implemented."
+
+# Processor Feature Registers
+ID_AA64PFR0_EL1:
+  fields:
+    CSV3:
+      bits: "63:60"
+      descriptions:
+        0: "FEAT_CSV3 not implemented."
+        1: "FEAT_CSV3 implemented."
+
+    CSV2:
+      bits: "59:56"
+      descriptions:
+        0: "Not disclosed whether FEAT_CSV2 is implemented."
+        1: "FEAT_CSV2 implemented."
+        2: "FEAT_CSV2_2 implemented."
+        3: "FEAT_CSV2_3 implemented."
+
+    RME:
+      bits: "55:52"
+      descriptions:
+        0: "FEAT_RME not implemented"
+        1: "FEAT_RME implemented"
+        2: "FEAT_RME_GPC2 implemented"
+
+    DIT:
+      bits: "51:48"
+      descriptions:
+        0: "FEAT_DIT not implemented."
+        1: "FEAT_DIT implemented."
+
+    AMU:
+      bits: "47:44"
+      descriptions:
+        0: "FEAT_AMU not implemented."
+        1: "FEAT_AMUv1 implemented."
+        2: "FEAT_AMUv1p1 implemented."
+
+    MPAM:
+      bits: "43:40"
+      # This field has complex conditional descriptions based on Aa64Pfr1
+      # For now, use simplified version
+      descriptions:
+        0: "FEAT_MPAM not implemented."
+        1: "FEAT_MPAM v1.0 implemented."
+
+    SEL2:
+      bits: "39:36"
+      descriptions:
+        0: "Secure EL2 not implemented."
+        1: "Secure EL2 implemented."
+
+    SVE:
+      bits: "35:32"
+      descriptions:
+        0: "FEAT_SVE not implemented."
+        1: "FEAT_SVE implemented."
+
+    RAS:
+      bits: "31:28"
+      descriptions:
+        0: "FEAT_RAS not implemented."
+        1: "FEAT_RAS implemented."
+        2: "FEAT_RASv1p1 implemented."
+        3: "FEAT_RASv2 implemented."
+
+    GIC:
+      bits: "27:24"
+      descriptions:
+        0: "System registers of GIC CPU not implemented."
+        1: "System registers to versions 3.0/4.0 of GIC CPU implemented."
+        3: "System registers to versions 4.1 of GIC CPU implemented."
+
+    AdvSIMD:
+      bits: "23:20"
+      descriptions:
+        0: "Advanced SIMD implemented."
+        1: "Advanced SIMD with half precision support (FEAT_FP16)."
+        15: "Advanced SIMD not implemented."
+
+    FP:
+      bits: "19:16"
+      descriptions:
+        0: "Floating-point implemented."
+        1: "Floating-point with half-precision support (FEAT_FP16)."
+        15: "Floating-point not implemented."
+
+    EL3:
+      bits: "15:12"
+      descriptions:
+        0: "EL3 not implemented."
+        1: "EL3 in AArch64 only"
+        2: "EL3 in AArch64 and AArch32"
+
+    EL2:
+      bits: "11:8"
+      descriptions:
+        0: "EL2 not implemented."
+        1: "EL2 in AArch64 only"
+        2: "EL2 in AArch64 and AArch32"
+
+    EL1:
+      bits: "7:4"
+      descriptions:
+        1: "EL1 in AArch64 only"
+        2: "EL1 in AArch64 and AArch32"
+
+    EL0:
+      bits: "3:0"
+      descriptions:
+        1: "EL0 in AArch64 only"
+        2: "EL0 in AArch64 and AArch32"
+
+ID_AA64PFR1_EL1:
+  fields:
+    PFAR:
+      bits: "63:60"
+      descriptions:
+        0: "FEAT_PFAR not implemented."
+        1: "FEAT_PFAR implemented."
+
+    DF2:
+      bits: "59:56"
+      descriptions:
+        0: "FEAT_DoubleFault2 not implemented."
+        1: "FEAT_DoubleFault2 implemented."
+
+    MTEX:
+      bits: "55:52"
+      descriptions:
+        0: "Canonical Tag checking and Memory tagging with Address tagging disabled are not supported."
+        1: "FEAT_MTE_NO_ADDRESS_TAGS and FEAT_MTE_CANONICAL_TAG implemented."
+
+    THE:
+      bits: "51:48"
+      descriptions:
+        0: "FEAT_THE not implemented."
+        1: "FEAT_THE implemented."
+
+    GCS:
+      bits: "47:44"
+      descriptions:
+        0: "FEAT_GCS not implemented."
+        1: "FEAT_GCS implemented."
+
+    MTE_frac:
+      bits: "43:40"
+      descriptions:
+        0: "FEAT_MTE_ASYNC implemented."
+        15: "FEAT_MTE_ASYNC not implemented."
+
+    NMI:
+      bits: "39:36"
+      descriptions:
+        0: "FEAT_NMI not implemented."
+        1: "FEAT_NMI implemented."
+
+    RNDR_trap:
+      bits: "31:28"
+      descriptions:
+        0: "FEAT_RNG_TRAP not implemented."
+        1: "FEAT_RNG_TRAP implemented."
+
+    SME:
+      bits: "27:24"
+      descriptions:
+        0: "FEAT_SME not implemented."
+        1: "FEAT_SME implemented."
+        2: "FEAT_SME2 implemented."
+
+    MTE:
+      bits: "11:8"
+      descriptions:
+        0: "FEAT_MTE not implemented."
+        1: "FEAT_MTE implemented."
+        2: "FEAT_MTE2 implemented."
+        3: "FEAT_MTE3 implemented."
+
+    SSBS:
+      bits: "7:4"
+      descriptions:
+        0: "FEAT_SSBS not implemented."
+        1: "FEAT_SSBS implemented."
+        2: "FEAT_SSBS2 implemented."
+
+    BT:
+      bits: "3:0"
+      descriptions:
+        0: "FEAT_BTI not implemented."
+        1: "FEAT_BTI implemented."
+
+# Instruction Set Attribute Registers
+ID_AA64ISAR0_EL1:
+  fields:
+    RNDR:
+      bits: "63:60"
+      descriptions:
+        0: "FEAT_RNG not implemented."
+        1: "FEAT_RNG implemented."
+
+    TLB:
+      bits: "59:56"
+      descriptions:
+        0: "FEAT_TLBIOS/FEAT_TLBIRANGE not implemented."
+        1: "FEAT_TLBIOS implemented."
+        2: "FEAT_TLBIRANGE implemented."
+
+    TS:
+      bits: "55:52"
+      descriptions:
+        0: "FEAT_FlagM/FEAT_FlagM2 not implemented."
+        1: "FEAT_FlagM implemented."
+        2: "FEAT_FlagM2 implemented."
+
+    FHM:
+      bits: "51:48"
+      descriptions:
+        0: "FEAT_FHM not implemented."
+        1: "FEAT_FHM implemented."
+
+    DP:
+      bits: "47:44"
+      descriptions:
+        0: "FEAT_DotProd not implemented."
+        1: "FEAT_DotProd implemented."
+
+    SM4:
+      bits: "43:40"
+      descriptions:
+        0: "FEAT_SM4 not implemented."
+        1: "FEAT_SM4 implemented."
+
+    SM3:
+      bits: "39:36"
+      descriptions:
+        0: "FEAT_SM3 not implemented."
+        1: "FEAT_SM3 implemented."
+
+    SHA3:
+      bits: "35:32"
+      descriptions:
+        0: "FEAT_SHA3 not implemented."
+        1: "FEAT_SHA3 implemented."
+
+    RDM:
+      bits: "31:28"
+      descriptions:
+        0: "FEAT_RDM not implemented."
+        1: "FEAT_RDM implemented."
+
+    TME:
+      bits: "27:24"
+      descriptions:
+        0: "TME instructions not implemented."
+        1: "TME instructions implemented."
+
+    Atomic:
+      bits: "23:20"
+      descriptions:
+        0: "FEAT_LSE not implemented."
+        2: "FEAT_LSE implemented."
+        3: "FEAT_LSE128 implemented."
+
+    CRC32:
+      bits: "19:16"
+      descriptions:
+        0: "CRC32 not implemented."
+        1: "CRC32 instructions implemented."
+
+    SHA2:
+      bits: "15:12"
+      descriptions:
+        0: "FEAT_SHA256, FEAT_SHA512 not implemented."
+        1: "FEAT_SHA256 implemented."
+        2: "FEAT_SHA512 implemented."
+
+    SHA1:
+      bits: "11:8"
+      descriptions:
+        0: "FEAT_SHA1 not implemented."
+        1: "FEAT_SHA1 implemented."
+
+    AES:
+      bits: "7:4"
+      descriptions:
+        0: "FEAT_AES, FEAT_PMULL not implemented."
+        1: "FEAT_AES implemented."
+        2: "FEAT_AES and FEAT_PMULL implemented."
+
+ID_AA64ISAR1_EL1:
+  fields:
+    LS64:
+      bits: "63:60"
+      descriptions:
+        0: "FEAT_LS64 not implemented."
+        1: "FEAT_LS64 implemented."
+        2: "FEAT_LS64_V implemented."
+        3: "FEAT_LS64_ACCDATA implemented."
+
+    XS:
+      bits: "59:56"
+      descriptions:
+        0: "FEAT_XS not implemented."
+        1: "FEAT_XS implemented."
+
+    I8MM:
+      bits: "55:52"
+      descriptions:
+        0: "FEAT_I8MM not implemented."
+        1: "FEAT_I8MM implemented."
+
+    DGH:
+      bits: "51:48"
+      descriptions:
+        0: "FEAT_DGH not implemented."
+        1: "FEAT_DGH implemented."
+
+    BF16:
+      bits: "47:44"
+      descriptions:
+        0: "FEAT_BF16 not implemented."
+        1: "FEAT_BF16 implemented."
+        2: "FEAT_EBF16 implemented."
+
+    SPECRES:
+      bits: "43:40"
+      descriptions:
+        0: "FEAT_SPECRES not implemented."
+        1: "FEAT_SPECRES implemented."
+        2: "FEAT_SPECRES2 implemented."
+
+    SB:
+      bits: "39:36"
+      descriptions:
+        0: "FEAT_SB not implemented."
+        1: "FEAT_SB implemented."
+
+    FRINTTS:
+      bits: "35:32"
+      descriptions:
+        0: "FEAT_FRINTTS not implemented."
+        1: "FEAT_FRINTTS implemented."
+
+    GPI:
+      bits: "31:28"
+      descriptions:
+        0: "FEAT_PACIMP not implemented."
+        1: "FEAT_PACIMP implemented."
+
+    GPA:
+      bits: "27:24"
+      descriptions:
+        0: "FEAT_PACQARMA5 not implemented."
+        1: "FEAT_PACQARMA5 implemented."
+
+    LRCPC:
+      bits: "23:20"
+      descriptions:
+        0: "FEAT_LRCPC(2) not implemented."
+        1: "FEAT_LRCPC implemented."
+        2: "FEAT_LRCPC2 implemented."
+        3: "FEAT_LRCPC3 implemented."
+
+    FCMA:
+      bits: "19:16"
+      descriptions:
+        0: "FEAT_FCMA not implemented."
+        1: "FEAT_FCMA implemented."
+
+    JSCVT:
+      bits: "15:12"
+      descriptions:
+        0: "FEAT_JSCVT not implemented."
+        1: "FEAT_JSCVT implemented."
+
+    API:
+      bits: "11:8"
+      descriptions:
+        0: "Address Authentication (API) not implemented."
+        1: "FEAT_PAuth implemented."
+        2: "FEAT_EPAC implemented."
+        3: "FEAT_PAuth2 implemented."
+        4: "FEAT_FPAC implemented."
+        5: "FEAT_FPACCOMBINE implemented."
+        6: "FEAT_PAuth_LR implemented."
+
+    APA:
+      bits: "7:4"
+      descriptions:
+        0: "Address Authentication (APA) not implemented."
+        1: "FEAT_PAuth implemented."
+        2: "FEAT_EPAC implemented."
+        3: "FEAT_PAuth2 implemented."
+        4: "FEAT_FPAC implemented."
+        5: "FEAT_FPACCOMBINE implemented."
+        6: "FEAT_PAuth_LR implemented."
+
+    DPB:
+      bits: "3:0"
+      descriptions:
+        0: "DC CVAP not implemented."
+        1: "FEAT_DPB implemented."
+        2: "FEAT_DPB2 implemented."
+
+ID_AA64ISAR2_EL1:
+  fields:
+    ATS1A:
+      bits: "63:60"
+      descriptions:
+        0: "Address Translate Stage 1 instructions without Permissions Checks are not implemented."
+        1: "Address Translate Stage 1 instructions without Permissions Checks are implemented."
+
+    LUT:
+      bits: "59:56"
+      descriptions:
+        0: "FEAT_LUT not implemented."
+        1: "FEAT_LUT implemented."
+
+    CSSC:
+      bits: "55:52"
+      descriptions:
+        0: "FEAT_CSSC not implemented."
+        1: "FEAT_CSSC implemented."
+
+    RPRFM:
+      bits: "51:48"
+      descriptions:
+        0: "FEAT_RPRFM not implemented."
+        1: "FEAT_RPRFM implemented."
+
+    PRFMSLC:
+      bits: "43:40"
+      descriptions:
+        0: "FEAT_PRFMSLC not implemented."
+        1: "FEAT_PRFMSLC implemented."
+
+    SYSINSTR_128:
+      bits: "39:36"
+      descriptions:
+        0: "FEAT_SYSINSTR128 not implemented."
+        1: "FEAT_SYSINSTR128 implemented."
+
+    SYSREG_128:
+      bits: "35:32"
+      descriptions:
+        0: "FEAT_SYSREG128 not implemented."
+        1: "FEAT_SYSREG128 implemented."
+
+    CLRBHB:
+      bits: "31:28"
+      descriptions:
+        0: "FEAT_CLRBHB not implemented."
+        1: "FEAT_CLRBHB implemented."
+
+    PAC_frac:
+      bits: "27:24"
+      descriptions:
+        0: "FEAT_CONSTPACFIELD not implemented."
+        1: "FEAT_CONSTPACFIELD implemented."
+
+    BC:
+      bits: "23:20"
+      descriptions:
+        0: "FEAT_HBC not implemented."
+        1: "FEAT_HBC implemented."
+
+    MOPS:
+      bits: "19:16"
+      descriptions:
+        0: "FEAT_MOPS not implemented."
+        1: "FEAT_MOPS implemented."
+
+    APA3:
+      bits: "15:12"
+      descriptions:
+        0: "Address Authentication (APA3) not implemented."
+        1: "FEAT_PAuth implemented."
+        2: "FEAT_EPAC implemented."
+        3: "FEAT_PAuth2 implemented."
+        4: "FEAT_FPAC implemented."
+        5: "FEAT_FPACCOMBINE implemented."
+        6: "FEAT_PAuth_LR implemented."
+
+    GPA3:
+      bits: "11:8"
+      descriptions:
+        0: "FEAT_PACQARMA3 not implemented."
+        1: "FEAT_PACQARMA3 implemented."
+
+    RPRES:
+      bits: "7:4"
+      descriptions:
+        0: "FEAT_RPRES not implemented."
+        1: "FEAT_RPRES implemented."
+
+    WFxT:
+      bits: "3:0"
+      descriptions:
+        0: "FEAT_WFxT not implemented."
+        2: "FEAT_WFxT implemented."
+
+# Debug Feature Registers
+ID_AA64DFR0_EL1:
+  fields:
+    HPMN0:
+      bits: "63:60"
+      descriptions:
+        0: "Setting MDCR_EL2.HPMN to zero has CONSTRAINED UNPREDICTABLE behavior."
+        1: "FEAT_HPMN0 implemented."
+
+    ExtTrcBuff:
+      bits: "59:56"
+      descriptions:
+        0: "Trace Buffer External Mode not implemented."
+        1: "FEAT_TRBE_EXT implemented."
+
+    BRBE:
+      bits: "55:52"
+      descriptions:
+        0: "FEAT_BRBE not implemented."
+        1: "FEAT_BRBE implemented."
+        2: "FEAT_BRBEv1p1 implemented."
+
+    MTPMU:
+      bits: "51:48"
+      descriptions:
+        0: "FEAT_MTPMU not implemented."
+        1: "FEAT_MTPMU and FEAT_PMUv3 implemented."
+        15: "FEAT_MTPMU not implemented."
+
+    TraceBuffer:
+      bits: "47:44"
+      descriptions:
+        0: "FEAT_TRBE not implemented."
+        1: "FEAT_TRBE implemented."
+
+    TraceFilt:
+      bits: "43:40"
+      descriptions:
+        0: "FEAT_TRF not implemented."
+        1: "FEAT_TRF implemented."
+
+    DoubleLock:
+      bits: "39:36"
+      descriptions:
+        0: "FEAT_DoubleLock implemented."
+        15: "FEAT_DoubleLock not implemented."
+
+    PMSVer:
+      bits: "35:32"
+      descriptions:
+        0: "FEAT_SPE not implemented."
+        1: "FEAT_SPE implemented."
+        2: "FEAT_SPEv1p1 implemented."
+        3: "FEAT_SPEv1p2 implemented."
+        4: "FEAT_SPEv1p3 implemented."
+        5: "FEAT_SPEv1p4 implemented."
+        6: "FEAT_SPE_SME implemented."
+
+    CTX_CMPs:
+      bits: "31:28"
+      descriptions:
+        0: "Number of breakpoints that are context-aware, minus 1."
+        1: "Number of breakpoints that are context-aware, minus 1."
+        2: "Number of breakpoints that are context-aware, minus 1."
+        3: "Number of breakpoints that are context-aware, minus 1."
+        4: "Number of breakpoints that are context-aware, minus 1."
+        5: "Number of breakpoints that are context-aware, minus 1."
+        6: "Number of breakpoints that are context-aware, minus 1."
+        7: "Number of breakpoints that are context-aware, minus 1."
+        8: "Number of breakpoints that are context-aware, minus 1."
+        9: "Number of breakpoints that are context-aware, minus 1."
+        10: "Number of breakpoints that are context-aware, minus 1."
+        11: "Number of breakpoints that are context-aware, minus 1."
+        12: "Number of breakpoints that are context-aware, minus 1."
+        13: "Number of breakpoints that are context-aware, minus 1."
+        14: "Number of breakpoints that are context-aware, minus 1."
+        15: "Number of breakpoints that are context-aware, minus 1."
+
+    SEBEP:
+      bits: "27:24"
+      descriptions:
+        0: "FEAT_SEBEP not implemented."
+        1: "FEAT_SEBEP implemented."
+
+    WRPs:
+      bits: "23:20"
+      descriptions:
+        0: "reserved"
+        1: "Number of watchpoints, minus 1."
+        2: "Number of watchpoints, minus 1."
+        3: "Number of watchpoints, minus 1."
+        4: "Number of watchpoints, minus 1."
+        5: "Number of watchpoints, minus 1."
+        6: "Number of watchpoints, minus 1."
+        7: "Number of watchpoints, minus 1."
+        8: "Number of watchpoints, minus 1."
+        9: "Number of watchpoints, minus 1."
+        10: "Number of watchpoints, minus 1."
+        11: "Number of watchpoints, minus 1."
+        12: "Number of watchpoints, minus 1."
+        13: "Number of watchpoints, minus 1."
+        14: "Number of watchpoints, minus 1."
+        15: "Number of watchpoints, minus 1."
+
+    PMSS:
+      bits: "19:16"
+      descriptions:
+        0: "FEAT_PMUv2_SS not implemented."
+        1: "FEAT_PMUv2_SS implemented."
+
+    BRPs:
+      bits: "15:12"
+      descriptions:
+        0: "reserved"
+        1: "Number of breakpoints, minus 1."
+        2: "Number of breakpoints, minus 1."
+        3: "Number of breakpoints, minus 1."
+        4: "Number of breakpoints, minus 1."
+        5: "Number of breakpoints, minus 1."
+        6: "Number of breakpoints, minus 1."
+        7: "Number of breakpoints, minus 1."
+        8: "Number of breakpoints, minus 1."
+        9: "Number of breakpoints, minus 1."
+        10: "Number of breakpoints, minus 1."
+        11: "Number of breakpoints, minus 1."
+        12: "Number of breakpoints, minus 1."
+        13: "Number of breakpoints, minus 1."
+        14: "Number of breakpoints, minus 1."
+        15: "Number of breakpoints, minus 1."
+
+    PMUVer:
+      bits: "11:8"
+      descriptions:
+        0: "Performance Monitors Extension not implemented."
+        1: "FEAT_PMUv3 implemented."
+        4: "FEAT_PMUv3p1 implemented."
+        5: "FEAT_PMUv3p4 implemented."
+        6: "FEAT_PMUv3p5 implemented."
+        7: "FEAT_PMUv3p7 implemented."
+        8: "FEAT_PMUv3p8 implemented."
+        9: "FEAT_PMUv3p9 implemented."
+        10: "FEAT_PMUv3_SME implemented."
+        15: "IMPLEMENTATION DEFINED form of performance monitors supported."
+
+    TraceVer:
+      bits: "7:4"
+      descriptions:
+        0: "Trace unit System registers not implemented."
+        1: "Trace unit System registers implemented."
+
+    DebugVer:
+      bits: "3:0"
+      descriptions:
+        6: "Armv8 debug architecture"
+        7: "Armv8 debug architecture with VHE"
+        8: "FEAT_Debugv8p2 implemented."
+        9: "FEAT_Debugv8p4 implemented."
+        10: "FEAT_Debugv8p8 implemented."
+        11: "FEAT_Debugv8p9 implemented."
+
+# SVE Feature Register
+ID_AA64ZFR0_EL1:
+  fields:
+    F64MM:
+      bits: "59:56"
+      descriptions:
+        0: "FEAT_F64MM SVE not implemented"
+        1: "FEAT_F64MM SVE implemented"
+
+    F32MM:
+      bits: "55:52"
+      descriptions:
+        0: "FEAT_F32MM SVE not implemented"
+        1: "FEAT_F32MM SVE implemented"
+
+    I8MM:
+      bits: "47:44"
+      descriptions:
+        0: "FEAT_I8MM SVE not implemented."
+        1: "FEAT_I8MM SVE implemented."
+
+    SM4:
+      bits: "43:40"
+      descriptions:
+        0: "FEAT_SVE_SM4 not implemented."
+        1: "FEAT_SVE_SM4 implemented."
+
+    SHA3:
+      bits: "35:32"
+      descriptions:
+        0: "FEAT_SVE_SHA3 not implemented."
+        1: "FEAT_SVE_SHA3 implemented."
+
+    B16B16:
+      bits: "27:24"
+      descriptions:
+        0: "FEAT_SVE_B16B16 not implemented."
+        1: "FEAT_SVE_B16B16 implemented."
+
+    BF16:
+      bits: "23:20"
+      descriptions:
+        0: "SVE BFloat16 not implemented."
+        1: "FEAT_BF16 SVE implemented."
+        2: "FEAT_EBF16 SVE implemented."
+
+    BitPerm:
+      bits: "19:16"
+      descriptions:
+        0: "FEAT_SVE_BitPerm not implemented."
+        1: "FEAT_SVE_BitPerm implemented."
+
+    AES:
+      bits: "7:4"
+      descriptions:
+        0: "FEAT_SVE_AES not implemented."
+        1: "FEAT_SVE_AES implemented."
+        2: "FEAT_SVE_AES and FEAT_SVE_PMULL128 implemented."
+
+    SVEver:
+      bits: "3:0"
+      descriptions:
+        0: "FEAT_SVE implemented."
+        1: "FEAT_SVE2 implemented."
+        2: "FEAT_SVE2p1 implemented."
+
+# SME Feature Register
+ID_AA64SMFR0_EL1:
+  fields:
+    FA64:
+      bits: "63"
+      descriptions:
+        0: "FEAT_SME_FA64 not implemented."
+        1: "FEAT_SME_FA64 implemented."
+
+    LUTv2:
+      bits: "60"
+      descriptions:
+        0: "FEAT_SME_LUTv2 not implemented."
+        1: "FEAT_SME_LUTv2 implemented."
+
+    SMEver:
+      bits: "59:56"
+      descriptions:
+        0: "Mandatory SME instructions are implemented."
+        1: "FEAT_SME2 implemented."
+        2: "FEAT_SME2p1 implemented."
+
+    I16I64:
+      bits: "55:52"
+      descriptions:
+        0: "FEAT_SME_I16I64 not implemented"
+        15: "FEAT_SME_I16I64 implemented"
+
+    F64F64:
+      bits: "48"
+      descriptions:
+        0: "FEAT_SME_F64F64 not implemented."
+        1: "FEAT_SME_F64F64 implemented."
+
+    I16I32:
+      bits: "47:44"
+      descriptions:
+        0: "SME2 I16I32 not implemented."
+        5: "SME2 I16I32 implemented."
+
+    B16B16:
+      bits: "43"
+      descriptions:
+        0: "FEAT_SME_B16B16 not implemented."
+        1: "FEAT_SME_B16B16 implemented."
+
+    F16F16:
+      bits: "42"
+      descriptions:
+        0: "FEAT_SME_F16F16 not implemented."
+        1: "FEAT_SME_F16F16 implemented."
+
+    F8F16:
+      bits: "41"
+      descriptions:
+        0: "FEAT_SME_F8F16 not implemented."
+        1: "FEAT_SME_F8F16 implemented."
+
+    F8F32:
+      bits: "40"
+      descriptions:
+        0: "FEAT_SME_F8F32 not implemented."
+        1: "FEAT_SME_F8F32 implemented."
+
+    I8I32:
+      bits: "39:36"
+      descriptions:
+        0: "SME I8I32 not implemented."
+        15: "SME I8I32 implemented."
+
+    F16F32:
+      bits: "35"
+      descriptions:
+        0: "SME F16F32 not implemented."
+        1: "SME F16F32 implemented."
+
+    B16F32:
+      bits: "34"
+      descriptions:
+        0: "SME B16F32 not implemented."
+        1: "SME B16F32 implemented."
+
+    BI32I32:
+      bits: "33"
+      descriptions:
+        0: "SME BI32I32 not implemented."
+        1: "SME BI32I32 implemented."
+
+    F32F32:
+      bits: "32"
+      descriptions:
+        0: "SME F32F32 not implemented."
+        1: "SME F32F32 implemented."
+
+    SF8FMA:
+      bits: "30"
+      descriptions:
+        0: "FEAT_SSVE_FP8FMA not implemented."
+        1: "FEAT_SSVE_FP8FMA implemented."
+
+    SF8DP4:
+      bits: "29"
+      descriptions:
+        0: "FEAT_SSVE_FP8DOT4 not implemented."
+        1: "FEAT_SSVE_FP8DOT4 implemented."
+
+    SF8DP2:
+      bits: "28"
+      descriptions:
+        0: "FEAT_SSVE_FP8DOT2 not implemented."
+        1: "FEAT_SSVE_FP8DOT2 implemented."

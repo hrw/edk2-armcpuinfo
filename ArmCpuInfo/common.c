@@ -97,3 +97,14 @@ PrintValues (
 	PrintText (Field, Name, Bits, Nibbles[Value & 0xf], Description);
   }
 }
+
+/**
+  Print spacer for results table.
+**/
+VOID
+PrintSpacer (
+  VOID
+  )
+{
+  AsciiPrint ("------|--------------|-------|-------|----------------------------------------------\n");
+}

@@ -8,6 +8,10 @@
 #
 #  SPDX-License-Identifier: BSD-2-Clause-Patent
 #
+#  NOTE: id_aa64_all_generated.c and id_aa64.h are generated from data/registers.yaml
+#        Before building, run: scripts/build_generate.sh
+#        Or manually: python3 scripts/generate_handlers.py data/registers.yaml id_aa64_all_generated.c id_aa64.h
+#
 ##
 
 [Defines]
@@ -20,12 +24,7 @@
 
 [Sources]
   common.c
-  id_aa64dfr.c
-  id_aa64isar.c
-  id_aa64mfr.c
-  id_aa64pfr.c
-  id_aa64smfr.c
-  id_aa64zfr.c
+  id_aa64_all_generated.c
   ArmCpuInfo.c
   AArch64LibExtra.h
   AArch64Support.S

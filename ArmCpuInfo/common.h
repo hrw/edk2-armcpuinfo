@@ -57,5 +57,9 @@ PrintValues (
   CONST CHAR8  *Description
   );
 
+VOID
+PrintSpacer (
+  VOID
+  );
 
 #endif

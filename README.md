@@ -1,6 +1,17 @@
 # Arm cpu information command for UEFI Shell
 
-The goal of this command is to show which cpu features/flags are supported.
+EDK2 UEFI application to display AArch64 CPU feature information by reading and
+decoding ARM system registers.
+
+Based on ARM DDI 0487 (ARM Architecture Reference Manual for A-profile).
+
+## Features
+
+- Reads all AArch64 ID system registers
+- Decodes register fields into human-readable feature descriptions
+- YAML-based code generation for easy maintenance
+- Python decoder tool for offline testing
+
 
 Example output:
 
@@ -35,6 +46,24 @@ binaries:
 
 Application assumes terminal with 100 columns.
 
+### QEMU
+
+```bash
+qemu-system-aarch64 \
+  -M virt -cpu max -m 2048 \
+  -bios QEMU_EFI.fd \
+  -drive file=fat:rw:Build/ArmVirtQemu-AARCH64/RELEASE_GCC5/AARCH64/
+
+# In UEFI shell:
+FS0:
+ArmCpuInfo.efi
+```
+
+### On a real hardware:
+
+1. Copy `ArmCpuInfo.efi` to EFI partition (or other FAT formatted)
+2. Boot to UEFI shell
+3. Run `ArmCpuInfo.efi`
 
 ## Build instructions
 
@@ -51,3 +80,18 @@ Application assumes terminal with 100 columns.
    build -t GCC -a AARCH64 -b RELEASE -m edk2/ArmPkg/Application/ArmCpuInfo/ArmCpuInfo.inf -p edk2/ArmPkg/ArmPkg.dsc
    ```
 6. resulting binary will be in "Build/Arm/RELEASE_GCC/AARCH64/" directory
+
+
+## (Re-)Generate Code
+
+Before building, you may regenerate C code and headers from YAML:
+
+```bash
+cd ArmCpuInfo
+scripts/build_generate.sh
+```
+
+This creates:
+- `id_aa64_all_generated.c` - Register handler implementations
+- `id_aa64.h` - Function declarations
+
