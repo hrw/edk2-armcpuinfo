@@ -17,14 +17,14 @@ jobs:
       run: sudo apt-get install git gcc-aarch64-linux-gnu build-essential uuid-dev iasl git nasm python-is-python3 coreutils mdm
 
     - name: checkout EDK2
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
       with:
         repository: tianocore/edk2
         submodules: true
         path: edk2
 
     - name: checkout ArmCpuInfo
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
       with:
         path: edk2/ArmPkg/Application
 
@@ -48,7 +48,7 @@ jobs:
         build -t GCC -a AARCH64 -b RELEASE -m edk2/ArmPkg/Application/ArmCpuInfo/ArmCpuInfo.inf -p edk2/ArmPkg/ArmPkg.dsc
 
     - name: upload ArmCpuInfo binary
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: ArmCpuInfo
         path: Build/Arm/RELEASE_GCC/AARCH64/ArmCpuInfo.efi
@@ -65,7 +65,7 @@ jobs:
 
     steps:
     - name: Download artifact
-      uses: actions/download-artifact@v4
+      uses: actions/download-artifact@v8
       with:
         name: ArmCpuInfo
 
