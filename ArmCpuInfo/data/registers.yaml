@@ -152,6 +152,7 @@ ID_AA64MMFR1_EL1:
         0: "FEAT_ETS not implemented."
         1: "FEAT_ETS implemented."
         2: "FEAT_ETS2 implemented."
+        3: "FEAT_ETS3 implemented."
 
     TWED:
       bits: "35:32"
@@ -841,12 +842,19 @@ ID_AA64ISAR2_EL1:
       descriptions:
         0: "FEAT_CSSC not implemented."
         1: "FEAT_CSSC implemented."
+        2: "FEAT_CMPBR implemented."
 
     RPRFM:
       bits: "51:48"
       descriptions:
         0: "FEAT_RPRFM not implemented."
         1: "FEAT_RPRFM implemented."
+
+    PCDPHINT:
+      bits: "47:44"
+      descriptions:
+        0: "FEAT_PCDPHINT not implemented."
+        1: "FEAT_PCDPHINT implemented."
 
     PRFMSLC:
       bits: "43:40"
@@ -1088,6 +1096,12 @@ ID_AA64ZFR0_EL1:
         0: "FEAT_F32MM SVE not implemented"
         1: "FEAT_F32MM SVE implemented"
 
+    F16MM:
+      bits: "51:48"
+      descriptions:
+        0: "FEAT_SVE_F16F32MM not implemented."
+        1: "FEAT_SVE_F16F32MM implemented."
+
     I8MM:
       bits: "47:44"
       descriptions:
@@ -1131,6 +1145,7 @@ ID_AA64ZFR0_EL1:
         0: "FEAT_SVE_AES not implemented."
         1: "FEAT_SVE_AES implemented."
         2: "FEAT_SVE_AES and FEAT_SVE_PMULL128 implemented."
+        3: "FEAT_SVE_AES2 implemented."
 
     SVEver:
       bits: "3:0"
@@ -1138,6 +1153,7 @@ ID_AA64ZFR0_EL1:
         0: "FEAT_SVE implemented."
         1: "FEAT_SVE2 implemented."
         2: "FEAT_SVE2p1 implemented."
+        3: "FEAT_SVE2p2 implemented."
 
 # SME Feature Register
 ID_AA64SMFR0_EL1:
@@ -1160,6 +1176,7 @@ ID_AA64SMFR0_EL1:
         0: "Mandatory SME instructions are implemented."
         1: "FEAT_SME2 implemented."
         2: "FEAT_SME2p1 implemented."
+        3: "FEAT_SME2p2 implemented."
 
     I16I64:
       bits: "55:52"

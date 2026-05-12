@@ -359,7 +359,8 @@ HandleAa64Mmfr1 (
   STATIC CONST CHAR8 *ETSDesc[] = {
     "FEAT_ETS not implemented.",
     "FEAT_ETS implemented.",
-    "FEAT_ETS2 implemented."
+    "FEAT_ETS2 implemented.",
+    "FEAT_ETS3 implemented."
   };
   STATIC CONST CHAR8 *TWEDDesc[] = {
     "FEAT_TWED not implemented.",
@@ -2364,11 +2365,16 @@ HandleAa64Isar2 (
   };
   STATIC CONST CHAR8 *CSSCDesc[] = {
     "FEAT_CSSC not implemented.",
-    "FEAT_CSSC implemented."
+    "FEAT_CSSC implemented.",
+    "FEAT_CMPBR implemented."
   };
   STATIC CONST CHAR8 *RPRFMDesc[] = {
     "FEAT_RPRFM not implemented.",
     "FEAT_RPRFM implemented."
+  };
+  STATIC CONST CHAR8 *PCDPHINTDesc[] = {
+    "FEAT_PCDPHINT not implemented.",
+    "FEAT_PCDPHINT implemented."
   };
   STATIC CONST CHAR8 *PRFMSLCDesc[] = {
     "FEAT_PRFMSLC not implemented.",
@@ -2464,6 +2470,19 @@ HandleAa64Isar2 (
   Value = (Aa64Isar2 >> 48) & 0xf;
   if (Value < ARRAY_SIZE(RPRFMDesc) && RPRFMDesc[Value] != NULL) {
     Description = RPRFMDesc[Value];
+  } else {
+    Description = "unknown";
+  }
+  if (AsciiStrCmp(Description, "unknown") == 0) {
+    UnknownCount++;
+  }
+  PrintValues (RegName, Name, Bits, Value, Description);
+
+  Bits  = "47:44";
+  Name  = "PCDPHINT";
+  Value = (Aa64Isar2 >> 44) & 0xf;
+  if (Value < ARRAY_SIZE(PCDPHINTDesc) && PCDPHINTDesc[Value] != NULL) {
+    Description = PCDPHINTDesc[Value];
   } else {
     Description = "unknown";
   }
@@ -2984,6 +3003,10 @@ HandleAa64Zfr0 (
     "FEAT_F32MM SVE not implemented",
     "FEAT_F32MM SVE implemented"
   };
+  STATIC CONST CHAR8 *F16MMDesc[] = {
+    "FEAT_SVE_F16F32MM not implemented.",
+    "FEAT_SVE_F16F32MM implemented."
+  };
   STATIC CONST CHAR8 *I8MMDesc[] = {
     "FEAT_I8MM SVE not implemented.",
     "FEAT_I8MM SVE implemented."
@@ -3012,12 +3035,14 @@ HandleAa64Zfr0 (
   STATIC CONST CHAR8 *AESDesc[] = {
     "FEAT_SVE_AES not implemented.",
     "FEAT_SVE_AES implemented.",
-    "FEAT_SVE_AES and FEAT_SVE_PMULL128 implemented."
+    "FEAT_SVE_AES and FEAT_SVE_PMULL128 implemented.",
+    "FEAT_SVE_AES2 implemented."
   };
   STATIC CONST CHAR8 *SVEverDesc[] = {
     "FEAT_SVE implemented.",
     "FEAT_SVE2 implemented.",
-    "FEAT_SVE2p1 implemented."
+    "FEAT_SVE2p1 implemented.",
+    "FEAT_SVE2p2 implemented."
   };
 
   Bits  = "59:56";
@@ -3038,6 +3063,19 @@ HandleAa64Zfr0 (
   Value = (Aa64Zfr0 >> 52) & 0xf;
   if (Value < ARRAY_SIZE(F32MMDesc) && F32MMDesc[Value] != NULL) {
     Description = F32MMDesc[Value];
+  } else {
+    Description = "unknown";
+  }
+  if (AsciiStrCmp(Description, "unknown") == 0) {
+    UnknownCount++;
+  }
+  PrintValues (RegName, Name, Bits, Value, Description);
+
+  Bits  = "51:48";
+  Name  = "F16MM";
+  Value = (Aa64Zfr0 >> 48) & 0xf;
+  if (Value < ARRAY_SIZE(F16MMDesc) && F16MMDesc[Value] != NULL) {
+    Description = F16MMDesc[Value];
   } else {
     Description = "unknown";
   }
@@ -3183,7 +3221,8 @@ HandleAa64Smfr0 (
   STATIC CONST CHAR8 *SMEverDesc[] = {
     "Mandatory SME instructions are implemented.",
     "FEAT_SME2 implemented.",
-    "FEAT_SME2p1 implemented."
+    "FEAT_SME2p1 implemented.",
+    "FEAT_SME2p2 implemented."
   };
   STATIC CONST CHAR8 *I16I64Desc[] = {
     [0] = "FEAT_SME_I16I64 not implemented",
