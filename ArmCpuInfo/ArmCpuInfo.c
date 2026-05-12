@@ -31,7 +31,7 @@ UefiMain (
   IN EFI_SYSTEM_TABLE  *SystemTable
   )
 {
-  AsciiPrint ("ArmCpuInfo v1.4.0\n\n");
+  AsciiPrint ("ArmCpuInfo v1.4.1\n\n");
 
   // All register processing is now handled by generated code
   ProcessAllRegisters ();
