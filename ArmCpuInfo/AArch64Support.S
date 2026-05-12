@@ -4,7 +4,7 @@
 # Copyright (c) 2011 - 2017, ARM Limited. All rights reserved.
 # Copyright (c) 2016 - 2024, Linaro Limited. All rights reserved.
 # Copyright (c) 2020, NUVIA Inc. All rights reserved.
-# Copyright (c) 2023 - 2024, Marcin Juszkiewicz
+# Copyright (c) Marcin Juszkiewicz
 #
 # SPDX-License-Identifier: BSD-2-Clause-Patent
 #

@@ -1,6 +1,6 @@
 /** @file
 
-  Copyright (c) 2023 - 2024, Marcin Juszkiewicz
+  Copyright (c) Marcin Juszkiewicz
 
   SPDX-License-Identifier: BSD-2-Clause-Patent
 

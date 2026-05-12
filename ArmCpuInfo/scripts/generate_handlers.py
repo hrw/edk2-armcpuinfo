@@ -4,7 +4,6 @@ Generate C code for ARM register field handlers from YAML definitions.
 
 Usage: generate_handlers.py <registers.yaml> <output.c> <output.h>
 
-Copyright (c) 2026, Marcin Juszkiewicz
 SPDX-License-Identifier: BSD-2-Clause-Patent
 """
 
@@ -346,7 +345,7 @@ def generate_header(registers):
         "  GENERATED FILE - DO NOT EDIT",
         "  Generated from registers.yaml by generate_handlers.py",
         "",
-        "Copyright (c) 2026, Marcin Juszkiewicz<BR>",
+        "Copyright (c) Marcin Juszkiewicz<BR>",
         "",
         "SPDX-License-Identifier: BSD-2-Clause-Patent",
         "",
@@ -376,7 +375,7 @@ def generate_h_file_header():
   GENERATED FILE - DO NOT EDIT
   Generated from registers.yaml by generate_handlers.py
 
-Copyright (c) 2026, Marcin Juszkiewicz<BR>
+Copyright (c) Marcin Juszkiewicz<BR>
 
 SPDX-License-Identifier: BSD-2-Clause-Patent
 

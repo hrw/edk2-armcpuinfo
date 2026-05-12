@@ -1,7 +1,7 @@
 /** @file
 
 Copyright (c) 2023, Linaro Ltd. All rights reserved.<BR>
-Copyright (c) 2023 - 2024, Marcin Juszkiewicz<BR>
+Copyright (c) Marcin Juszkiewicz<BR>
 
 SPDX-License-Identifier: BSD-2-Clause-Patent
 

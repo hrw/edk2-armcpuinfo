@@ -2,7 +2,7 @@
   GENERATED FILE - DO NOT EDIT
   Generated from registers.yaml by generate_handlers.py
 
-Copyright (c) 2026, Marcin Juszkiewicz<BR>
+Copyright (c) Marcin Juszkiewicz<BR>
 
 SPDX-License-Identifier: BSD-2-Clause-Patent
 

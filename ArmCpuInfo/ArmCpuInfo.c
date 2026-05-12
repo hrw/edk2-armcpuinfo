@@ -4,7 +4,7 @@
   Based on ARM DDI 0487: https://developer.arm.com/documentation/ddi0487
 
 Copyright (c) 2023, Linaro Ltd. All rights reserved.<BR>
-Copyright (c) 2023 - 2024, Marcin Juszkiewicz<BR>
+Copyright (c) Marcin Juszkiewicz<BR>
 
 SPDX-License-Identifier: BSD-2-Clause-Patent
 
